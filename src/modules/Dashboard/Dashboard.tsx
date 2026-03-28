@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { styled, Box, Slide } from '@mui/material';
 import { usePanels } from '../../hooks';
+import { AlertContainer } from '../../components';
 import { DashboardContextProvider } from './Dashboard.context';
 import { useDashboardSlider } from './useDashboardSlider';
 import { useDashboardPanel } from './useDashboardPanel';
@@ -24,6 +26,7 @@ const PanelWrapper = styled(Box, {
 }));
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const { panel } = useParams();
   const { panels, isPanelValid } = usePanels();
   const { currentIndex, direction } = useDashboardSlider(panel);
@@ -35,7 +38,14 @@ const Dashboard = () => {
   };
 
   if (panel && !isPanelValid(panel)) {
-    return <>Sorry, but panel was not found</>;
+    return (
+      <AlertContainer
+        alertProps={{ severity: 'error' }}
+        containerProps={{ maxWidth: 'md' }}
+      >
+        {t('message.noPanelFound')}
+      </AlertContainer>
+    );
   }
 
   return (

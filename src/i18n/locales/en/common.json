@@ -1,4 +1,7 @@
 {
   "button": {},
-  "label": {}
+  "label": {},
+  "message": {
+    "noPanelFound": "Sorry, but panel with this id was not found"
+  }
 }

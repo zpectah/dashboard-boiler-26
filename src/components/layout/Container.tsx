@@ -5,7 +5,7 @@ import {
 import type { WithChildren } from '../../types';
 import { ContainerMaxWidth } from '../../constants';
 
-type ContainerProps = WithChildren & Partial<MuiContainerProps>;
+export type ContainerProps = WithChildren & Partial<MuiContainerProps>;
 
 const Container = ({ children, ...rest }: ContainerProps) => (
   <MuiContainer maxWidth={ContainerMaxWidth} {...rest}>
