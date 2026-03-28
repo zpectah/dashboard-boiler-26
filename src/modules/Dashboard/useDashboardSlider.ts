@@ -1,0 +1,35 @@
+import { useMemo, useState } from 'react';
+import { usePanels } from '../../hooks';
+import { MainPanelName } from '../../constants';
+import type { Direction } from './types';
+import { DirectionKeys } from './enums';
+import { DirectionDefault } from './constants';
+
+export const useDashboardSlider = (panel: string | undefined) => {
+  const { panels } = usePanels();
+
+  const [prevIndex, setPrevIndex] = useState<number>(0);
+  const [direction, setDirection] = useState<Direction>(DirectionDefault);
+
+  const currentIndex = useMemo(
+    () =>
+      panels.findIndex(
+        (p) =>
+          p.name === panel || (p.name === MainPanelName && panel === undefined),
+      ),
+    [panels, panel],
+  );
+
+  if (currentIndex !== prevIndex) {
+    setDirection(
+      currentIndex > prevIndex ? DirectionKeys.left : DirectionKeys.right,
+    );
+    setPrevIndex(currentIndex);
+  }
+
+  return {
+    prevIndex,
+    currentIndex,
+    direction,
+  };
+};
