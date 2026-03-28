@@ -1,8 +1,18 @@
-import { styled } from '@mui/material';
+import { useEffect } from 'react';
+import { styled, Grid, Typography } from '@mui/material';
 import type { Panel } from '../../types';
 import { Container } from '../../components';
+import { useDashboardContext } from './Dashboard.context';
+import {
+  CalendarWidget,
+  ClockAnalogWidget,
+  ClockNumericWidget,
+  DateTimeWidget,
+  HolidaysWidget,
+  LinksWidget,
+} from './widgets';
 
-const Wrapper = styled('div')(() => ({
+const Wrapper = styled('article')(() => ({
   width: '100%',
   height: '100%',
   display: 'flex',
@@ -21,6 +31,7 @@ const WidgetWrapper = styled('div')(({ theme }) => ({
 
   // TODO
   background: 'rgba(200,200,200,.5)',
+  borderRadius: '.5rem',
 }));
 
 interface DashboardPanelProps {
@@ -28,26 +39,26 @@ interface DashboardPanelProps {
 }
 
 const DashboardPanel = ({ panel }: DashboardPanelProps) => {
+  const { onCurrentPanelChange } = useDashboardContext();
+
+  /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  useEffect(() => onCurrentPanelChange(panel), []);
+
   return (
-    <Wrapper>
+    <Wrapper id={panel.id}>
       <Container>
+        {/* TODO */}
+        <Typography variant="subtitle1">{panel.label}</Typography>
         <WidgetWrapper>
-          <pre>
-            {panel.id}|{panel.name}|{panel.label}
-          </pre>
-          <pre>
-            <code>{JSON.stringify(panel, null, 2)}</code>
-          </pre>
-          {panel.name === 'home' && (
-            <>
-              <pre>
-                <code>{JSON.stringify(panel, null, 2)}</code>
-              </pre>
-              <pre>
-                <code>{JSON.stringify(panel, null, 2)}</code>
-              </pre>
-            </>
-          )}
+          <Grid container spacing={2}>
+            {/* TODO */}
+            <ClockAnalogWidget gridProps={{ size: 3 }} />
+            <ClockNumericWidget gridProps={{ size: 3 }} />
+            <DateTimeWidget gridProps={{ size: 3 }} />
+            <HolidaysWidget gridProps={{ size: 3 }} />
+            <CalendarWidget gridProps={{ size: 6 }} />
+            <LinksWidget gridProps={{ size: 12 }} />
+          </Grid>
         </WidgetWrapper>
       </Container>
     </Wrapper>
