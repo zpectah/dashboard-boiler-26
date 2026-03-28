@@ -4,3 +4,4 @@ export * from './ClockNumeric';
 export * from './DateTime';
 export * from './Holidays';
 export * from './Links';
+export * from './Weather';

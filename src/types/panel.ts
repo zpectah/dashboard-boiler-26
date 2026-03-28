@@ -1,3 +1,7 @@
+import { panelEffectKeys } from '../enums';
+
+export type PanelEffect = keyof typeof panelEffectKeys;
+
 interface PanelWidgets {
   /* TODO */
   calendar?: boolean;
@@ -6,6 +10,7 @@ interface PanelWidgets {
   dateTime?: boolean;
   holidays?: boolean;
   links?: boolean;
+  weather?: boolean;
 }
 
 export interface Panel {

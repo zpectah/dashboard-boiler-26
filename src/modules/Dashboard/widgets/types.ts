@@ -15,3 +15,5 @@ export type DateTimeWidgetProps = WidgetCommon;
 export type HolidaysWidgetProps = WidgetCommon;
 
 export type LinksWidgetProps = WidgetCommon;
+
+export type WeatherWidgetProps = WidgetCommon;

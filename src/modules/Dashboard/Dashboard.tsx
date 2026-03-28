@@ -1,8 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { styled, Box, Slide } from '@mui/material';
+import { styled, Box, Slide, Fade, Grow } from '@mui/material';
 import { usePanels } from '../../hooks';
+import type { Panel } from '../../types';
+import { panelEffectKeys } from '../../enums';
+import { useAppStore } from '../../store';
 import { AlertContainer } from '../../components';
+import type { Direction } from './types';
 import { DashboardContextProvider } from './Dashboard.context';
 import { useDashboardSlider } from './useDashboardSlider';
 import { useDashboardPanel } from './useDashboardPanel';
@@ -25,6 +29,59 @@ const PanelWrapper = styled(Box, {
   left: 0,
 }));
 
+interface PanelEffectWrapperProps {
+  panel: Panel;
+  index: number;
+  currentIndex: number;
+  direction: Direction;
+}
+
+const PanelEffectWrapper = ({
+  panel,
+  index,
+  currentIndex,
+  direction,
+}: PanelEffectWrapperProps) => {
+  const { panelEffect } = useAppStore();
+
+  const commonProps = {
+    in: currentIndex === index,
+    mountOnEnter: true,
+    unmountOnExit: true,
+    timeout: 250,
+  };
+
+  switch (panelEffect) {
+    case panelEffectKeys.fade:
+      return (
+        <Fade {...commonProps}>
+          <PanelWrapper isCurrent={currentIndex === index}>
+            <DashboardPanel panel={panel} />
+          </PanelWrapper>
+        </Fade>
+      );
+
+    case panelEffectKeys.grow:
+      return (
+        <Grow {...commonProps}>
+          <PanelWrapper isCurrent={currentIndex === index}>
+            <DashboardPanel panel={panel} />
+          </PanelWrapper>
+        </Grow>
+      );
+
+    case panelEffectKeys.slide:
+    default:
+      return (
+        <Slide direction={direction} {...commonProps}>
+          <PanelWrapper isCurrent={currentIndex === index}>
+            <DashboardPanel panel={panel} />
+          </PanelWrapper>
+        </Slide>
+      );
+  }
+};
+
 const Dashboard = () => {
   const { t } = useTranslation();
   const { panel } = useParams();
@@ -42,9 +99,8 @@ const Dashboard = () => {
       <AlertContainer
         alertProps={{ severity: 'error' }}
         containerProps={{ maxWidth: 'md' }}
-      >
-        {t('message.noPanelFound')}
-      </AlertContainer>
+        children={t('message.noPanelFound')}
+      />
     );
   }
 
@@ -52,18 +108,13 @@ const Dashboard = () => {
     <DashboardContextProvider value={dashboardContext}>
       <Wrapper>
         {panels.map((panel, index) => (
-          <Slide
+          <PanelEffectWrapper
             key={panel.id}
+            panel={panel}
+            index={index}
+            currentIndex={currentIndex}
             direction={direction}
-            in={currentIndex === index}
-            mountOnEnter
-            unmountOnExit
-            timeout={325}
-          >
-            <PanelWrapper isCurrent={currentIndex === index}>
-              <DashboardPanel panel={panel} />
-            </PanelWrapper>
-          </Slide>
+          />
         ))}
       </Wrapper>
     </DashboardContextProvider>

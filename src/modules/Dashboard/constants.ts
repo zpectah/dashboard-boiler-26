@@ -16,5 +16,6 @@ export const DashboardDefaultPanel: Panel = {
     dateTime: false,
     holidays: false,
     links: false,
+    weather: false,
   },
 };

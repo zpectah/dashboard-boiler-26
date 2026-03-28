@@ -10,6 +10,7 @@ import {
   DateTimeWidget,
   HolidaysWidget,
   LinksWidget,
+  WeatherWidget,
 } from './widgets';
 
 const Wrapper = styled('article')(() => ({
@@ -57,6 +58,7 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
             <DateTimeWidget gridProps={{ size: 3 }} />
             <HolidaysWidget gridProps={{ size: 3 }} />
             <CalendarWidget gridProps={{ size: 6 }} />
+            <WeatherWidget gridProps={{ size: 6 }} />
             <LinksWidget gridProps={{ size: 12 }} />
           </Grid>
         </WidgetWrapper>
