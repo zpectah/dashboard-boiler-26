@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { Stack, Typography } from '@mui/material';
 import { usePanels } from '../../hooks';
 import { MainPanelName } from '../../constants';
+import { useDialogStore } from '../../store';
 
 const PanelsMenu = () => {
   const { panels } = usePanels();
+  const { onOpenPanelDialog } = useDialogStore();
 
   return (
     <Stack direction="row" gap={2}>
@@ -18,6 +20,10 @@ const PanelsMenu = () => {
           </Typography>
         );
       })}
+
+      <Typography variant="button" onClick={() => onOpenPanelDialog('new')}>
+        + New
+      </Typography>
     </Stack>
   );
 };

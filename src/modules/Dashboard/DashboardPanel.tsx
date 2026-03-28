@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { styled, Grid, Typography } from '@mui/material';
+import { styled, Grid, Typography, Stack } from '@mui/material';
 import type { Panel } from '../../types';
 import { Container } from '../../components';
 import { useDashboardContext } from './Dashboard.context';
@@ -12,8 +12,9 @@ import {
   LinksWidget,
   WeatherWidget,
 } from './widgets';
+import useDialogStore from '../../store/useDialogStore.ts';
 
-const Wrapper = styled('article')(() => ({
+const Wrapper = styled('div')(() => ({
   width: '100%',
   height: '100%',
   display: 'flex',
@@ -40,16 +41,27 @@ interface DashboardPanelProps {
 }
 
 const DashboardPanel = ({ panel }: DashboardPanelProps) => {
+  const { onOpenPanelDialog } = useDialogStore();
   const { onCurrentPanelChange } = useDashboardContext();
+
+  const panelLabel = panel.label ?? panel.name;
 
   /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => onCurrentPanelChange(panel), []);
 
   return (
-    <Wrapper id={panel.id}>
+    <Wrapper>
       <Container>
-        {/* TODO */}
-        <Typography variant="subtitle1">{panel.label}</Typography>
+        <Stack direction="row" gap={2}>
+          {/* TODO */}
+          <Typography variant="subtitle1">{panelLabel}</Typography>
+          <Typography
+            variant="button"
+            onClick={() => onOpenPanelDialog(panel.id)}
+          >
+            edit
+          </Typography>
+        </Stack>
         <WidgetWrapper>
           <Grid container spacing={2}>
             {/* TODO */}

@@ -2,11 +2,20 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DashboardView } from '../views';
 import { AppLayout } from '../components';
 import { ErrorBoundary } from '../modules';
+import { PanelDetailForm } from '../forms';
 
 const AppRouter = () => {
   const router = createBrowserRouter([
     {
-      element: <AppLayout />,
+      element: (
+        <AppLayout
+          slot={
+            <>
+              <PanelDetailForm />
+            </>
+          }
+        />
+      ),
       errorElement: <ErrorBoundary />,
       children: [
         {

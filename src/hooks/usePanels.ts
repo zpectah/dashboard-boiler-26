@@ -6,11 +6,10 @@ export const usePanels = () => {
   const { homePanel, customPanels } = useAppStore();
 
   const homePanelBase: Panel = {
-    id: homePanel.id,
     name: MainPanelName,
-    label: 'Home',
-    widgets: homePanel.widgets,
+    ...homePanel,
   };
+  const panels = [homePanelBase, ...customPanels];
 
   const isPanelValid = (name: string) =>
     customPanels.some((item) => item.name === name);
@@ -21,11 +20,11 @@ export const usePanels = () => {
     return customPanels.find((item) => item.name === name);
   };
 
-  const getPanelById = (id: string) =>
-    customPanels.find((item) => item.id === id);
+  const getPanelById = (id: string | null) =>
+    panels.find((item) => item.id === id);
 
   return {
-    panels: [homePanelBase, ...customPanels],
+    panels,
     isPanelValid,
     getCurrentPanel,
     getPanelById,

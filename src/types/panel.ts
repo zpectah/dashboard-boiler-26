@@ -3,7 +3,7 @@ import { panelEffectKeys } from '../enums';
 export type PanelEffect = keyof typeof panelEffectKeys;
 
 interface PanelWidgets {
-  /* TODO */
+  /* TODO: define each widget options */
   calendar?: boolean;
   clockAnalog?: boolean;
   clockNumeric?: boolean;
@@ -17,5 +17,6 @@ export interface Panel {
   id: string;
   name: string;
   label?: string;
+  isMain?: boolean;
   widgets: PanelWidgets;
 }

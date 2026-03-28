@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import type { Panel, PanelEffect } from '../types';
 import { panelEffectKeys } from '../enums';
 
-type HomePanel = Omit<Panel, 'name' | 'label'>;
+type HomePanel = Omit<Panel, 'name'>;
 type PartialPanel = Partial<Panel> & Pick<Panel, 'id' | 'name'>;
 
 interface IAppStore {
@@ -17,11 +17,14 @@ interface IAppStore {
   onDeletePanel: (id: string) => void;
 }
 
-const useAppStore = create<IAppStore>((set, getState) => {
-  const panelEffect: PanelEffect = panelEffectKeys.slide;
+const useAppStore = create<IAppStore>((set, get) => {
+  const panelEffect: PanelEffect = panelEffectKeys.grow;
 
-  const homePanel: Omit<Panel, 'name' | 'label'> = {
-    id: 'df5g4h6d5f',
+  /* TODO: mock */
+  const homePanel: HomePanel = {
+    id: 'I73m0u2vt7yG',
+    label: 'Home',
+    isMain: true,
     widgets: {
       calendar: true,
       clockAnalog: true,
@@ -36,7 +39,7 @@ const useAppStore = create<IAppStore>((set, getState) => {
   const customPanels: Panel[] = [
     /* TODO: mock */
     {
-      id: 'rt21zr2',
+      id: 'j3ONF0nJoC05',
       name: 'panel-2',
       label: 'Panel 2',
       widgets: {
@@ -50,7 +53,7 @@ const useAppStore = create<IAppStore>((set, getState) => {
       },
     },
     {
-      id: 'bvn849v8b',
+      id: 'eeRs5UH53dPP',
       name: 'panel-3',
       label: 'Panel Three',
       widgets: {
@@ -71,29 +74,55 @@ const useAppStore = create<IAppStore>((set, getState) => {
     /* TODO: save to storage */
   };
 
-  const createPanelHandler = (panel: Panel) => {};
+  const createPanelHandler = (panel: Panel) => {
+    const state = get().customPanels;
+
+    set(() => {
+      const newState = [...state, panel];
+
+      /* TODO: save to storage */
+
+      return { customPanels: newState };
+    });
+  };
 
   const updatePanelHandler = (panel: PartialPanel) => {
     if (!panel.id || !panel.name) return;
 
     if (panel.name === 'home') {
-      const state = getState().homePanel;
+      set((state) => {
+        const newState = { ...state.homePanel, ...panel };
 
-      set({ homePanel: Object.assign(state, panel) });
+        /* TODO: save to storage */
 
-      /* TODO: save to storage */
+        return {
+          homePanel: newState,
+        };
+      });
     } else {
-      const state = getState().customPanels;
+      set((state) => {
+        const newState = state.customPanels.map((item) =>
+          item.id === panel.id ? ({ ...item, ...panel } as Panel) : item,
+        );
 
-      const index = state.findIndex((item) => item.id === panel.id);
+        /* TODO: save to storage */
 
-      console.log('found index', index);
-
-      /* TODO: save to storage */
+        return {
+          customPanels: newState,
+        };
+      });
     }
   };
 
-  const deletePanelHandler = (id: string) => {};
+  const deletePanelHandler = (id: string) => {
+    set((state) => {
+      const newState = state.customPanels.filter((panel) => panel.id !== id);
+
+      /* TODO: save to storage */
+
+      return { customPanels: newState };
+    });
+  };
 
   return {
     // States

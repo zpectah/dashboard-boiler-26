@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { styled, Box, Slide, Fade, Grow } from '@mui/material';
+import { styled, Slide, Fade, Grow } from '@mui/material';
 import { usePanels } from '../../hooks';
 import type { Panel } from '../../types';
 import { panelEffectKeys } from '../../enums';
@@ -17,7 +17,7 @@ const Wrapper = styled('div')(() => ({
   height: '100%',
   position: 'relative',
 }));
-const PanelWrapper = styled(Box, {
+const PanelWrapper = styled('article', {
   shouldForwardProp: (propName) => propName !== 'isCurrent',
 })<{ readonly isCurrent?: boolean }>(({ isCurrent }) => ({
   width: '100%',
@@ -55,7 +55,7 @@ const PanelEffectWrapper = ({
     case panelEffectKeys.fade:
       return (
         <Fade {...commonProps}>
-          <PanelWrapper isCurrent={currentIndex === index}>
+          <PanelWrapper id={panel.id} isCurrent={currentIndex === index}>
             <DashboardPanel panel={panel} />
           </PanelWrapper>
         </Fade>
@@ -64,7 +64,7 @@ const PanelEffectWrapper = ({
     case panelEffectKeys.grow:
       return (
         <Grow {...commonProps}>
-          <PanelWrapper isCurrent={currentIndex === index}>
+          <PanelWrapper id={panel.id} isCurrent={currentIndex === index}>
             <DashboardPanel panel={panel} />
           </PanelWrapper>
         </Grow>
@@ -73,8 +73,8 @@ const PanelEffectWrapper = ({
     case panelEffectKeys.slide:
     default:
       return (
-        <Slide direction={direction} {...commonProps}>
-          <PanelWrapper isCurrent={currentIndex === index}>
+        <Slide {...commonProps} direction={direction}>
+          <PanelWrapper id={panel.id} isCurrent={currentIndex === index}>
             <DashboardPanel panel={panel} />
           </PanelWrapper>
         </Slide>
@@ -87,12 +87,7 @@ const Dashboard = () => {
   const { panel } = useParams();
   const { panels, isPanelValid } = usePanels();
   const { currentIndex, direction } = useDashboardSlider(panel);
-  const { currentPanel, onCurrentPanelChange } = useDashboardPanel();
-
-  const dashboardContext = {
-    currentPanel,
-    onCurrentPanelChange,
-  };
+  const { ...dashboardContext } = useDashboardPanel();
 
   if (panel && !isPanelValid(panel)) {
     return (
