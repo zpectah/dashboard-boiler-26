@@ -11,10 +11,16 @@ const getConfig = (): Config => {
     available: ['en'],
     default: 'en',
   };
+  const url = {
+    randomImage: 'https://picsum.photos/1920?random=1&grayscale&blur=2',
+  };
+  const features = {};
 
   return {
     meta,
     locales,
+    url,
+    features,
   };
 };
 

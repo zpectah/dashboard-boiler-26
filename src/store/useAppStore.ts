@@ -1,16 +1,19 @@
 import { create } from 'zustand';
 import type { Panel, PanelEffect } from '../types';
 import { panelEffectKeys } from '../enums';
+import { getRandomId } from '../utils';
 
 type HomePanel = Omit<Panel, 'name'>;
 type PartialPanel = Partial<Panel> & Pick<Panel, 'id' | 'name'>;
 
 interface IAppStore {
   // States
+  hash: string;
   panelEffect: PanelEffect;
   homePanel: HomePanel;
   customPanels: Panel[];
   // Handlers
+  onChangeHash: (hash?: string) => void;
   onChangePanelEffect: (panelEffect: PanelEffect) => void;
   onCreatePanel: (panel: Panel) => void;
   onUpdatePanel: (panel: PartialPanel) => void;
@@ -18,6 +21,7 @@ interface IAppStore {
 }
 
 const useAppStore = create<IAppStore>((set, get) => {
+  const hash = 'na';
   const panelEffect: PanelEffect = panelEffectKeys.grow;
 
   /* TODO: mock */
@@ -68,10 +72,16 @@ const useAppStore = create<IAppStore>((set, get) => {
     },
   ];
 
-  const setPanelEffect = (panelEffect: PanelEffect) => {
+  const setPanelEffectHandler = (panelEffect: PanelEffect) => {
     set({ panelEffect });
 
     /* TODO: save to storage */
+  };
+
+  const setHashHandler = (hash?: string) => {
+    const newHash = hash ? hash : getRandomId(8);
+
+    set({ hash: newHash });
   };
 
   const createPanelHandler = (panel: Panel) => {
@@ -126,11 +136,13 @@ const useAppStore = create<IAppStore>((set, get) => {
 
   return {
     // States
+    hash,
     panelEffect,
     homePanel,
     customPanels,
     // Handlers
-    onChangePanelEffect: setPanelEffect,
+    onChangeHash: setHashHandler,
+    onChangePanelEffect: setPanelEffectHandler,
     onCreatePanel: createPanelHandler,
     onUpdatePanel: updatePanelHandler,
     onDeletePanel: deletePanelHandler,

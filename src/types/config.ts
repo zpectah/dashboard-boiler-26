@@ -8,4 +8,8 @@ export interface Config {
     default: string;
     available: string[];
   };
+  url: {
+    randomImage: string;
+  };
+  features: object;
 }
