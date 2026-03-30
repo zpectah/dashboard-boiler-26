@@ -1,5 +1,11 @@
 {
-  "button": {},
+  "button": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "edit": "Edit",
+    "delete": "Delete",
+    "imageRefresh": "Refresh background image"
+  },
   "label": {},
   "message": {
     "noPanelFound": "Sorry, but panel with this id was not found"

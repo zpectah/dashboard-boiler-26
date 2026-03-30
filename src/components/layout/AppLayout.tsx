@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { styled } from '@mui/material';
 import { getConfig } from '../../config';
 import { useAppStore } from '../../store';
+import { ConfirmDialog } from '../dialog';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -84,6 +85,7 @@ const AppLayout = ({ slot }: AppLayoutProps) => {
           <Footer />
         </Wrapper>
       </OuterWrapper>
+      <ConfirmDialog />
       {slot}
     </>
   );

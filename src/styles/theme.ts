@@ -11,6 +11,9 @@ const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 700,
     fontWeightBold: 900,
+    button: {
+      fontSize: '.925rem',
+    },
   },
   components: {},
 });

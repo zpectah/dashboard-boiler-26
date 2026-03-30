@@ -1,0 +1,8 @@
+{
+  "message": {
+    "panelDelete": {
+      "title": "Delete panel '{{name}}'?",
+      "content": "Are you sure you want to delete this panel? All content will be permanently lost."
+    }
+  }
+}

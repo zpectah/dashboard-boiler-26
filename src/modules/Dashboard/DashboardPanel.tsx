@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
-import { styled, Grid, Typography, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { styled, Grid, Typography, Stack, Button } from '@mui/material';
 import type { Panel } from '../../types';
+import { useAppStore, useDialogStore } from '../../store';
 import { Container } from '../../components';
 import { useDashboardContext } from './Dashboard.context';
 import {
@@ -12,7 +15,6 @@ import {
   LinksWidget,
   WeatherWidget,
 } from './widgets';
-import useDialogStore from '../../store/useDialogStore.ts';
 
 const Wrapper = styled('div')(() => ({
   width: '100%',
@@ -41,10 +43,28 @@ interface DashboardPanelProps {
 }
 
 const DashboardPanel = ({ panel }: DashboardPanelProps) => {
-  const { onOpenPanelDialog } = useDialogStore();
-  const { onCurrentPanelChange } = useDashboardContext();
+  const { t } = useTranslation(['feedback']);
+
+  const { onOpenPanelDialog, onOpenConfirmDialog } = useDialogStore();
+  const { onDeletePanel } = useAppStore();
+  const { onCurrentPanelChange, currentPanel } = useDashboardContext();
+  const navigate = useNavigate();
 
   const panelLabel = panel.label ?? panel.name;
+  const isHomePanel = currentPanel.isMain;
+
+  const deletePanelHandler = (id: string) => {
+    onDeletePanel(id);
+    navigate('/');
+    // TODO: toast message
+  };
+
+  const deletePanelConfirmHandler = (panel: Panel) =>
+    onOpenConfirmDialog({
+      title: t('feedback:message.panelDelete.title', { name: panel.name }),
+      content: t('feedback:message.panelDelete.content'),
+      onConfirm: () => deletePanelHandler(panel.id),
+    });
 
   /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => onCurrentPanelChange(panel), []);
@@ -55,12 +75,12 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
         <Stack direction="row" gap={2}>
           {/* TODO */}
           <Typography variant="subtitle1">{panelLabel}</Typography>
-          <Typography
-            variant="button"
-            onClick={() => onOpenPanelDialog(panel.id)}
-          >
-            edit
-          </Typography>
+          <Button onClick={() => onOpenPanelDialog(panel.id)}>edit</Button>
+          {!isHomePanel && (
+            <Button onClick={() => deletePanelConfirmHandler(panel)}>
+              delete
+            </Button>
+          )}
         </Stack>
         <WidgetWrapper>
           <Grid container spacing={2}>
