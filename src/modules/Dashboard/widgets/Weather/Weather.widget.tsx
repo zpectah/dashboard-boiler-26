@@ -1,20 +1,17 @@
 import { Grid } from '@mui/material';
+import { usePanels } from '../../../../hooks';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { WeatherWidgetProps } from '../types';
 
 const WeatherWidget = ({ gridProps }: WeatherWidgetProps) => {
   const { currentPanel } = useDashboardContext();
+  const { getCurrentPanel } = usePanels();
 
-  console.log('WeatherWidget', currentPanel.widgets.weather);
+  const parentPanel = getCurrentPanel(currentPanel.name) ?? currentPanel;
 
-  if (!currentPanel.widgets.weather) return null;
+  if (!parentPanel.widgets.weather) return null;
 
-  return (
-    <Grid {...gridProps}>
-      WeatherWidget _ {currentPanel.id} _{' '}
-      {currentPanel.widgets.weather ? 'ACTIVE' : 'x'}
-    </Grid>
-  );
+  return <Grid {...gridProps}>WeatherWidget _ {currentPanel.id}</Grid>;
 };
 
 export default WeatherWidget;

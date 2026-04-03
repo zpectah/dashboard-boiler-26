@@ -9,7 +9,6 @@ export const useDashboardPanel = () => {
 
   const setPanelHandler = (panel: Panel) => {
     setCurrentPanel(panel);
-    /* TODO: handler for saving */
   };
 
   return {

@@ -1,20 +1,17 @@
 import { Grid } from '@mui/material';
+import { usePanels } from '../../../../hooks';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { CalendarWidgetProps } from '../types';
 
 const CalendarWidget = ({ gridProps }: CalendarWidgetProps) => {
   const { currentPanel } = useDashboardContext();
+  const { getCurrentPanel } = usePanels();
 
-  console.log('CalendarWidget', currentPanel.widgets.calendar);
+  const parentPanel = getCurrentPanel(currentPanel.name) ?? currentPanel;
 
-  if (!currentPanel.widgets.calendar) return null;
+  if (!parentPanel.widgets.calendar) return null;
 
-  return (
-    <Grid {...gridProps}>
-      CalendarWidget _ {currentPanel.id} _{' '}
-      {currentPanel.widgets.calendar ? 'ACTIVE' : 'x'}
-    </Grid>
-  );
+  return <Grid {...gridProps}>CalendarWidget _ {currentPanel.id}</Grid>;
 };
 
 export default CalendarWidget;

@@ -1,20 +1,17 @@
 import { Grid } from '@mui/material';
+import { usePanels } from '../../../../hooks';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { HolidaysWidgetProps } from '../types';
 
 const HolidaysWidget = ({ gridProps }: HolidaysWidgetProps) => {
   const { currentPanel } = useDashboardContext();
+  const { getCurrentPanel } = usePanels();
 
-  console.log('HolidaysWidget', currentPanel.widgets.holidays);
+  const parentPanel = getCurrentPanel(currentPanel.name) ?? currentPanel;
 
-  if (!currentPanel.widgets.holidays) return null;
+  if (!parentPanel.widgets.holidays) return null;
 
-  return (
-    <Grid {...gridProps}>
-      HolidaysWidget _ {currentPanel.id} _{' '}
-      {currentPanel.widgets.holidays ? 'ACTIVE' : 'x'}
-    </Grid>
-  );
+  return <Grid {...gridProps}>HolidaysWidget _ {currentPanel.id}</Grid>;
 };
 
 export default HolidaysWidget;

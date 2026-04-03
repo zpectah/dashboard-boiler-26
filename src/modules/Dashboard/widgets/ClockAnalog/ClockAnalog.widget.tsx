@@ -1,20 +1,17 @@
 import { Grid } from '@mui/material';
+import { usePanels } from '../../../../hooks';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { ClockAnalogWidgetProps } from '../types';
 
 const ClockAnalogWidget = ({ gridProps }: ClockAnalogWidgetProps) => {
   const { currentPanel } = useDashboardContext();
+  const { getCurrentPanel } = usePanels();
 
-  console.log('ClockAnalogWidget', currentPanel.widgets.clockAnalog);
+  const parentPanel = getCurrentPanel(currentPanel.name) ?? currentPanel;
 
-  if (!currentPanel.widgets.clockAnalog) return null;
+  if (!parentPanel.widgets.clockAnalog) return null;
 
-  return (
-    <Grid {...gridProps}>
-      ClockAnalogWidget _ {currentPanel.id} _{' '}
-      {currentPanel.widgets.clockAnalog ? 'ACTIVE' : 'x'}
-    </Grid>
-  );
+  return <Grid {...gridProps}>ClockAnalogWidget _ {currentPanel.id}</Grid>;
 };
 
 export default ClockAnalogWidget;
