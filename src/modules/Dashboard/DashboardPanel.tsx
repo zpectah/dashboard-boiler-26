@@ -51,7 +51,7 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const panelLabel = panel.label ?? panel.name;
   const isHomePanel = currentPanel.isMain;
 
-  const widget = {
+  const widgets = {
     dateTime: { ...panel.widgets.dateTime, gridProps: { size: 3 } },
     holidays: { ...panel.widgets.holidays, gridProps: { size: 3 } },
     calendar: { ...panel.widgets.calendar, gridProps: { size: 6 } },
@@ -80,7 +80,7 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
       <Container>
         <Stack direction="row" gap={2}>
           {/* TODO */}
-          <Typography variant="subtitle1">{panelLabel}</Typography>
+          <Typography variant="h5">{panelLabel}</Typography>
           <Button onClick={() => onOpenPanelDialog(panel.id)}>edit</Button>
           {!isHomePanel && (
             <Button onClick={() => deletePanelConfirmHandler(panel)}>
@@ -91,11 +91,11 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
         <WidgetWrapper>
           <Grid container spacing={2}>
             {/* TODO */}
-            <DateTimeWidget {...widget.dateTime} />
-            <HolidaysWidget {...widget.holidays} />
-            <CalendarWidget {...widget.calendar} />
-            <WeatherWidget {...widget.weather} />
-            <LinksWidget {...widget.links} />
+            <DateTimeWidget {...widgets.dateTime} />
+            <HolidaysWidget {...widgets.holidays} />
+            <CalendarWidget {...widgets.calendar} />
+            <WeatherWidget {...widgets.weather} />
+            <LinksWidget {...widgets.links} />
           </Grid>
         </WidgetWrapper>
       </Container>

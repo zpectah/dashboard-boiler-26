@@ -1,20 +1,20 @@
 import { panelEffectKeys } from '../enums';
 import type {
-  PanelCalendarWidget,
-  PanelDateTimeWidget,
-  PanelHolidaysWidget,
-  PanelLinksWidget,
-  PanelWeatherWidget,
+  ICalendarWidget,
+  IDateTimeWidget,
+  IHolidaysWidget,
+  ILinksWidget,
+  IWeatherWidget,
 } from './widgets';
 
 export type PanelEffect = keyof typeof panelEffectKeys;
 
 interface PanelWidgets {
-  calendar: PanelCalendarWidget;
-  dateTime: PanelDateTimeWidget;
-  holidays: PanelHolidaysWidget;
-  links: PanelLinksWidget;
-  weather: PanelWeatherWidget;
+  calendar: ICalendarWidget;
+  dateTime: IDateTimeWidget;
+  holidays: IHolidaysWidget;
+  links: ILinksWidget;
+  weather: IWeatherWidget;
 }
 
 export interface Panel {

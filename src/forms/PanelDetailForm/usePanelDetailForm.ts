@@ -2,11 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore, useDialogStore } from '../../store';
+import { dateTimeWidgetTimeKeys } from '../../enums';
 import { usePanels } from '../../hooks';
 import type { IPanelDetailForm } from './types';
 import { panelDetailFormSchema } from './schema';
 import { getDefaultValues, getDataToForm, getFormToMaster } from './helpers';
-import { dateTimeWidgetTimeKeys } from '../../enums';
 
 export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);
@@ -48,11 +48,6 @@ export const usePanelDetailForm = () => {
   const options = {
     dateTime: {
       type: [
-        {
-          id: dateTimeWidgetTimeKeys.none,
-          value: dateTimeWidgetTimeKeys.none,
-          label: 'None', // TODO
-        },
         {
           id: dateTimeWidgetTimeKeys.analog,
           value: dateTimeWidgetTimeKeys.analog,

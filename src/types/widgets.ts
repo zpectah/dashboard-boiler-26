@@ -3,25 +3,25 @@ import type { EnumKeyValues } from './common';
 
 export type WidgetDateTimeTime = EnumKeyValues<typeof dateTimeWidgetTimeKeys>;
 
-export interface PanelCalendarWidget {
+export interface ICalendarWidget {
   active: boolean;
 }
 
-export interface PanelDateTimeWidget {
+export interface IDateTimeWidget {
   active: boolean;
   type: WidgetDateTimeTime;
   blinkingSemi: boolean;
 }
 
-export interface PanelHolidaysWidget {
+export interface IHolidaysWidget {
   active: boolean;
   showTomorrow: boolean;
 }
 
-export interface PanelLinksWidget {
+export interface ILinksWidget {
   active: boolean;
 }
 
-export interface PanelWeatherWidget {
+export interface IWeatherWidget {
   active: boolean;
 }

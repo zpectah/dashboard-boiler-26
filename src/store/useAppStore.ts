@@ -23,7 +23,7 @@ interface IAppStore {
 
 const useAppStore = create<IAppStore>((set, get) => {
   const editMode = false;
-  const hash = 'na';
+  const hash = 'k2e9blGga0FL';
   const panelEffect: PanelEffect = panelEffectKeys.grow;
 
   /* TODO: mock */
@@ -90,7 +90,7 @@ const useAppStore = create<IAppStore>((set, get) => {
         },
         dateTime: {
           active: true,
-          type: dateTimeWidgetTimeKeys.none,
+          type: dateTimeWidgetTimeKeys.analog,
           blinkingSemi: false,
         },
         holidays: {
