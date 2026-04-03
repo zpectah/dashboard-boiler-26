@@ -1,16 +1,20 @@
 import { panelEffectKeys } from '../enums';
+import type {
+  PanelCalendarWidget,
+  PanelDateTimeWidget,
+  PanelHolidaysWidget,
+  PanelLinksWidget,
+  PanelWeatherWidget,
+} from './widgets';
 
 export type PanelEffect = keyof typeof panelEffectKeys;
 
 interface PanelWidgets {
-  /* TODO: define each widget options */
-  calendar?: boolean;
-  clockAnalog?: boolean;
-  clockNumeric?: boolean;
-  dateTime?: boolean;
-  holidays?: boolean;
-  links?: boolean;
-  weather?: boolean;
+  calendar: PanelCalendarWidget;
+  dateTime: PanelDateTimeWidget;
+  holidays: PanelHolidaysWidget;
+  links: PanelLinksWidget;
+  weather: PanelWeatherWidget;
 }
 
 export interface Panel {

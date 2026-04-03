@@ -1,6 +1,7 @@
 import { create } from 'zustand';
+import { merge } from 'lodash';
 import type { Panel, PanelEffect } from '../types';
-import { panelEffectKeys } from '../enums';
+import { dateTimeWidgetTimeKeys, panelEffectKeys } from '../enums';
 import { getRandomId } from '../utils';
 
 type HomePanel = Omit<Panel, 'name'>;
@@ -31,13 +32,24 @@ const useAppStore = create<IAppStore>((set, get) => {
     label: 'Home',
     isMain: true,
     widgets: {
-      calendar: true,
-      clockAnalog: true,
-      clockNumeric: true,
-      dateTime: true,
-      holidays: true,
-      links: true,
-      weather: true,
+      calendar: {
+        active: true,
+      },
+      dateTime: {
+        active: true,
+        type: dateTimeWidgetTimeKeys.analog,
+        blinkingSemi: false,
+      },
+      holidays: {
+        active: true,
+        showTomorrow: true,
+      },
+      links: {
+        active: true,
+      },
+      weather: {
+        active: true,
+      },
     },
   };
 
@@ -48,13 +60,24 @@ const useAppStore = create<IAppStore>((set, get) => {
       name: 'panel-2',
       label: 'Panel 2',
       widgets: {
-        calendar: false,
-        clockAnalog: true,
-        clockNumeric: true,
-        dateTime: true,
-        holidays: true,
-        links: false,
-        weather: true,
+        calendar: {
+          active: false,
+        },
+        dateTime: {
+          active: false,
+          type: dateTimeWidgetTimeKeys.numeric,
+          blinkingSemi: false,
+        },
+        holidays: {
+          active: true,
+          showTomorrow: true,
+        },
+        links: {
+          active: true,
+        },
+        weather: {
+          active: false,
+        },
       },
     },
     {
@@ -62,13 +85,24 @@ const useAppStore = create<IAppStore>((set, get) => {
       name: 'panel-3',
       label: 'Panel Three',
       widgets: {
-        calendar: true,
-        clockAnalog: false,
-        clockNumeric: false,
-        dateTime: false,
-        holidays: false,
-        links: true,
-        weather: false,
+        calendar: {
+          active: true,
+        },
+        dateTime: {
+          active: true,
+          type: dateTimeWidgetTimeKeys.none,
+          blinkingSemi: false,
+        },
+        holidays: {
+          active: false,
+          showTomorrow: true,
+        },
+        links: {
+          active: false,
+        },
+        weather: {
+          active: false,
+        },
       },
     },
   ];
@@ -107,7 +141,7 @@ const useAppStore = create<IAppStore>((set, get) => {
 
     if (panel.name === 'home') {
       set((state) => {
-        const newState = { ...state.homePanel, ...panel };
+        const newState = merge(state.homePanel, panel);
 
         /* TODO: save to storage */
 
@@ -118,7 +152,7 @@ const useAppStore = create<IAppStore>((set, get) => {
     } else {
       set((state) => {
         const newState = state.customPanels.map((item) =>
-          item.id === panel.id ? ({ ...item, ...panel } as Panel) : item,
+          item.id === panel.id ? merge(item, panel) : item,
         );
 
         /* TODO: save to storage */

@@ -1,4 +1,5 @@
-import { Stack, styled } from '@mui/material';
+import { Stack, Typography, styled } from '@mui/material';
+import { getConfig } from '../../config';
 import Container from './Container';
 
 const Wrapper = styled('footer')(() => ({
@@ -15,23 +16,28 @@ const Block = styled(Stack)(() => ({
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'row',
-  fontSize: '.85rem',
-  fontWeight: 100,
+
+  '& p': {
+    fontSize: '.85rem',
+    fontWeight: 100,
+  },
 }));
 
 const Footer = () => {
+  const { meta } = getConfig();
+
+  const currentYear = new Date().getFullYear();
+
   return (
     <Wrapper>
       <Container>
         <Content>
           <Block justifyContent="flex-start">
-            controls
-            {/* TODO */}
+            <Typography>
+              {meta.since} - {currentYear} | {meta.name} v{meta.version}
+            </Typography>
           </Block>
-          <Block justifyContent="center">
-            copyright
-            {/* TODO */}
-          </Block>
+          <Block justifyContent="center">{/* TODO */}</Block>
           <Block justifyContent="flex-end">
             controls
             {/* TODO */}

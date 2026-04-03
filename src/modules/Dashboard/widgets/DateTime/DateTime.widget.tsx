@@ -1,17 +1,20 @@
 import { Grid } from '@mui/material';
-import { usePanels } from '../../../../hooks';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { DateTimeWidgetProps } from '../types';
 
-const DateTimeWidget = ({ gridProps }: DateTimeWidgetProps) => {
+const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
   const { currentPanel } = useDashboardContext();
-  const { getCurrentPanel } = usePanels();
 
-  const parentPanel = getCurrentPanel(currentPanel.name) ?? currentPanel;
+  const current = currentPanel.widgets.dateTime;
 
-  if (!parentPanel.widgets.dateTime) return null;
+  if (!active) return null;
 
-  return <Grid {...gridProps}>DateTimeWidget _ {currentPanel.id}</Grid>;
+  return (
+    <Grid {...gridProps}>
+      DateTimeWidget _ {currentPanel.id} _ {current.type} /{' '}
+      {current.blinkingSemi ? 'blink' : 'N'}
+    </Grid>
+  );
 };
 
 export default DateTimeWidget;

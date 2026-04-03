@@ -1,16 +1,18 @@
 import { Button, Grid } from '@mui/material';
 import { useDialogStore } from '../../store';
+import { dateTimeWidgetTimeDefault } from '../../constants';
 import {
   ComposedDialog,
   ControlledForm,
   InputField,
   CheckboxField,
+  SelectField,
 } from '../../components';
 import { usePanelDetailForm } from './usePanelDetailForm';
 
 const PanelDetailForm = () => {
   const { panelDialog, onClosePanelDialog } = useDialogStore();
-  const { form, formId, isMain, isNew, detail, onSubmit } =
+  const { form, formId, isMain, isNew, detail, options, onSubmit } =
     usePanelDetailForm();
 
   return (
@@ -51,21 +53,32 @@ const PanelDetailForm = () => {
               layout="vertical"
               isFullWidth
             />
-          </Grid>
 
-          <Grid size={12} container>
-            <>
-              <CheckboxField name="widgets.clockAnalog" label="Clock analog" />
-              <CheckboxField
-                name="widgets.clockNumeric"
-                label="Clock numeric"
+            <Grid size={12} container spacing={1}>
+              <CheckboxField name="widgets.dateTime.active" label="Date Time" />
+              <SelectField
+                name="widgets.dateTime.type"
+                label="Time type"
+                layout="vertical"
+                options={options.dateTime.type}
+                defaultValue={dateTimeWidgetTimeDefault}
+                isFullWidth
               />
-              <CheckboxField name="widgets.dateTime" label="Date Time" />
-              <CheckboxField name="widgets.holidays" label="Holidays" />
-              <CheckboxField name="widgets.weather" label="Weather" />
-              <CheckboxField name="widgets.calendar" label="Calendar" />
-              <CheckboxField name="widgets.links" label="Links" />
-            </>
+              <CheckboxField
+                name="widgets.dateTime.blinkingSemi"
+                label="Date Time: blinkingSemi"
+              />
+
+              <CheckboxField name="widgets.holidays.active" label="Holidays" />
+              <CheckboxField
+                name="widgets.holidays.showTomorrow"
+                label="Holidays: showTomorrow"
+              />
+
+              <CheckboxField name="widgets.weather.active" label="Weather" />
+              <CheckboxField name="widgets.calendar.active" label="Calendar" />
+              <CheckboxField name="widgets.links.active" label="Links" />
+            </Grid>
           </Grid>
         </ControlledForm>
       }

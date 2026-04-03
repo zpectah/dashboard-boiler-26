@@ -1,6 +1,7 @@
 import type { Panel } from '../../types';
-import type { IPanelDetailForm } from './types';
 import { getRandomId } from '../../utils';
+import { dateTimeWidgetTimeDefault } from '../../constants';
+import type { IPanelDetailForm } from './types';
 
 export const getDefaultValues = (): IPanelDetailForm => {
   return Object.assign({
@@ -8,20 +9,40 @@ export const getDefaultValues = (): IPanelDetailForm => {
     name: '',
     label: '',
     widgets: {
-      calendar: true,
-      clockAnalog: true,
-      clockNumeric: true,
-      dateTime: true,
-      holidays: true,
-      links: true,
-      weather: true,
+      calendar: {
+        active: true,
+      },
+      dateTime: {
+        active: true,
+        type: dateTimeWidgetTimeDefault,
+        blinkingSemi: false,
+      },
+      holidays: {
+        active: true,
+        showTomorrow: true,
+      },
+      links: {
+        active: true,
+      },
+      weather: {
+        active: true,
+      },
     },
   });
 };
 
 export const getDataToForm = (panel: Panel | undefined): IPanelDetailForm => {
   return Object.assign({
-    ...panel,
+    id: panel?.id,
+    name: panel?.name,
+    label: panel?.label,
+    widgets: {
+      calendar: panel?.widgets.calendar,
+      dateTime: panel?.widgets.dateTime,
+      holidays: panel?.widgets.holidays,
+      links: panel?.widgets.links,
+      weather: panel?.widgets.weather,
+    },
   });
 };
 

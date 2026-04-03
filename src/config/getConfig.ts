@@ -6,6 +6,7 @@ const getConfig = (): Config => {
     name: 'zpecter homepage',
     description: 'Personalized browser homepage with customization options',
     version: packages.version,
+    since: 2008,
   };
   const locales = {
     available: ['en'],

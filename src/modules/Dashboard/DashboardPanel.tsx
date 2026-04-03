@@ -8,8 +8,6 @@ import { Container } from '../../components';
 import { useDashboardContext } from './Dashboard.context';
 import {
   CalendarWidget,
-  ClockAnalogWidget,
-  ClockNumericWidget,
   DateTimeWidget,
   HolidaysWidget,
   LinksWidget,
@@ -53,6 +51,14 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const panelLabel = panel.label ?? panel.name;
   const isHomePanel = currentPanel.isMain;
 
+  const widget = {
+    dateTime: { ...panel.widgets.dateTime, gridProps: { size: 3 } },
+    holidays: { ...panel.widgets.holidays, gridProps: { size: 3 } },
+    calendar: { ...panel.widgets.calendar, gridProps: { size: 6 } },
+    weather: { ...panel.widgets.weather, gridProps: { size: 6 } },
+    links: { ...panel.widgets.links, gridProps: { size: 12 } },
+  };
+
   const deletePanelHandler = (id: string) => {
     onDeletePanel(id);
     navigate('/');
@@ -85,13 +91,11 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
         <WidgetWrapper>
           <Grid container spacing={2}>
             {/* TODO */}
-            <ClockAnalogWidget gridProps={{ size: 3 }} />
-            <ClockNumericWidget gridProps={{ size: 3 }} />
-            <DateTimeWidget gridProps={{ size: 3 }} />
-            <HolidaysWidget gridProps={{ size: 3 }} />
-            <CalendarWidget gridProps={{ size: 6 }} />
-            <WeatherWidget gridProps={{ size: 6 }} />
-            <LinksWidget gridProps={{ size: 12 }} />
+            <DateTimeWidget {...widget.dateTime} />
+            <HolidaysWidget {...widget.holidays} />
+            <CalendarWidget {...widget.calendar} />
+            <WeatherWidget {...widget.weather} />
+            <LinksWidget {...widget.links} />
           </Grid>
         </WidgetWrapper>
       </Container>

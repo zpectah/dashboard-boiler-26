@@ -6,6 +6,8 @@ export interface Config {
     description: string;
     /** Project version */
     version: string;
+    /** Project start year */
+    since: number;
   };
   locales: {
     /** System default locale */

@@ -6,6 +6,7 @@ import { usePanels } from '../../hooks';
 import type { IPanelDetailForm } from './types';
 import { panelDetailFormSchema } from './schema';
 import { getDefaultValues, getDataToForm, getFormToMaster } from './helpers';
+import { dateTimeWidgetTimeKeys } from '../../enums';
 
 export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);
@@ -38,21 +39,44 @@ export const usePanelDetailForm = () => {
       }
 
       onClosePanelDialog();
+      form.reset();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [panelDialog],
   );
+
+  const options = {
+    dateTime: {
+      type: [
+        {
+          id: dateTimeWidgetTimeKeys.none,
+          value: dateTimeWidgetTimeKeys.none,
+          label: 'None', // TODO
+        },
+        {
+          id: dateTimeWidgetTimeKeys.analog,
+          value: dateTimeWidgetTimeKeys.analog,
+          label: 'Analog', // TODO
+        },
+        {
+          id: dateTimeWidgetTimeKeys.numeric,
+          value: dateTimeWidgetTimeKeys.numeric,
+          label: 'Numeric', // TODO
+        },
+      ],
+    },
+  };
 
   useEffect(() => {
     if (!panelDialog) return;
 
     if (panelDialog === 'new') {
       form.reset(getDefaultValues());
-    } else {
-      // const detail = getPanelById(panelDialog);
-
+    } else if (detail) {
       setIsMain(!!detail?.isMain);
-      form.reset(getDataToForm(detail));
+      form.reset(getDataToForm(detail), { keepDirty: true });
+    } else {
+      form.reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [form, panelDialog]);
@@ -63,6 +87,7 @@ export const usePanelDetailForm = () => {
     isMain,
     isNew: panelDialog === 'new',
     detail,
+    options,
     onSubmit: form.handleSubmit(submitHandler),
   };
 };

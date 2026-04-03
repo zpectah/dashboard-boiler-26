@@ -1,5 +1,16 @@
+import GoogleLinks from './GoogleLinks';
+import MicrosoftLinks from './MicrosoftLinks';
+import AppleLinks from './AppleLinks';
+
 const AppsMenu = () => {
-  return <>apps + primary sidebar</>;
+  return (
+    <>
+      {/* TODO */}
+      <GoogleLinks />
+      <MicrosoftLinks />
+      <AppleLinks />
+    </>
+  );
 };
 
 export default AppsMenu;

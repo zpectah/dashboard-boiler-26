@@ -1,19 +1,22 @@
 import type { GridProps } from '@mui/material';
+import type {
+  PanelCalendarWidget,
+  PanelDateTimeWidget,
+  PanelHolidaysWidget,
+  PanelLinksWidget,
+  PanelWeatherWidget,
+} from '../../../types';
 
 type WidgetCommon = {
   gridProps?: Partial<GridProps>;
 };
 
-export type CalendarWidgetProps = WidgetCommon;
+export type CalendarWidgetProps = WidgetCommon & PanelCalendarWidget;
 
-export type ClockAnalogWidgetProps = WidgetCommon;
+export type DateTimeWidgetProps = WidgetCommon & PanelDateTimeWidget;
 
-export type ClockNumericWidgetProps = WidgetCommon;
+export type HolidaysWidgetProps = WidgetCommon & PanelHolidaysWidget;
 
-export type DateTimeWidgetProps = WidgetCommon;
+export type LinksWidgetProps = WidgetCommon & PanelLinksWidget;
 
-export type HolidaysWidgetProps = WidgetCommon;
-
-export type LinksWidgetProps = WidgetCommon;
-
-export type WeatherWidgetProps = WidgetCommon;
+export type WeatherWidgetProps = WidgetCommon & PanelWeatherWidget;
