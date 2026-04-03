@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { styled, Slide, Fade, Grow } from '@mui/material';
+import { getConfig } from '../../config';
 import { usePanels } from '../../hooks';
 import type { Panel } from '../../types';
 import { panelEffectKeys } from '../../enums';
@@ -42,13 +43,15 @@ const PanelEffectWrapper = ({
   currentIndex,
   direction,
 }: PanelEffectWrapperProps) => {
+  const { ui } = getConfig();
+
   const { panelEffect } = useAppStore();
 
   const commonProps = {
     in: currentIndex === index,
     mountOnEnter: true,
     unmountOnExit: true,
-    timeout: 250,
+    timeout: ui.animation,
   };
 
   switch (panelEffect) {

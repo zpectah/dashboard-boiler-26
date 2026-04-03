@@ -14,12 +14,16 @@ const getConfig = (): Config => {
   const url = {
     randomImage: 'https://picsum.photos/1920?random=1&grayscale&blur=2',
   };
+  const ui = {
+    animation: 350,
+  };
   const features = {};
 
   return {
     meta,
     locales,
     url,
+    ui,
     features,
   };
 };

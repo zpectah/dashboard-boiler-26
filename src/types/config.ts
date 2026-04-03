@@ -11,5 +11,8 @@ export interface Config {
   url: {
     randomImage: string;
   };
+  ui: {
+    animation: number;
+  };
   features: object;
 }
