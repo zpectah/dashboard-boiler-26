@@ -4,9 +4,13 @@
     "confirm": "Confirm",
     "edit": "Edit",
     "delete": "Delete",
-    "imageRefresh": "Refresh background image"
+    "imageRefresh": "Refresh background",
+    "modeToggle": "Mode toggle",
+    "editMode": "Edit mode"
   },
-  "label": {},
+  "label": {
+    "localeMenu": "Locales"
+  },
   "message": {
     "noPanelFound": "Sorry, but panel with this id was not found"
   }

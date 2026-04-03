@@ -2,10 +2,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore, useDialogStore } from '../../store';
+import { usePanels } from '../../hooks';
 import type { IPanelDetailForm } from './types';
 import { panelDetailFormSchema } from './schema';
 import { getDefaultValues, getDataToForm, getFormToMaster } from './helpers';
-import { usePanels } from '../../hooks';
 
 export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);

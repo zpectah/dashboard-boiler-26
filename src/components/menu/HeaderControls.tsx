@@ -1,9 +1,17 @@
-import { ImageRefresh } from '../controls';
+import {
+  ImageRefresh,
+  ThemeModeToggle,
+  LocalesMenu,
+  EditModeToggle,
+} from '../controls';
 
 const HeaderControls = () => {
   return (
     <>
+      <LocalesMenu />
       <ImageRefresh />
+      <ThemeModeToggle />
+      <EditModeToggle />
       {/* TODO */}
     </>
   );

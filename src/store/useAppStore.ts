@@ -7,12 +7,12 @@ type HomePanel = Omit<Panel, 'name'>;
 type PartialPanel = Partial<Panel> & Pick<Panel, 'id' | 'name'>;
 
 interface IAppStore {
-  // States
+  editMode: boolean;
   hash: string;
   panelEffect: PanelEffect;
   homePanel: HomePanel;
   customPanels: Panel[];
-  // Handlers
+  toggleEditMode: () => void;
   onChangeHash: (hash?: string) => void;
   onChangePanelEffect: (panelEffect: PanelEffect) => void;
   onCreatePanel: (panel: Panel) => void;
@@ -21,6 +21,7 @@ interface IAppStore {
 }
 
 const useAppStore = create<IAppStore>((set, get) => {
+  const editMode = false;
   const hash = 'na';
   const panelEffect: PanelEffect = panelEffectKeys.grow;
 
@@ -71,6 +72,9 @@ const useAppStore = create<IAppStore>((set, get) => {
       },
     },
   ];
+
+  const toggleEditModeHandler = () =>
+    set((state) => ({ editMode: !state.editMode }));
 
   const setPanelEffectHandler = (panelEffect: PanelEffect) => {
     set({ panelEffect });
@@ -135,12 +139,12 @@ const useAppStore = create<IAppStore>((set, get) => {
   };
 
   return {
-    // States
+    editMode,
     hash,
     panelEffect,
     homePanel,
     customPanels,
-    // Handlers
+    toggleEditMode: toggleEditModeHandler,
     onChangeHash: setHashHandler,
     onChangePanelEffect: setPanelEffectHandler,
     onCreatePanel: createPanelHandler,

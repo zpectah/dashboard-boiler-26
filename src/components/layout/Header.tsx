@@ -11,11 +11,12 @@ const Content = styled('div')(({ theme }) => ({
   justifyContent: 'space-between',
   gap: theme.spacing(2),
 }));
-const Block = styled(Stack)(() => ({
+const Block = styled(Stack)(({ theme }) => ({
   width: '33.333%',
   display: 'flex',
   alignItems: 'center',
   flexDirection: 'row',
+  gap: theme.spacing(1),
 }));
 
 const Header = () => {
