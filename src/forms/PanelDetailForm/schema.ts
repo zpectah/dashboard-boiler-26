@@ -13,6 +13,6 @@ const panelDetailWidgetsSchema = z.object({
 export const panelDetailFormSchema = z.object({
   id: z.string(),
   name: z.string(),
-  label: z.string().optional(),
+  label: z.string(),
   widgets: panelDetailWidgetsSchema,
 });

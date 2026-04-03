@@ -103,6 +103,8 @@ const useAppStore = create<IAppStore>((set, get) => {
   const updatePanelHandler = (panel: PartialPanel) => {
     if (!panel.id || !panel.name) return;
 
+    console.log('*** panel to update', panel);
+
     if (panel.name === 'home') {
       set((state) => {
         const newState = { ...state.homePanel, ...panel };

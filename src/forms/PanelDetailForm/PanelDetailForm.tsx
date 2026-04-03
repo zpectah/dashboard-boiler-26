@@ -1,7 +1,12 @@
-import { Button, TextField } from '@mui/material';
+import { Button, Grid } from '@mui/material';
 import { useDialogStore } from '../../store';
-import { ComposedDialog, Checkbox } from '../../components';
-import { usePanelDetailForm } from './usePanelDetailForm.ts';
+import {
+  ComposedDialog,
+  ControlledForm,
+  InputField,
+  CheckboxField,
+} from '../../components';
+import { usePanelDetailForm } from './usePanelDetailForm';
 
 const PanelDetailForm = () => {
   const { panelDialog, onClosePanelDialog } = useDialogStore();
@@ -26,33 +31,43 @@ const PanelDetailForm = () => {
         </>
       }
       content={
-        <form
+        <ControlledForm
+          form={form}
           id={formId}
           className={isMain ? 'is-main' : ''}
           onSubmit={onSubmit}
         >
-          <TextField {...form.register('id')} label="ID" fullWidth />
-          <TextField {...form.register('name')} label="Name" fullWidth />
-          <TextField {...form.register('label')} label="Label" fullWidth />
-          <div>
-            <Checkbox
-              {...form.register('widgets.clockAnalog')}
-              label="Clock analog"
+          <Grid container spacing={2}>
+            <InputField
+              name="name"
+              label="Name"
+              layout="vertical"
+              isFullWidth
             />
-            <Checkbox
-              {...form.register('widgets.clockNumeric')}
-              label="Clock numeric"
+
+            <InputField
+              name="label"
+              label="Label"
+              layout="vertical"
+              isFullWidth
             />
-            <Checkbox
-              {...form.register('widgets.dateTime')}
-              label="Date Time"
-            />
-            <Checkbox {...form.register('widgets.holidays')} label="Holidays" />
-            <Checkbox {...form.register('widgets.weather')} label="Weather" />
-            <Checkbox {...form.register('widgets.calendar')} label="Calendar" />
-            <Checkbox {...form.register('widgets.links')} label="Links" />
-          </div>
-        </form>
+          </Grid>
+
+          <Grid size={12} container>
+            <>
+              <CheckboxField name="widgets.clockAnalog" label="Clock analog" />
+              <CheckboxField
+                name="widgets.clockNumeric"
+                label="Clock numeric"
+              />
+              <CheckboxField name="widgets.dateTime" label="Date Time" />
+              <CheckboxField name="widgets.holidays" label="Holidays" />
+              <CheckboxField name="widgets.weather" label="Weather" />
+              <CheckboxField name="widgets.calendar" label="Calendar" />
+              <CheckboxField name="widgets.links" label="Links" />
+            </>
+          </Grid>
+        </ControlledForm>
       }
     />
   );
