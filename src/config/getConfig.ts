@@ -16,6 +16,7 @@ const getConfig = (): Config => {
   };
   const ui = {
     animation: 350,
+    disableLock: 10000,
   };
   const features = {};
 
