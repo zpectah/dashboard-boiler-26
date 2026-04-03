@@ -15,7 +15,16 @@ const theme = createTheme({
       fontSize: '.925rem',
     },
   },
-  components: {},
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: {},
+      },
+    },
+  },
 });
 
 export default theme;

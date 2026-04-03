@@ -1,5 +1,6 @@
 import { Stack, Typography, styled } from '@mui/material';
 import { getConfig } from '../../config';
+import { FooterControls } from '../menu';
 import Container from './Container';
 
 const Wrapper = styled('footer')(() => ({
@@ -39,8 +40,7 @@ const Footer = () => {
           </Block>
           <Block justifyContent="center">{/* TODO */}</Block>
           <Block justifyContent="flex-end">
-            controls
-            {/* TODO */}
+            <FooterControls />
           </Block>
         </Content>
       </Container>

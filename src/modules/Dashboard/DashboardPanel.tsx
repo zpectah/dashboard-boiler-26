@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { styled, Grid, Typography, Stack, Button } from '@mui/material';
+import { styled, Grid, Typography, Stack } from '@mui/material';
+import { IconPencil, IconX } from '@tabler/icons-react';
 import type { Panel } from '../../types';
 import { useAppStore, useDialogStore } from '../../store';
-import { Container } from '../../components';
+import { Container, IconButtonPlus } from '../../components';
 import { useDashboardContext } from './Dashboard.context';
 import {
   CalendarWidget,
@@ -51,13 +52,17 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const panelLabel = panel.label ?? panel.name;
   const isHomePanel = currentPanel.isMain;
 
-  const widgets = {
-    dateTime: { ...panel.widgets.dateTime, gridProps: { size: 3 } },
-    holidays: { ...panel.widgets.holidays, gridProps: { size: 3 } },
-    calendar: { ...panel.widgets.calendar, gridProps: { size: 6 } },
-    weather: { ...panel.widgets.weather, gridProps: { size: 6 } },
-    links: { ...panel.widgets.links, gridProps: { size: 12 } },
-  };
+  const widgets = useMemo(
+    () => ({
+      /* TODO: create dynamic sizes by viewed widgets */
+      dateTime: { ...panel.widgets.dateTime, gridProps: { size: 3 } },
+      holidays: { ...panel.widgets.holidays, gridProps: { size: 3 } },
+      calendar: { ...panel.widgets.calendar, gridProps: { size: 6 } },
+      weather: { ...panel.widgets.weather, gridProps: { size: 6 } },
+      links: { ...panel.widgets.links, gridProps: { size: 12 } },
+    }),
+    [panel],
+  );
 
   const deletePanelHandler = (id: string) => {
     onDeletePanel(id);
@@ -81,11 +86,21 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
         <Stack direction="row" gap={2}>
           {/* TODO */}
           <Typography variant="h5">{panelLabel}</Typography>
-          <Button onClick={() => onOpenPanelDialog(panel.id)}>edit</Button>
+          <IconButtonPlus
+            tooltip="Edit"
+            onClick={() => onOpenPanelDialog(panel.id)}
+            size="small"
+          >
+            <IconPencil />
+          </IconButtonPlus>
           {!isHomePanel && (
-            <Button onClick={() => deletePanelConfirmHandler(panel)}>
-              delete
-            </Button>
+            <IconButtonPlus
+              tooltip="Delete"
+              onClick={() => deletePanelConfirmHandler(panel)}
+              size="small"
+            >
+              <IconX />
+            </IconButtonPlus>
           )}
         </Stack>
         <WidgetWrapper>

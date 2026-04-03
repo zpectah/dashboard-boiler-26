@@ -54,11 +54,18 @@ const PanelEffectWrapper = ({
     timeout: ui.animation,
   };
 
+  const panelWrapperProps = {
+    role: 'tabpanel',
+    id: `tabpanel_${panel.name}_${index}`,
+    'aria-labelledby': `tab_${panel.name}_${index}`,
+    isCurrent: currentIndex === index,
+  };
+
   switch (panelEffect) {
     case panelEffectKeys.fade:
       return (
         <Fade {...commonProps}>
-          <PanelWrapper id={panel.id} isCurrent={currentIndex === index}>
+          <PanelWrapper {...panelWrapperProps}>
             <DashboardPanel panel={panel} />
           </PanelWrapper>
         </Fade>
@@ -67,7 +74,7 @@ const PanelEffectWrapper = ({
     case panelEffectKeys.grow:
       return (
         <Grow {...commonProps}>
-          <PanelWrapper id={panel.id} isCurrent={currentIndex === index}>
+          <PanelWrapper {...panelWrapperProps}>
             <DashboardPanel panel={panel} />
           </PanelWrapper>
         </Grow>
@@ -77,7 +84,7 @@ const PanelEffectWrapper = ({
     default:
       return (
         <Slide {...commonProps} direction={direction}>
-          <PanelWrapper id={panel.id} isCurrent={currentIndex === index}>
+          <PanelWrapper {...panelWrapperProps}>
             <DashboardPanel panel={panel} />
           </PanelWrapper>
         </Slide>

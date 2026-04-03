@@ -2,17 +2,16 @@ import {
   ImageRefresh,
   ThemeModeToggle,
   LocalesMenu,
-  EditModeToggle,
+  SettingsFormToggle,
 } from '../controls';
 
 const HeaderControls = () => {
   return (
     <>
-      <LocalesMenu />
-      <ImageRefresh />
       <ThemeModeToggle />
-      <EditModeToggle />
-      {/* TODO */}
+      <ImageRefresh />
+      <LocalesMenu />
+      <SettingsFormToggle />
     </>
   );
 };
