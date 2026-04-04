@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DashboardView } from '../views';
 import { AppLayout } from '../components';
-import { ErrorBoundary } from '../modules';
+import { ErrorBoundary, Toasts } from '../modules';
 import { PanelDetailForm, SettingsForm } from '../forms';
 
 const AppRouter = () => {
@@ -13,6 +13,7 @@ const AppRouter = () => {
             <>
               <PanelDetailForm />
               <SettingsForm />
+              <Toasts />
             </>
           }
         />

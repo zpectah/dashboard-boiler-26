@@ -4,5 +4,6 @@ export * from './dialog';
 export * from './element';
 export * from './panel';
 export * from './theme';
+export * from './toasts';
 export * from './ui';
 export * from './widgets';

@@ -1,5 +1,7 @@
 import { create } from 'zustand';
-import type { IConfirmDialog } from '../types';
+import type { IConfirmDialog, IToastsItem, Toasts } from '../types';
+import { getRandomId } from '../utils';
+import { toastsItemSeverityKeys } from '../enums';
 
 interface IDialogStore {
   panelDialog: string | null;
@@ -16,15 +18,19 @@ interface IDialogStore {
   setMicrosoftLinks: (open: boolean) => void;
   settingsForm: boolean;
   setSettingsForm: (open: boolean) => void;
+  toasts: Toasts;
+  addToast: (toast: IToastsItem) => void;
+  removeToast: (id: string) => void;
 }
 
-const useDialogStore = create<IDialogStore>((set) => {
+const useDialogStore = create<IDialogStore>((set, get) => {
   const panelDialog: string | null = null;
   const confirmDialog: IConfirmDialog | null = null;
   const googleLinks = false;
   const appleLinks = false;
   const microsoftLinks = false;
   const settingsForm = false;
+  const toasts: Toasts = [];
 
   const openPanelDialogHandler = (id: string | 'new') =>
     set({ panelDialog: id });
@@ -45,6 +51,40 @@ const useDialogStore = create<IDialogStore>((set) => {
 
   const setSettingsFormHandler = (open: boolean) => set({ settingsForm: open });
 
+  const removeToastHandler = (id: string) => {
+    const tmpToasts = [...get().toasts];
+    const index = tmpToasts.findIndex((item) => item.id === id);
+
+    if (index > -1) tmpToasts.splice(index, 1);
+
+    set({ toasts: tmpToasts });
+  };
+
+  const addToastHandler = ({
+    title,
+    description,
+    severity,
+    autoclose,
+  }: IToastsItem) => {
+    const tmpToasts = [...get().toasts];
+    const id = getRandomId();
+
+    tmpToasts.push({
+      id,
+      title,
+      description,
+      severity: severity ?? toastsItemSeverityKeys.info,
+    });
+
+    if (autoclose) {
+      const timeout = typeof autoclose === 'number' ? autoclose : 3500;
+
+      setTimeout(() => removeToastHandler(id), timeout);
+    }
+
+    set({ toasts: tmpToasts });
+  };
+
   return {
     panelDialog,
     onOpenPanelDialog: openPanelDialogHandler,
@@ -60,6 +100,9 @@ const useDialogStore = create<IDialogStore>((set) => {
     setMicrosoftLinks: setMicrosoftLinksHandler,
     settingsForm,
     setSettingsForm: setSettingsFormHandler,
+    toasts,
+    addToast: addToastHandler,
+    removeToast: removeToastHandler,
   };
 });
 

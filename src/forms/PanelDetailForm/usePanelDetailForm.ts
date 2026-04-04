@@ -12,7 +12,7 @@ export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);
 
   const { onUpdatePanel, onCreatePanel } = useAppStore();
-  const { panelDialog, onClosePanelDialog } = useDialogStore();
+  const { panelDialog, onClosePanelDialog, addToast } = useDialogStore();
   const { getPanelById } = usePanels();
   const form = useForm<IPanelDetailForm>({
     defaultValues: getDefaultValues(),
@@ -28,18 +28,23 @@ export const usePanelDetailForm = () => {
 
       const master = getFormToMaster(data);
 
-      console.log('on submit', data, master);
-
       if (panelDialog === 'new') {
         onCreatePanel(master);
-        // TODO: create callback message
+        addToast({
+          title: 'Panel was successfully created', // TODO #i18n
+          severity: 'success',
+          autoclose: true,
+        });
       } else {
         onUpdatePanel(master);
-        // TODO: create callback message
+        addToast({
+          title: 'Panel was successfully updated', // TODO #i18n
+          severity: 'success',
+          autoclose: true,
+        });
       }
 
       onClosePanelDialog();
-      form.reset();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [panelDialog],
@@ -51,12 +56,12 @@ export const usePanelDetailForm = () => {
         {
           id: dateTimeWidgetTimeKeys.analog,
           value: dateTimeWidgetTimeKeys.analog,
-          label: 'Analog', // TODO
+          label: 'Analog', // TODO #i18n
         },
         {
           id: dateTimeWidgetTimeKeys.numeric,
           value: dateTimeWidgetTimeKeys.numeric,
-          label: 'Numeric', // TODO
+          label: 'Numeric', // TODO #i18n
         },
       ],
     },

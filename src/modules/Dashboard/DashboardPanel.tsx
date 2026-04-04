@@ -1,8 +1,8 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { styled, Grid, Typography, Stack } from '@mui/material';
-import { IconPencil, IconX } from '@tabler/icons-react';
+import { IconPencil, IconTrash } from '@tabler/icons-react';
 import type { Panel } from '../../types';
 import { useAppStore, useDialogStore } from '../../store';
 import { Container, IconButtonPlus } from '../../components';
@@ -43,8 +43,7 @@ interface DashboardPanelProps {
 
 const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const { t } = useTranslation(['feedback']);
-
-  const { onOpenPanelDialog, onOpenConfirmDialog } = useDialogStore();
+  const { onOpenPanelDialog, onOpenConfirmDialog, addToast } = useDialogStore();
   const { onDeletePanel } = useAppStore();
   const { onCurrentPanelChange, currentPanel } = useDashboardContext();
   const navigate = useNavigate();
@@ -52,26 +51,17 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const panelLabel = panel.label ?? panel.name;
   const isHomePanel = currentPanel.isMain;
 
-  const widgets = useMemo(
-    () => ({
-      /* TODO: create dynamic sizes by viewed widgets */
-      dateTime: { ...panel.widgets.dateTime, gridProps: { size: 3 } },
-      holidays: { ...panel.widgets.holidays, gridProps: { size: 3 } },
-      calendar: { ...panel.widgets.calendar, gridProps: { size: 6 } },
-      weather: { ...panel.widgets.weather, gridProps: { size: 6 } },
-      links: { ...panel.widgets.links, gridProps: { size: 12 } },
-    }),
-    [panel],
-  );
-
   const deletePanelHandler = (id: string) => {
     /** It is necessary to move the delete event here and redirect to the start panel due to the non-existent index */
     navigate('/');
 
     setTimeout(() => {
       onDeletePanel(id);
-
-      // TODO: toast message
+      addToast({
+        title: 'Panel was successfully deleted', // TODO #i18n
+        severity: 'success',
+        autoclose: true,
+      });
     }, 250);
   };
 
@@ -91,6 +81,15 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
         <Stack direction="row" gap={2}>
           {/* TODO */}
           <Typography variant="h5">{panelLabel}</Typography>
+          {!isHomePanel && (
+            <IconButtonPlus
+              tooltip="Delete"
+              onClick={() => deletePanelConfirmHandler(panel)}
+              size="small"
+            >
+              <IconTrash />
+            </IconButtonPlus>
+          )}
           <IconButtonPlus
             tooltip="Edit"
             onClick={() => onOpenPanelDialog(panel.id)}
@@ -98,24 +97,24 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
           >
             <IconPencil />
           </IconButtonPlus>
-          {!isHomePanel && (
-            <IconButtonPlus
-              tooltip="Delete"
-              onClick={() => deletePanelConfirmHandler(panel)}
-              size="small"
-            >
-              <IconX />
-            </IconButtonPlus>
-          )}
         </Stack>
         <WidgetWrapper>
           <Grid container spacing={2}>
             {/* TODO */}
-            <DateTimeWidget {...widgets.dateTime} />
-            <HolidaysWidget {...widgets.holidays} />
-            <CalendarWidget {...widgets.calendar} />
-            <WeatherWidget {...widgets.weather} />
-            <LinksWidget {...widgets.links} />
+            <DateTimeWidget
+              {...panel.widgets.dateTime}
+              gridProps={{ size: 3 }}
+            />
+            <HolidaysWidget
+              {...panel.widgets.holidays}
+              gridProps={{ size: 3 }}
+            />
+            <CalendarWidget
+              {...panel.widgets.calendar}
+              gridProps={{ size: 6 }}
+            />
+            <WeatherWidget {...panel.widgets.weather} gridProps={{ size: 6 }} />
+            <LinksWidget {...panel.widgets.links} gridProps={{ size: 12 }} />
           </Grid>
         </WidgetWrapper>
       </Container>
