@@ -21,6 +21,8 @@ interface IAppStore {
   onDeletePanel: (id: string) => void;
   features: AppFeatures;
   setFeatures: (features: Partial<AppFeatures>) => void;
+  loadTimestamp: string;
+  setLoadTimestamp: (timestamp: string) => void;
 }
 
 const useAppStore = create<IAppStore>((set, get) => {
@@ -32,6 +34,7 @@ const useAppStore = create<IAppStore>((set, get) => {
     msLinks: true,
     appleLinks: true,
   };
+  const loadTimestamp = ''; // TODO
 
   /* TODO: mock */
   const homePanel: HomePanel = {
@@ -191,6 +194,9 @@ const useAppStore = create<IAppStore>((set, get) => {
     });
   };
 
+  const setLoadTimestampHandler = (timestamp: string) =>
+    set({ loadTimestamp: timestamp });
+
   return {
     editMode,
     hash,
@@ -205,6 +211,8 @@ const useAppStore = create<IAppStore>((set, get) => {
     onDeletePanel: deletePanelHandler,
     features,
     setFeatures: setFeaturesHandler,
+    loadTimestamp,
+    setLoadTimestamp: setLoadTimestampHandler,
   };
 });
 
