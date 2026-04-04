@@ -65,9 +65,14 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   );
 
   const deletePanelHandler = (id: string) => {
-    onDeletePanel(id);
+    /** It is necessary to move the delete event here and redirect to the start panel due to the non-existent index */
     navigate('/');
-    // TODO: toast message
+
+    setTimeout(() => {
+      onDeletePanel(id);
+
+      // TODO: toast message
+    }, 250);
   };
 
   const deletePanelConfirmHandler = (panel: Panel) =>
