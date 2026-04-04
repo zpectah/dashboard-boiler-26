@@ -2,6 +2,7 @@ export * from './common';
 export * from './config';
 export * from './dialog';
 export * from './element';
+export * from './features';
 export * from './panel';
 export * from './theme';
 export * from './toasts';

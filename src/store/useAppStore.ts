@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { merge } from 'lodash';
-import type { Panel, PanelEffect } from '../types';
+import type { AppFeatures, Panel, PanelEffect } from '../types';
 import { dateTimeWidgetTimeKeys, panelEffectKeys } from '../enums';
 import { getRandomId } from '../utils';
 
@@ -19,12 +19,19 @@ interface IAppStore {
   onCreatePanel: (panel: Panel) => void;
   onUpdatePanel: (panel: PartialPanel) => void;
   onDeletePanel: (id: string) => void;
+  features: AppFeatures;
+  setFeatures: (features: Partial<AppFeatures>) => void;
 }
 
 const useAppStore = create<IAppStore>((set, get) => {
   const editMode = false;
-  const hash = 'k2e9blGga0FL';
+  const hash = 'k2e9blGga0FL'; /* TODO: mock */
   const panelEffect: PanelEffect = panelEffectKeys.grow;
+  const features: AppFeatures = {
+    googleLinks: true,
+    msLinks: true,
+    appleLinks: true,
+  };
 
   /* TODO: mock */
   const homePanel: HomePanel = {
@@ -53,8 +60,8 @@ const useAppStore = create<IAppStore>((set, get) => {
     },
   };
 
+  /* TODO: mock */
   const customPanels: Panel[] = [
-    /* TODO: mock */
     {
       id: 'j3ONF0nJoC05',
       name: 'panel-2',
@@ -174,6 +181,16 @@ const useAppStore = create<IAppStore>((set, get) => {
     });
   };
 
+  const setFeaturesHandler = (features: Partial<AppFeatures>) => {
+    set((state) => {
+      const newState = { ...state.features, ...features };
+
+      /* TODO: save to storage */
+
+      return { features: newState };
+    });
+  };
+
   return {
     editMode,
     hash,
@@ -186,6 +203,8 @@ const useAppStore = create<IAppStore>((set, get) => {
     onCreatePanel: createPanelHandler,
     onUpdatePanel: updatePanelHandler,
     onDeletePanel: deletePanelHandler,
+    features,
+    setFeatures: setFeaturesHandler,
   };
 });
 

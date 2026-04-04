@@ -1,13 +1,21 @@
+import { Grid } from '@mui/material';
 import { useDialogStore } from '../../store';
-import { Drawer } from '../../components';
+import {
+  Drawer,
+  ControlledForm,
+  SelectField,
+  CheckboxField,
+} from '../../components';
+import { useSettingsForm } from './useSettingsForm';
 
 const SettingsForm = () => {
   const { settingsForm, setSettingsForm } = useDialogStore();
+  const { form, options } = useSettingsForm();
 
   return (
     <Drawer
       anchor="right"
-      title="Settings"
+      title="Homepage settings"
       open={settingsForm}
       onClose={() => setSettingsForm(false)}
       width={{
@@ -15,7 +23,36 @@ const SettingsForm = () => {
         md: '480px',
       }}
     >
-      ...settings Drawer form
+      <ControlledForm form={form}>
+        <Grid container spacing={2}>
+          <SelectField
+            name="panelEffect"
+            label="Panel effect"
+            options={options.panelEffect}
+            isFullWidth
+          />
+          <Grid size={12} container spacing={1}>
+            <CheckboxField
+              name="googleLinks"
+              label=""
+              fieldLabel="Google links"
+              layout="vertical"
+            />
+            <CheckboxField
+              name="msLinks"
+              label=""
+              fieldLabel="Microsoft links"
+              layout="vertical"
+            />
+            <CheckboxField
+              name="appleLinks"
+              label=""
+              fieldLabel="Apple links"
+              layout="vertical"
+            />
+          </Grid>
+        </Grid>
+      </ControlledForm>
     </Drawer>
   );
 };

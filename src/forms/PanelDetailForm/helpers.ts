@@ -47,9 +47,7 @@ export const getDataToForm = (panel: Panel | undefined): IPanelDetailForm => {
 };
 
 export const getFormToMaster = (data: IPanelDetailForm): Panel => {
-  const master = Object.assign({
-    ...data,
-  });
+  const master = Object.assign({ ...data });
 
   return master;
 };
