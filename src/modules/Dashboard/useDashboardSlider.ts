@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { usePanels } from '../../hooks';
-import { MainPanelName } from '../../constants';
+import { mainPanelName } from '../../constants';
 import type { Direction } from './types';
 import { DirectionKeys } from './enums';
 import { DirectionDefault } from './constants';
@@ -15,7 +15,7 @@ export const useDashboardSlider = (panel: string | undefined) => {
     () =>
       panels.findIndex(
         (p) =>
-          p.name === panel || (p.name === MainPanelName && panel === undefined),
+          p.name === panel || (p.name === mainPanelName && panel === undefined),
       ),
     [panels, panel],
   );

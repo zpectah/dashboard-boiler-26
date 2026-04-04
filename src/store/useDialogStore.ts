@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import type { IConfirmDialog, IToastsItem, Toasts } from '../types';
+import type { ConfirmDialog, IToastsItem, Toasts } from '../types';
 import { getRandomId } from '../utils';
 import { toastsItemSeverityKeys } from '../enums';
 
@@ -7,8 +7,8 @@ interface IDialogStore {
   panelDialog: string | null;
   onOpenPanelDialog: (id: string | 'new') => void;
   onClosePanelDialog: () => void;
-  confirmDialog: IConfirmDialog | null;
-  onOpenConfirmDialog: (dialog: IConfirmDialog | null) => void;
+  confirmDialog: ConfirmDialog | null;
+  onOpenConfirmDialog: (dialog: ConfirmDialog | null) => void;
   onCloseConfirmDialog: () => void;
   googleLinks: boolean;
   setGoogleLinks: (open: boolean) => void;
@@ -25,7 +25,7 @@ interface IDialogStore {
 
 const useDialogStore = create<IDialogStore>((set, get) => {
   const panelDialog: string | null = null;
-  const confirmDialog: IConfirmDialog | null = null;
+  const confirmDialog: ConfirmDialog | null = null;
   const googleLinks = false;
   const appleLinks = false;
   const microsoftLinks = false;
@@ -37,7 +37,7 @@ const useDialogStore = create<IDialogStore>((set, get) => {
 
   const closePanelDialogHandler = () => set({ panelDialog: null });
 
-  const openConfirmDialogHandler = (dialog: IConfirmDialog | null) =>
+  const openConfirmDialogHandler = (dialog: ConfirmDialog | null) =>
     set({ confirmDialog: dialog });
 
   const closeConfirmDialogHandler = () => set({ confirmDialog: null });

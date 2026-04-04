@@ -1,12 +1,12 @@
 import type { Panel } from '../types';
-import { MainPanelName } from '../constants';
+import { mainPanelName } from '../constants';
 import { useAppStore } from '../store';
 
 export const usePanels = () => {
   const { homePanel, customPanels } = useAppStore();
 
   const homePanelBase: Panel = {
-    name: MainPanelName,
+    name: mainPanelName,
     ...homePanel,
   };
   const panels = [homePanelBase, ...customPanels];

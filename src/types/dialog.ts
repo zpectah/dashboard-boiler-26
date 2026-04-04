@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export interface IConfirmDialog {
+export interface ConfirmDialog {
   title: string;
   content: ReactNode;
   onConfirm: () => void;

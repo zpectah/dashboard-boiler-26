@@ -1,12 +1,12 @@
 import { getConfig } from '../config';
-import { StorageLocalesKey } from '../constants';
+import { storageLocalesKey } from '../constants';
 
 (() => {
   const { locales } = getConfig();
 
   const root = document.querySelector('html') as HTMLElement;
   const locale =
-    window.localStorage.getItem(StorageLocalesKey) ?? locales.default;
+    window.localStorage.getItem(storageLocalesKey) ?? locales.default;
 
   root.setAttribute('lang', locale);
 })();

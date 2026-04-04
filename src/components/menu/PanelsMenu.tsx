@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { Stack, Tabs, Tab } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
 import { usePanels } from '../../hooks';
-import { MainPanelName } from '../../constants';
+import { mainPanelName } from '../../constants';
 import { useDialogStore } from '../../store';
 import { IconButtonPlus } from '../button';
 
@@ -26,7 +26,7 @@ const PanelsMenu = () => {
       panels.findIndex(
         (item) =>
           item.name === panel ||
-          (panel === undefined && item.name === MainPanelName),
+          (panel === undefined && item.name === mainPanelName),
       ),
     [panel, panels],
   );
@@ -40,7 +40,7 @@ const PanelsMenu = () => {
     >
       <Tabs value={panelIndex} variant="scrollable" scrollButtons="auto">
         {panels.map(({ id, name, label }, index) => {
-          const path = name === MainPanelName ? '/' : `/${name}`;
+          const path = name === mainPanelName ? '/' : `/${name}`;
           const linkLabel = label ? label : name;
 
           return (

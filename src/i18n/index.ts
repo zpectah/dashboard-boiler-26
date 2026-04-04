@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { getConfig } from '../config';
-import { StorageLocalesKey } from '../constants';
+import { storageLocalesKey } from '../constants';
 import locales from './locales';
 
 const cfg = () => {
@@ -18,7 +18,7 @@ const cfg = () => {
     },
     detection: {
       order: ['localStorage'],
-      lookupLocalStorage: StorageLocalesKey,
+      lookupLocalStorage: storageLocalesKey,
       caches: ['localStorage'],
     },
   };

@@ -3,25 +3,25 @@ import type { EnumKeyValues } from './common';
 
 export type WidgetDateTimeTime = EnumKeyValues<typeof dateTimeWidgetTimeKeys>;
 
-export interface ICalendarWidget {
+export interface CalendarWidget {
   active: boolean;
 }
 
-export interface IDateTimeWidget {
+export interface DateTimeWidget {
   active: boolean;
   type: WidgetDateTimeTime;
   blinkingSemi: boolean;
 }
 
-export interface IHolidaysWidget {
+export interface HolidaysWidget {
   active: boolean;
   showTomorrow: boolean;
 }
 
-export interface ILinksWidget {
+export interface LinksWidget {
   active: boolean;
 }
 
-export interface IWeatherWidget {
+export interface WeatherWidget {
   active: boolean;
 }

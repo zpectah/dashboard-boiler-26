@@ -1,1 +1,1 @@
-export const StorageLocalesKey = 'i18nextLng';
+export const storageLocalesKey = 'i18nextLng';

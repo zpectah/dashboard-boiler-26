@@ -1,6 +1,6 @@
 import { panelEffectKeys } from '../enums';
 
-export const MainPanelName = 'home';
+export const mainPanelName = 'home';
 
 export const panelEffectKeysArray = [...Object.keys(panelEffectKeys)] as [
   string,
