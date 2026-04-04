@@ -30,6 +30,7 @@ const SettingsForm = () => {
             label="Panel effect"
             options={options.panelEffect}
             isFullWidth
+            layout="vertical"
           />
           <Grid size={12} container spacing={1}>
             <CheckboxField

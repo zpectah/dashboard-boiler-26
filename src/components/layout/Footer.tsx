@@ -4,6 +4,7 @@ import { getConfig } from '../../config';
 import { useAppStore } from '../../store';
 import { FooterControls } from '../menu';
 import Container from './Container';
+import { useTranslation } from 'react-i18next';
 
 const Wrapper = styled('footer')(() => ({
   padding: '1rem 0',
@@ -28,12 +29,13 @@ const Block = styled(Stack)(() => ({
 }));
 
 const Footer = () => {
-  const { meta } = getConfig();
+  const { meta, links } = getConfig();
 
+  const { t } = useTranslation();
   const { loadTimestamp } = useAppStore();
 
   const currentYear = new Date().getFullYear();
-  const formattedTimestamp = dayjs(loadTimestamp).format('DD.MM. YYYY HH:mm');
+  const formattedTimestamp = dayjs(loadTimestamp).format('DD.MM.YYYY HH:mm');
 
   return (
     <Wrapper>
@@ -41,17 +43,17 @@ const Footer = () => {
         <Content>
           <Block justifyContent="flex-start">
             <Typography>
-              {meta.since} - {currentYear}&nbsp;|&nbsp;&copy; {meta.name} v
+              {meta.since} - {currentYear}&nbsp;&copy; {meta.name} v
               {meta.version}
-              &nbsp;|&nbsp;Loaded: {formattedTimestamp}
+              &nbsp;|&nbsp;{t('label.loadedIn', { date: formattedTimestamp })}
               <br />
-              <Link href="https://zpecter.com/" target="_blank">
-                zpecter.com
-              </Link>{' '}
-              &nbsp;|&nbsp;
-              <Link href="https://tools.zpecter.com/" target="_blank">
-                tools.zpecter.com
-              </Link>
+              <Stack direction="row" gap={1} component={'span'}>
+                {links.map((item, index) => (
+                  <Link key={index} href={item.url} target="_blank">
+                    {item.label}
+                  </Link>
+                ))}
+              </Stack>
             </Typography>
           </Block>
           <Block justifyContent="flex-end">

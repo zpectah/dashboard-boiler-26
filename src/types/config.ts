@@ -1,3 +1,8 @@
+interface ConfigLinkItem {
+  url: string;
+  label: string;
+}
+
 export interface Config {
   meta: {
     /** Project name */
@@ -19,6 +24,8 @@ export interface Config {
     /** Path to random image generator */
     randomImage: string;
   };
+  /** Author necessary links */
+  links: ConfigLinkItem[];
   ui: {
     /** Animation timeout */
     animation: number;

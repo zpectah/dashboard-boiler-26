@@ -15,6 +15,16 @@ const getConfig = (): Config => {
   const url = {
     randomImage: 'https://picsum.photos/1920?random=1&grayscale&blur=2',
   };
+  const links = [
+    {
+      url: 'https://zpecter.com/',
+      label: 'zpecter.com',
+    },
+    {
+      url: 'https://tools.zpecter.com/',
+      label: 'tools.zpecter.com',
+    },
+  ];
   const ui = {
     animation: 350,
     disableLock: 10000,
@@ -25,6 +35,7 @@ const getConfig = (): Config => {
     meta,
     locales,
     url,
+    links,
     ui,
     features,
   };

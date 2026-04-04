@@ -9,7 +9,8 @@
     "editMode": "Edit mode"
   },
   "label": {
-    "localeMenu": "Locales"
+    "localeMenu": "Locales",
+    "loadedIn": "Loaded in {{date}}"
   },
   "message": {
     "noPanelFound": "Sorry, but panel with this id was not found"
