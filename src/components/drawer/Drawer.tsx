@@ -6,6 +6,7 @@ const Drawer = ({
   labelId = 'drawer',
   actions,
   title,
+  titleIcon,
   titleSlot,
   titleActions = [],
   text,
@@ -38,6 +39,7 @@ const Drawer = ({
         labelId={labelId}
         actions={actions}
         title={title}
+        titleIcon={titleIcon}
         titleSlot={titleSlot}
         titleActions={titleActions}
         text={text}

@@ -24,6 +24,14 @@ const theme = createTheme({
         root: {},
       },
     },
+    MuiListItemText: {
+      styleOverrides: {
+        root: {},
+        primary: {
+          fontWeight: 500,
+        },
+      },
+    },
   },
 });
 

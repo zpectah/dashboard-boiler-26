@@ -1,39 +1,37 @@
+import { useTranslation } from 'react-i18next';
 import { IconBrandAppleFilled } from '@tabler/icons-react';
 import { useDialogStore } from '../../store';
+import { useBrandLinks } from '../../hooks';
+import { drawerLinksWidth } from '../../constants';
 import { IconButtonPlus } from '../button';
 import { Drawer } from '../drawer';
+import MenuBase from './MenuBase';
 
 const AppleLinks = () => {
+  const { t } = useTranslation('features');
   const { appleLinks, setAppleLinks } = useDialogStore();
+  const { apple: links } = useBrandLinks();
 
   return (
     <>
-      <IconButtonPlus tooltip="Apple links" onClick={() => setAppleLinks(true)}>
+      <IconButtonPlus
+        tooltip={t('apple.title')}
+        onClick={() => setAppleLinks(true)}
+      >
         <IconBrandAppleFilled />
       </IconButtonPlus>
-
       <Drawer
         anchor="left"
         open={appleLinks}
         onClose={() => setAppleLinks(false)}
-        title="Apple links"
+        title={t('apple.title')}
+        titleIcon={<IconBrandAppleFilled />}
         width={{
           xs: '100%',
-          md: '480px',
+          sm: drawerLinksWidth,
         }}
       >
-        Drawer
-        <br />
-        <p>
-          Mi sapien eleifend adipiscing sagittis pulvinar congue a pellentesque
-          id elit quis risus facilisis a. Pulvinar viverra sapien amet risus ut
-          euismod sagittis adipiscing dapibus diam donec vel pulvinar facilisis.
-          Aliquam a nunc metus nibh sollicitudin pharetra ac metus tincidunt
-          consectetur tellus facilisis mauris libero. Lacus vestibulum bibendum
-          sagittis cursus ex pulvinar non dignissim aliquam eget eget commodo
-          quam ut. Integer nibh curabitur amet ipsum sit sed libero blandit
-          vestibulum diam vehicula a nec nec.
-        </p>
+        <MenuBase links={links} />
       </Drawer>
     </>
   );

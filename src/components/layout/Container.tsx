@@ -3,12 +3,12 @@ import {
   type ContainerProps as MuiContainerProps,
 } from '@mui/material';
 import type { WithChildren } from '../../types';
-import { ContainerMaxWidth } from '../../constants';
+import { containerMaxWidth } from '../../constants';
 
 export type ContainerProps = WithChildren & Partial<MuiContainerProps>;
 
 const Container = ({ children, ...rest }: ContainerProps) => (
-  <MuiContainer maxWidth={ContainerMaxWidth} {...rest}>
+  <MuiContainer maxWidth={containerMaxWidth} {...rest}>
     {children}
   </MuiContainer>
 );

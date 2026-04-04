@@ -21,6 +21,7 @@ const DrawerHeading = styled('header')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
+  gap: theme.spacing(2),
   flex: 0,
 }));
 const DrawerContentWrapper = styled('article')(() => ({
@@ -55,6 +56,7 @@ const DrawerActions = styled('div')(({ theme }) => ({
 const DrawerLayout = ({
   labelId,
   title,
+  titleIcon,
   titleActions,
   titleSlot,
   text,
@@ -68,8 +70,9 @@ const DrawerLayout = ({
   return (
     <DrawerContainer {...wrapperProps}>
       <DrawerHeading id={`${labelId}-title`}>
+        {titleIcon && titleIcon}
         {title && (
-          <Typography variant="h6" component="h3">
+          <Typography variant="h6" component="h3" flex={1}>
             {title}
           </Typography>
         )}

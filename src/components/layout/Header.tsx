@@ -12,7 +12,7 @@ const Header = () => {
       <Container>
         <Grid container spacing={2}>
           <Grid size={{ xs: 6, sm: 4, md: 2 }} order={{ xs: 1, sm: 1 }}>
-            <Stack direction="row" justifyContent="flex-start">
+            <Stack direction="row" justifyContent="flex-start" gap={1}>
               <AppsMenu />
             </Stack>
           </Grid>
@@ -22,7 +22,7 @@ const Header = () => {
             </Stack>
           </Grid>
           <Grid size={{ xs: 6, sm: 4, md: 2 }} order={{ xs: 2, sm: 3 }} sx={{}}>
-            <Stack direction="row" justifyContent="flex-end">
+            <Stack direction="row" justifyContent="flex-end" gap={1}>
               <HeaderControls />
             </Stack>
           </Grid>

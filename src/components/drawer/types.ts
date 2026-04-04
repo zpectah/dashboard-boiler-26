@@ -11,6 +11,7 @@ export interface DrawerLayoutProps extends WithChildren {
   labelId?: string;
   actions?: ReactNode;
   title?: ReactNode;
+  titleIcon?: ReactNode;
   titleSlot?: ReactNode;
   titleActions?: IconButtonPlusProps[];
   text?: string;
@@ -29,6 +30,7 @@ export interface DrawerBaseProps extends Omit<MUiDrawerProps, 'title'> {
 export interface DrawerProps extends DrawerBaseProps {
   actions?: ReactNode;
   title?: ReactNode;
+  titleIcon?: ReactNode;
   titleSlot?: ReactNode;
   titleActions?: IconButtonPlusProps[];
   text?: string;
