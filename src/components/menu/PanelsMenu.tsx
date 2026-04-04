@@ -5,6 +5,7 @@ import { IconPlus } from '@tabler/icons-react';
 import { usePanels } from '../../hooks';
 import { MainPanelName } from '../../constants';
 import { useDialogStore } from '../../store';
+import { IconButtonPlus } from '../button';
 
 const PanelsMenu = () => {
   const { panel } = useParams();
@@ -53,9 +54,14 @@ const PanelsMenu = () => {
             />
           );
         })}
-
-        <Tab onClick={() => onOpenPanelDialog('new')} label={<IconPlus />} />
       </Tabs>
+
+      <IconButtonPlus
+        tooltip="New panel"
+        onClick={() => onOpenPanelDialog('new')}
+      >
+        <IconPlus />
+      </IconButtonPlus>
     </Stack>
   );
 };
