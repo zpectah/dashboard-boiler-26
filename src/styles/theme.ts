@@ -32,6 +32,11 @@ const theme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      defaultProps: {
+        variant: 'outlined',
+      },
+    },
   },
 });
 

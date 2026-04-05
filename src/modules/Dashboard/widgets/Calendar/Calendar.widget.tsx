@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Box, Grid, Paper } from '@mui/material';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { CalendarWidgetProps } from '../types';
 
@@ -10,7 +10,13 @@ const CalendarWidget = ({ active, gridProps }: CalendarWidgetProps) => {
 
   if (!active) return null;
 
-  return <Grid {...gridProps}>CalendarWidget _ {currentPanel.id}</Grid>;
+  return (
+    <Grid {...gridProps}>
+      <Paper>
+        <Box>CalendarWidget _ {currentPanel.id}</Box>
+      </Paper>
+    </Grid>
+  );
 };
 
 export default CalendarWidget;

@@ -47,7 +47,7 @@ const useAppStore = create<IAppStore>((set, get) => {
       },
       dateTime: {
         active: true,
-        type: dateTimeWidgetTimeKeys.analog,
+        type: dateTimeWidgetTimeKeys.numeric,
         blinkingSemi: false,
         seconds: true,
       },

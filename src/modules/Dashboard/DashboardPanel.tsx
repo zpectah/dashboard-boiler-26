@@ -24,9 +24,9 @@ const Wrapper = styled('div')(() => ({
   flexDirection: 'column',
 }));
 const WidgetWrapper = styled('div')(({ theme }) => ({
-  width: 'auto',
+  width: '100%',
   height: 'auto',
-  padding: theme.spacing(4),
+  padding: theme.spacing(2),
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -35,6 +35,9 @@ const WidgetWrapper = styled('div')(({ theme }) => ({
   // TODO
   background: 'rgba(200,200,200,.5)',
   borderRadius: '.5rem',
+}));
+const GridWrapper = styled(Grid)(() => ({
+  width: '100%',
 }));
 
 interface DashboardPanelProps {
@@ -52,9 +55,11 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const isHomePanel = currentPanel.isMain;
 
   const deletePanelHandler = (id: string) => {
-    /** It is necessary to move the delete event here and redirect to the start panel due to the non-existent index */
+    /**
+     * It is necessary to move the delete event here
+     * and redirect to the start panel due to the non-existent index
+     * */
     navigate('/');
-
     setTimeout(() => {
       onDeletePanel(id);
       addToast({
@@ -78,45 +83,64 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   return (
     <Wrapper>
       <Container>
-        <Stack direction="row" gap={2}>
-          {/* TODO */}
-          <Typography variant="h5">{panelLabel}</Typography>
-          {!isHomePanel && (
+        <Stack
+          direction="column"
+          gap={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Stack
+            direction="row"
+            gap={2}
+            alignItems="center"
+            justifyContent="center"
+          >
+            {/* TODO */}
+            <Typography variant="h5">{panelLabel}</Typography>
+            {!isHomePanel && (
+              <IconButtonPlus
+                tooltip="Delete"
+                onClick={() => deletePanelConfirmHandler(panel)}
+                size="small"
+              >
+                <IconTrash />
+              </IconButtonPlus>
+            )}
             <IconButtonPlus
-              tooltip="Delete"
-              onClick={() => deletePanelConfirmHandler(panel)}
+              tooltip="Edit"
+              onClick={() => onOpenPanelDialog(panel.id)}
               size="small"
             >
-              <IconTrash />
+              <IconPencil />
             </IconButtonPlus>
-          )}
-          <IconButtonPlus
-            tooltip="Edit"
-            onClick={() => onOpenPanelDialog(panel.id)}
-            size="small"
-          >
-            <IconPencil />
-          </IconButtonPlus>
+          </Stack>
+          <WidgetWrapper>
+            <GridWrapper container spacing={2}>
+              {/* TODO #layout */}
+              <Grid container size={6}>
+                <DateTimeWidget
+                  {...panel.widgets.dateTime}
+                  gridProps={{ size: 12 }}
+                />
+                <HolidaysWidget
+                  {...panel.widgets.holidays}
+                  gridProps={{ size: 12 }}
+                />
+              </Grid>
+              <Grid container size={6}>
+                <WeatherWidget
+                  {...panel.widgets.weather}
+                  gridProps={{ size: 12 }}
+                />
+                <CalendarWidget
+                  {...panel.widgets.calendar}
+                  gridProps={{ size: 12 }}
+                />
+              </Grid>
+              <LinksWidget {...panel.widgets.links} gridProps={{ size: 12 }} />
+            </GridWrapper>
+          </WidgetWrapper>
         </Stack>
-        <WidgetWrapper>
-          <Grid container spacing={2}>
-            {/* TODO */}
-            <DateTimeWidget
-              {...panel.widgets.dateTime}
-              gridProps={{ size: 3 }}
-            />
-            <HolidaysWidget
-              {...panel.widgets.holidays}
-              gridProps={{ size: 3 }}
-            />
-            <CalendarWidget
-              {...panel.widgets.calendar}
-              gridProps={{ size: 6 }}
-            />
-            <WeatherWidget {...panel.widgets.weather} gridProps={{ size: 6 }} />
-            <LinksWidget {...panel.widgets.links} gridProps={{ size: 12 }} />
-          </Grid>
-        </WidgetWrapper>
       </Container>
     </Wrapper>
   );
