@@ -4,6 +4,7 @@ export * from './dialog';
 export * from './element';
 export * from './features';
 export * from './forecast';
+export * from './holidays';
 export * from './links';
 export * from './panel';
 export * from './theme';

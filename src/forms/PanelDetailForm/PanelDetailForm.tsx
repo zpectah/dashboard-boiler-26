@@ -1,7 +1,10 @@
 // import { useWatch } from 'react-hook-form';
 import { Button, Grid, Divider, Typography } from '@mui/material';
 import { useDialogStore } from '../../store';
-import { dateTimeWidgetTimeDefault } from '../../constants';
+import {
+  dateTimeWidgetHolidaysOriginDefault,
+  dateTimeWidgetTimeDefault,
+} from '../../constants';
 import {
   ComposedDialog,
   ControlledForm,
@@ -91,7 +94,12 @@ const PanelDetailForm = () => {
                 fieldLabel="Show seconds"
                 layout="vertical"
               />
-
+              <CheckboxField
+                name="widgets.dateTime.showDate"
+                label=""
+                fieldLabel="Show date"
+                layout="vertical"
+              />
               <CheckboxField
                 name="widgets.dateTime.showHolidays"
                 label=""
@@ -103,6 +111,15 @@ const PanelDetailForm = () => {
                 label=""
                 fieldLabel="Show tomorrow holidays"
                 layout="vertical"
+              />
+              <SelectField
+                name="widgets.dateTime.holidaysOrigin"
+                label="Holidays Origin"
+                layout="vertical"
+                options={options.dateTime.holidaysOrigin}
+                defaultValue={dateTimeWidgetHolidaysOriginDefault}
+                isFullWidth
+                size={{ xs: 12, md: 6 }}
               />
             </Grid>
 

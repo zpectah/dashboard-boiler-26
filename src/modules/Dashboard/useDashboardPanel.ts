@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import type { Panel } from '../../types';
-import { DashboardDefaultPanel } from './constants';
+import { dashboardDefaultPanel } from './constants';
 
 export const useDashboardPanel = () => {
   const [currentPanel, setCurrentPanel] = useState<Panel>(
-    DashboardDefaultPanel,
+    dashboardDefaultPanel,
   );
 
   const setPanelHandler = (panel: Panel) => {

@@ -3,13 +3,13 @@ import { usePanels } from '../../hooks';
 import { mainPanelName } from '../../constants';
 import type { Direction } from './types';
 import { DirectionKeys } from './enums';
-import { DirectionDefault } from './constants';
+import { panelDirectionDefault } from './constants';
 
 export const useDashboardSlider = (panel: string | undefined) => {
   const { panels } = usePanels();
 
   const [prevIndex, setPrevIndex] = useState<number>(0);
-  const [direction, setDirection] = useState<Direction>(DirectionDefault);
+  const [direction, setDirection] = useState<Direction>(panelDirectionDefault);
 
   const currentIndex = useMemo(
     () =>

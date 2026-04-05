@@ -1,7 +1,11 @@
 import { create } from 'zustand';
 import { merge } from 'lodash';
 import type { AppFeatures, Panel, PanelEffect } from '../types';
-import { dateTimeWidgetTimeKeys, panelEffectKeys } from '../enums';
+import {
+  dateTimeWidgetHolidaysOriginKeys,
+  dateTimeWidgetTimeKeys,
+  panelEffectKeys,
+} from '../enums';
 import { getRandomId } from '../utils';
 
 type HomePanel = Omit<Panel, 'name'>;
@@ -30,6 +34,7 @@ const useAppStore = create<IAppStore>((set, get) => {
   const hash = 'k2e9blGga0FL'; /* TODO: mock */
   const panelEffect: PanelEffect = panelEffectKeys.grow;
   const features: AppFeatures = {
+    /* TODO: mock */
     googleLinks: true,
     msLinks: true,
     appleLinks: true,
@@ -47,11 +52,13 @@ const useAppStore = create<IAppStore>((set, get) => {
       },
       dateTime: {
         active: true,
+        showDate: true,
         timeType: dateTimeWidgetTimeKeys.numeric,
         separatorBlink: false,
         showSeconds: true,
         showHolidays: true,
         showTomorrowHolidays: true,
+        holidaysOrigin: dateTimeWidgetHolidaysOriginKeys.world,
       },
       links: {
         active: true,
@@ -75,11 +82,13 @@ const useAppStore = create<IAppStore>((set, get) => {
         },
         dateTime: {
           active: false,
+          showDate: false,
           timeType: dateTimeWidgetTimeKeys.numeric,
           separatorBlink: false,
           showSeconds: false,
           showHolidays: false,
           showTomorrowHolidays: false,
+          holidaysOrigin: dateTimeWidgetHolidaysOriginKeys.eu,
         },
         links: {
           active: true,
@@ -100,11 +109,13 @@ const useAppStore = create<IAppStore>((set, get) => {
         },
         dateTime: {
           active: true,
+          showDate: false,
           timeType: dateTimeWidgetTimeKeys.analog,
           separatorBlink: false,
           showSeconds: false,
           showHolidays: true,
           showTomorrowHolidays: false,
+          holidaysOrigin: dateTimeWidgetHolidaysOriginKeys.eu,
         },
         links: {
           active: false,
@@ -146,8 +157,6 @@ const useAppStore = create<IAppStore>((set, get) => {
 
   const updatePanelHandler = (panel: PartialPanel) => {
     if (!panel.id || !panel.name) return;
-
-    console.log('*** panel to update', panel);
 
     if (panel.name === 'home') {
       set((state) => {

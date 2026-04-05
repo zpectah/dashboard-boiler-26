@@ -1,11 +1,14 @@
 import type { Panel } from '../../types';
 import { DirectionKeys } from './enums';
-import { dateTimeWidgetTimeKeys } from '../../enums';
+import {
+  dateTimeWidgetHolidaysOriginDefault,
+  dateTimeWidgetTimeDefault,
+} from '../../constants';
 
-export const DirectionDefault = DirectionKeys.left;
+export const panelDirectionDefault = DirectionKeys.left;
 
 /** Just for temporary moment in context, before home panel is set */
-export const DashboardDefaultPanel: Panel = {
+export const dashboardDefaultPanel: Panel = {
   id: '00000000',
   name: 'default',
   label: '',
@@ -15,11 +18,13 @@ export const DashboardDefaultPanel: Panel = {
     },
     dateTime: {
       active: false,
-      timeType: dateTimeWidgetTimeKeys.numeric,
+      showDate: false,
+      timeType: dateTimeWidgetTimeDefault,
       separatorBlink: false,
       showSeconds: false,
       showHolidays: false,
       showTomorrowHolidays: false,
+      holidaysOrigin: dateTimeWidgetHolidaysOriginDefault,
     },
     links: {
       active: false,

@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
-import { Grid, Paper, Stack, Typography } from '@mui/material';
+import { Grid, Paper, Stack } from '@mui/material';
 import { isNumberOdd } from '../../../../utils';
 import { useTickTok } from '../../../../hooks';
+import { dateTimeWidgetTimeKeys } from '../../../../enums';
 import { useDashboardContext } from '../../Dashboard.context';
 import type { DateTimeWidgetProps } from '../types';
-import AnalogClock from './AnalogClock.tsx';
-import NumericClock from './NumericClock.tsx';
+import AnalogClock from './AnalogClock';
+import NumericClock from './NumericClock';
+import Holidays from './Holidays';
+import Date from './Date';
 
 const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
   const { currentPanel } = useDashboardContext();
@@ -20,7 +23,7 @@ const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
   }, [current, now]);
 
   const renderClock = useMemo(() => {
-    if (current.timeType === 'numeric') {
+    if (current.timeType === dateTimeWidgetTimeKeys.numeric) {
       return (
         <NumericClock
           showSeconds={current.showSeconds}
@@ -33,15 +36,22 @@ const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
   }, [current, secondVisible]);
 
   const renderDate = useMemo(() => {
+    if (!current.showDate) return null;
+
+    return <Date year={now.year} month={now.month} day={now.day} />;
+  }, [now, current]);
+
+  const renderHolidays = useMemo(() => {
+    if (!current.showHolidays) return null;
+
     return (
-      <Stack>
-        <Typography variant="subtitle1">
-          {/* TODO: format by locale */}
-          {now.day}.{now.month}. {now.year}
-        </Typography>
-      </Stack>
+      <Holidays
+        now={now.raw}
+        holidaysOrigin={current.holidaysOrigin}
+        showTomorrowHolidays={current.showTomorrowHolidays}
+      />
     );
-  }, [now]);
+  }, [now, current]);
 
   if (!active) return null;
 
@@ -57,12 +67,7 @@ const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
         >
           {renderClock}
           {renderDate}
-
-          {current.showHolidays && (
-            <Stack>
-              Holidays...{current.showTomorrowHolidays ? 'is tomorrow' : '_'}
-            </Stack>
-          )}
+          {renderHolidays}
         </Stack>
       </Paper>
     </Grid>

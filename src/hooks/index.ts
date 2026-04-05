@@ -1,4 +1,5 @@
 export * from './useBrandLinks';
+export * from './useHolidays';
 export * from './useLocales';
 export * from './usePanels';
 export * from './useThemeMode';

@@ -1,5 +1,8 @@
 import z from 'zod';
-import { dateTimeWidgetTimeKeysArray } from '../../constants';
+import {
+  dateTimeWidgetHolidaysOriginKeysArray,
+  dateTimeWidgetTimeKeysArray,
+} from '../../constants';
 
 const calendarWidgetSchema = z.object({
   active: z.boolean(),
@@ -7,11 +10,13 @@ const calendarWidgetSchema = z.object({
 
 const dateTimeWidgetSchema = z.object({
   active: z.boolean(),
+  showDate: z.boolean(),
   timeType: z.enum(dateTimeWidgetTimeKeysArray),
   separatorBlink: z.boolean(),
   showSeconds: z.boolean(),
   showHolidays: z.boolean(),
   showTomorrowHolidays: z.boolean(),
+  holidaysOrigin: z.enum(dateTimeWidgetHolidaysOriginKeysArray),
 });
 
 const linksWidgetSchema = z.object({

@@ -1,6 +1,9 @@
 import type { Panel } from '../../types';
 import { getRandomId } from '../../utils';
-import { dateTimeWidgetTimeDefault } from '../../constants';
+import {
+  dateTimeWidgetHolidaysOriginDefault,
+  dateTimeWidgetTimeDefault,
+} from '../../constants';
 import type { IPanelDetailForm } from './types';
 
 export const getDefaultValues = (): IPanelDetailForm => {
@@ -14,11 +17,13 @@ export const getDefaultValues = (): IPanelDetailForm => {
       },
       dateTime: {
         active: true,
+        showDate: true,
         timeType: dateTimeWidgetTimeDefault,
         separatorBlink: false,
         showSeconds: false,
         showHolidays: false,
         showTomorrowHolidays: false,
+        holidaysOrigin: dateTimeWidgetHolidaysOriginDefault,
       },
       links: {
         active: true,

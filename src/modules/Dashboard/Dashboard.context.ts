@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 import type { Panel } from '../../types';
-import { DashboardDefaultPanel } from './constants';
+import { dashboardDefaultPanel } from './constants';
 
 interface IDashboardContext {
   currentPanel: Panel;
@@ -8,7 +8,7 @@ interface IDashboardContext {
 }
 
 const defaultContext: IDashboardContext = {
-  currentPanel: DashboardDefaultPanel,
+  currentPanel: dashboardDefaultPanel,
   onCurrentPanelChange: () => null,
 };
 

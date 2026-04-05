@@ -2,7 +2,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore, useDialogStore } from '../../store';
-import { dateTimeWidgetTimeKeys } from '../../enums';
+import {
+  dateTimeWidgetHolidaysOriginKeys,
+  dateTimeWidgetTimeKeys,
+} from '../../enums';
 import { usePanels } from '../../hooks';
 import type { IPanelDetailForm } from './types';
 import { panelDetailFormSchema } from './schema';
@@ -62,6 +65,33 @@ export const usePanelDetailForm = () => {
           id: dateTimeWidgetTimeKeys.numeric,
           value: dateTimeWidgetTimeKeys.numeric,
           label: 'Numeric', // TODO #i18n
+        },
+      ],
+      holidaysOrigin: [
+        {
+          id: dateTimeWidgetHolidaysOriginKeys.world,
+          value: dateTimeWidgetHolidaysOriginKeys.world,
+          label: 'world', // TODO #i18n
+        },
+        {
+          id: dateTimeWidgetHolidaysOriginKeys.eu,
+          value: dateTimeWidgetHolidaysOriginKeys.eu,
+          label: 'eu', // TODO #i18n
+        },
+        {
+          id: dateTimeWidgetHolidaysOriginKeys.us,
+          value: dateTimeWidgetHolidaysOriginKeys.us,
+          label: 'us', // TODO #i18n
+        },
+        {
+          id: dateTimeWidgetHolidaysOriginKeys.cs,
+          value: dateTimeWidgetHolidaysOriginKeys.cs,
+          label: 'cs', // TODO #i18n
+        },
+        {
+          id: dateTimeWidgetHolidaysOriginKeys.sk,
+          value: dateTimeWidgetHolidaysOriginKeys.sk,
+          label: 'sk', // TODO #i18n
         },
       ],
     },
