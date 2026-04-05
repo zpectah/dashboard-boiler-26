@@ -20,17 +20,18 @@ export interface Config {
     /** Available locales for switching */
     available: string[];
   };
-  url: {
-    /** Path to random image generator */
-    randomImage: string;
-  };
+  /** Url paths */
+  url: Record<string, string>;
   /** Author necessary links */
   links: ConfigLinkItem[];
+  /** UI options */
   ui: {
     /** Animation timeout */
     animation: number;
     /** Delay for user actions */
     disableLock: number;
+    /** Forecast API cache duration */
+    apiCacheDuration: number;
   };
   features: object;
 }

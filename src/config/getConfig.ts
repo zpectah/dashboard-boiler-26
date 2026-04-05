@@ -14,6 +14,7 @@ const getConfig = (): Config => {
   };
   const url = {
     randomImage: 'https://picsum.photos/1920?random=1&grayscale&blur=2',
+    openMeteo: 'https://api.open-meteo.com/v1/forecast',
   };
   const links = [
     {
@@ -28,6 +29,7 @@ const getConfig = (): Config => {
   const ui = {
     animation: 350,
     disableLock: 10000,
+    apiCacheDuration: 60 * 60 * 1000,
   };
   const features = {};
 

@@ -9,10 +9,27 @@
     "editMode": "Edit mode"
   },
   "label": {
+    "unknown": "Unknown",
     "localeMenu": "Locales",
     "loadedIn": "Loaded in {{date}}"
   },
   "message": {
-    "noPanelFound": "Sorry, but panel with this id was not found"
+    "noPanelFound": "Sorry, but panel with this id was not found",
+    "loadingWeather": "Loading weather data"
+  },
+  "weatherCode": {
+    "clear": "Clear",
+    "mostlyClear": "Mostly Clear",
+    "partlyCloudy": "Partly Cloudy",
+    "cloudy": "Cloudy",
+    "fog": "Fog",
+    "depositingRimeFog": "Ice",
+    "lightDrizzle": "Light Drizzle",
+    "slightRain": "Light Rain",
+    "rain": "Rain",
+    "slightSnowfall": "Light Snowfall",
+    "snowfall": "Snowfall",
+    "rainShowers": "Showers",
+    "thunderstorm": "Thunderstorm"
   }
 }

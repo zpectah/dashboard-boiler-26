@@ -19,7 +19,8 @@ export default defineConfig({
               return 'mui';
             if (
               id.includes('@tabler/icons-react') ||
-              id.includes('@fontsource/barlow')
+              id.includes('@fontsource/barlow') ||
+              id.includes('react-icons')
             )
               return 'assets';
             if (

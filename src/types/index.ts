@@ -3,6 +3,7 @@ export * from './config';
 export * from './dialog';
 export * from './element';
 export * from './features';
+export * from './forecast';
 export * from './links';
 export * from './panel';
 export * from './theme';
