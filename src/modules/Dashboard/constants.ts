@@ -17,6 +17,7 @@ export const DashboardDefaultPanel: Panel = {
       active: false,
       type: dateTimeWidgetTimeKeys.numeric,
       blinkingSemi: false,
+      seconds: false,
     },
     holidays: {
       active: false,

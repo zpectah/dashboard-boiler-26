@@ -9,6 +9,7 @@ const dateTimeWidgetSchema = z.object({
   active: z.boolean(),
   type: z.enum(dateTimeWidgetTimeKeysArray),
   blinkingSemi: z.boolean(),
+  seconds: z.boolean(),
 });
 
 const holidaysWidgetSchema = z.object({

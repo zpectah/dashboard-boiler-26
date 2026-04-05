@@ -91,6 +91,13 @@ const PanelDetailForm = () => {
                   widgets?.dateTime?.type !== dateTimeWidgetTimeKeys.numeric
                 }
               />
+              <CheckboxField
+                name="widgets.dateTime.seconds"
+                label=""
+                fieldLabel="Seconds"
+                layout="vertical"
+                isHidden={!widgets?.dateTime?.active}
+              />
             </Grid>
 
             <Grid size={12}>

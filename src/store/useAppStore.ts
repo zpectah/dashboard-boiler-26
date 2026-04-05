@@ -34,7 +34,7 @@ const useAppStore = create<IAppStore>((set, get) => {
     msLinks: true,
     appleLinks: true,
   };
-  const loadTimestamp = ''; // TODO
+  const loadTimestamp = '2026-04-05T07:25:37.597Z'; /* TODO: mock */
 
   /* TODO: mock */
   const homePanel: HomePanel = {
@@ -49,6 +49,7 @@ const useAppStore = create<IAppStore>((set, get) => {
         active: true,
         type: dateTimeWidgetTimeKeys.analog,
         blinkingSemi: false,
+        seconds: true,
       },
       holidays: {
         active: true,
@@ -77,6 +78,7 @@ const useAppStore = create<IAppStore>((set, get) => {
           active: false,
           type: dateTimeWidgetTimeKeys.numeric,
           blinkingSemi: false,
+          seconds: false,
         },
         holidays: {
           active: true,
@@ -102,6 +104,7 @@ const useAppStore = create<IAppStore>((set, get) => {
           active: true,
           type: dateTimeWidgetTimeKeys.analog,
           blinkingSemi: false,
+          seconds: false,
         },
         holidays: {
           active: false,

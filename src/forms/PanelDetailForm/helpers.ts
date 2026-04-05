@@ -16,6 +16,7 @@ export const getDefaultValues = (): IPanelDetailForm => {
         active: true,
         type: dateTimeWidgetTimeDefault,
         blinkingSemi: false,
+        seconds: false,
       },
       holidays: {
         active: true,

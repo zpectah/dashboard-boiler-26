@@ -11,6 +11,7 @@ export interface DateTimeWidget {
   active: boolean;
   type: WidgetDateTimeTime;
   blinkingSemi: boolean;
+  seconds: boolean;
 }
 
 export interface HolidaysWidget {
