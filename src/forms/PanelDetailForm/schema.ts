@@ -7,14 +7,11 @@ const calendarWidgetSchema = z.object({
 
 const dateTimeWidgetSchema = z.object({
   active: z.boolean(),
-  type: z.enum(dateTimeWidgetTimeKeysArray),
-  blinkingSemi: z.boolean(),
-  seconds: z.boolean(),
-});
-
-const holidaysWidgetSchema = z.object({
-  active: z.boolean(),
-  showTomorrow: z.boolean(),
+  timeType: z.enum(dateTimeWidgetTimeKeysArray),
+  separatorBlink: z.boolean(),
+  showSeconds: z.boolean(),
+  showHolidays: z.boolean(),
+  showTomorrowHolidays: z.boolean(),
 });
 
 const linksWidgetSchema = z.object({
@@ -28,7 +25,6 @@ const weatherWidgetSchema = z.object({
 const panelDetailWidgetsSchema = z.object({
   calendar: calendarWidgetSchema,
   dateTime: dateTimeWidgetSchema,
-  holidays: holidaysWidgetSchema,
   links: linksWidgetSchema,
   weather: weatherWidgetSchema,
 });

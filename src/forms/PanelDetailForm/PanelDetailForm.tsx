@@ -1,4 +1,4 @@
-import { useWatch } from 'react-hook-form';
+// import { useWatch } from 'react-hook-form';
 import { Button, Grid, Divider, Typography } from '@mui/material';
 import { useDialogStore } from '../../store';
 import { dateTimeWidgetTimeDefault } from '../../constants';
@@ -10,13 +10,12 @@ import {
   SelectField,
 } from '../../components';
 import { usePanelDetailForm } from './usePanelDetailForm';
-import { dateTimeWidgetTimeKeys } from '../../enums';
 
 const PanelDetailForm = () => {
   const { panelDialog, onClosePanelDialog } = useDialogStore();
   const { form, formId, isMain, isNew, detail, options, onSubmit } =
     usePanelDetailForm();
-  const { widgets } = useWatch({ control: form.control });
+  // const { widgets } = useWatch({ control: form.control });
 
   return (
     <ComposedDialog
@@ -72,53 +71,38 @@ const PanelDetailForm = () => {
                 layout="vertical"
               />
               <SelectField
-                name="widgets.dateTime.type"
+                name="widgets.dateTime.timeType"
                 label="Time type"
                 layout="vertical"
-                options={options.dateTime.type}
+                options={options.dateTime.timeType}
                 defaultValue={dateTimeWidgetTimeDefault}
                 isFullWidth
-                isHidden={!widgets?.dateTime?.active}
                 size={{ xs: 12, md: 6 }}
               />
               <CheckboxField
-                name="widgets.dateTime.blinkingSemi"
+                name="widgets.dateTime.separatorBlink"
                 label=""
                 fieldLabel="Blinking Semi"
                 layout="vertical"
-                isHidden={
-                  !widgets?.dateTime?.active ||
-                  widgets?.dateTime?.type !== dateTimeWidgetTimeKeys.numeric
-                }
               />
               <CheckboxField
-                name="widgets.dateTime.seconds"
+                name="widgets.dateTime.showSeconds"
                 label=""
-                fieldLabel="Seconds"
+                fieldLabel="Show seconds"
                 layout="vertical"
-                isHidden={!widgets?.dateTime?.active}
               />
-            </Grid>
-
-            <Grid size={12}>
-              <Divider />
-            </Grid>
-
-            <Grid size={12} container spacing={1}>
-              <Typography variant="h6">Widget: Holidays</Typography>
 
               <CheckboxField
-                name="widgets.holidays.active"
+                name="widgets.dateTime.showHolidays"
                 label=""
-                fieldLabel="Active"
+                fieldLabel="Show holidays"
                 layout="vertical"
               />
               <CheckboxField
-                name="widgets.holidays.showTomorrow"
+                name="widgets.dateTime.showTomorrowHolidays"
                 label=""
-                fieldLabel="Show tomorrow"
+                fieldLabel="Show tomorrow holidays"
                 layout="vertical"
-                isHidden={!widgets?.holidays?.active}
               />
             </Grid>
 

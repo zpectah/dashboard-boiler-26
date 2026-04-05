@@ -47,16 +47,15 @@ const useAppStore = create<IAppStore>((set, get) => {
       },
       dateTime: {
         active: true,
-        type: dateTimeWidgetTimeKeys.numeric,
-        blinkingSemi: false,
-        seconds: true,
-      },
-      holidays: {
-        active: true,
-        showTomorrow: true,
+        timeType: dateTimeWidgetTimeKeys.numeric,
+        separatorBlink: false,
+        showSeconds: true,
+        showHolidays: true,
+        showTomorrowHolidays: true,
       },
       links: {
         active: true,
+        links: [],
       },
       weather: {
         active: true,
@@ -76,16 +75,15 @@ const useAppStore = create<IAppStore>((set, get) => {
         },
         dateTime: {
           active: false,
-          type: dateTimeWidgetTimeKeys.numeric,
-          blinkingSemi: false,
-          seconds: false,
-        },
-        holidays: {
-          active: true,
-          showTomorrow: true,
+          timeType: dateTimeWidgetTimeKeys.numeric,
+          separatorBlink: false,
+          showSeconds: false,
+          showHolidays: false,
+          showTomorrowHolidays: false,
         },
         links: {
           active: true,
+          links: [],
         },
         weather: {
           active: false,
@@ -102,16 +100,15 @@ const useAppStore = create<IAppStore>((set, get) => {
         },
         dateTime: {
           active: true,
-          type: dateTimeWidgetTimeKeys.analog,
-          blinkingSemi: false,
-          seconds: false,
-        },
-        holidays: {
-          active: false,
-          showTomorrow: true,
+          timeType: dateTimeWidgetTimeKeys.analog,
+          separatorBlink: false,
+          showSeconds: false,
+          showHolidays: true,
+          showTomorrowHolidays: false,
         },
         links: {
           active: false,
+          links: [],
         },
         weather: {
           active: false,

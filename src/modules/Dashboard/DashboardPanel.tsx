@@ -10,7 +10,6 @@ import { useDashboardContext } from './Dashboard.context';
 import {
   CalendarWidget,
   DateTimeWidget,
-  HolidaysWidget,
   LinksWidget,
   WeatherWidget,
 } from './widgets';
@@ -120,10 +119,6 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
               <Grid container size={6}>
                 <DateTimeWidget
                   {...panel.widgets.dateTime}
-                  gridProps={{ size: 12 }}
-                />
-                <HolidaysWidget
-                  {...panel.widgets.holidays}
                   gridProps={{ size: 12 }}
                 />
               </Grid>

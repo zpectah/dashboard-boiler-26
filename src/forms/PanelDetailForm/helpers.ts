@@ -14,13 +14,11 @@ export const getDefaultValues = (): IPanelDetailForm => {
       },
       dateTime: {
         active: true,
-        type: dateTimeWidgetTimeDefault,
-        blinkingSemi: false,
-        seconds: false,
-      },
-      holidays: {
-        active: true,
-        showTomorrow: true,
+        timeType: dateTimeWidgetTimeDefault,
+        separatorBlink: false,
+        showSeconds: false,
+        showHolidays: false,
+        showTomorrowHolidays: false,
       },
       links: {
         active: true,
@@ -40,7 +38,6 @@ export const getDataToForm = (panel: Panel | undefined): IPanelDetailForm => {
     widgets: {
       calendar: panel?.widgets.calendar,
       dateTime: panel?.widgets.dateTime,
-      holidays: panel?.widgets.holidays,
       links: panel?.widgets.links,
       weather: panel?.widgets.weather,
     },

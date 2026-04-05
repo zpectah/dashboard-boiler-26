@@ -14,22 +14,22 @@ const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
   const current = currentPanel.widgets.dateTime;
 
   const secondVisible = useMemo(() => {
-    if (!current.blinkingSemi || current.seconds) return true;
+    if (!current.separatorBlink || current.showSeconds) return true;
 
     return !!isNumberOdd(Number(now.s));
   }, [current, now]);
 
   const renderClock = useMemo(() => {
-    if (current.type === 'numeric') {
+    if (current.timeType === 'numeric') {
       return (
         <NumericClock
-          showSeconds={current.seconds}
+          showSeconds={current.showSeconds}
           secondVisible={secondVisible}
         />
       );
     }
 
-    return <AnalogClock showSeconds={current.seconds} />;
+    return <AnalogClock showSeconds={current.showSeconds} />;
   }, [current, secondVisible]);
 
   const renderDate = useMemo(() => {
@@ -57,6 +57,12 @@ const DateTimeWidget = ({ active, gridProps }: DateTimeWidgetProps) => {
         >
           {renderClock}
           {renderDate}
+
+          {current.showHolidays && (
+            <Stack>
+              Holidays...{current.showTomorrowHolidays ? 'is tomorrow' : '_'}
+            </Stack>
+          )}
         </Stack>
       </Paper>
     </Grid>

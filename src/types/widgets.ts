@@ -1,25 +1,24 @@
-import { dateTimeWidgetTimeKeys } from '../enums';
 import type { EnumKeyValues } from './common';
+import type { UserLinks } from './links';
+import { dateTimeWidgetTimeKeys } from '../enums';
 
-export type WidgetDateTimeTime = EnumKeyValues<typeof dateTimeWidgetTimeKeys>;
-
-export interface CalendarWidget {
-  active: boolean;
-}
+export type WidgetDateTimeType = EnumKeyValues<typeof dateTimeWidgetTimeKeys>;
 
 export interface DateTimeWidget {
   active: boolean;
-  type: WidgetDateTimeTime;
-  blinkingSemi: boolean;
-  seconds: boolean;
-}
-
-export interface HolidaysWidget {
-  active: boolean;
-  showTomorrow: boolean;
+  timeType: WidgetDateTimeType;
+  separatorBlink: boolean;
+  showSeconds: boolean;
+  showHolidays: boolean;
+  showTomorrowHolidays: boolean;
 }
 
 export interface LinksWidget {
+  active: boolean;
+  links: UserLinks[];
+}
+
+export interface CalendarWidget {
   active: boolean;
 }
 

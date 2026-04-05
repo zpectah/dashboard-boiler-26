@@ -15,16 +15,15 @@ export const DashboardDefaultPanel: Panel = {
     },
     dateTime: {
       active: false,
-      type: dateTimeWidgetTimeKeys.numeric,
-      blinkingSemi: false,
-      seconds: false,
-    },
-    holidays: {
-      active: false,
-      showTomorrow: false,
+      timeType: dateTimeWidgetTimeKeys.numeric,
+      separatorBlink: false,
+      showSeconds: false,
+      showHolidays: false,
+      showTomorrowHolidays: false,
     },
     links: {
       active: false,
+      links: [],
     },
     weather: {
       active: false,

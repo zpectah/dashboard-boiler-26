@@ -52,7 +52,7 @@ export const usePanelDetailForm = () => {
 
   const options = {
     dateTime: {
-      type: [
+      timeType: [
         {
           id: dateTimeWidgetTimeKeys.analog,
           value: dateTimeWidgetTimeKeys.analog,
