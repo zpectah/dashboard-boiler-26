@@ -6,8 +6,8 @@ export const usePanels = () => {
   const { homePanel, customPanels } = useAppStore();
 
   const homePanelBase: Panel = {
-    name: mainPanelName,
     ...homePanel,
+    name: mainPanelName,
   };
   const panels = [homePanelBase, ...customPanels];
 

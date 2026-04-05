@@ -4,6 +4,9 @@ import type {
   InputProps,
   SelectProps,
   CheckboxProps,
+  NumberInputProps,
+  NumberInputAltProps,
+  NumberInputAlt2Props,
 } from '../input';
 
 export interface FieldBase extends Omit<
@@ -47,4 +50,16 @@ export interface CheckboxFieldProps extends Omit<
 > {
   checkboxProps?: Partial<Omit<CheckboxProps, 'label'>>;
   fieldLabel?: string;
+}
+
+export interface NumberFieldProps extends FieldBase {
+  inputProps?: Partial<Omit<NumberInputProps, 'fullWidth' | 'placeholder'>>;
+}
+
+export interface NumberAltFieldProps extends FieldBase {
+  inputProps?: Partial<Omit<NumberInputAltProps, 'fullWidth' | 'placeholder'>>;
+}
+
+export interface NumberAlt2FieldProps extends FieldBase {
+  inputProps?: Partial<Omit<NumberInputAlt2Props, 'fullWidth' | 'placeholder'>>;
 }

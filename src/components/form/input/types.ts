@@ -48,3 +48,33 @@ export type SelectProps = Omit<MuiSelectProps, 'label' | 'helperText'> &
     forcePlaceholder?: boolean;
     showSingleOption?: boolean;
   };
+
+export type NumberInputProps = Omit<
+  InputPlusProps,
+  'type' | 'inputMode' | 'multiline'
+>;
+
+export type NumberInputAltProps = Omit<
+  NumberInputProps,
+  'onChange' | 'startAdornment' | 'endAdornment' | 'multiline'
+> & {
+  pattern?: string;
+  onChange?: (value: number) => void;
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  centered?: boolean;
+};
+
+export type NumberInputAlt2Props = Omit<
+  NumberInputProps,
+  'onChange' | 'endAdornment' | 'multiline'
+> & {
+  pattern?: string;
+  onChange?: (value: number) => void;
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+};

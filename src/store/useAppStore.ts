@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { merge } from 'lodash';
-import type { AppFeatures, Panel, PanelEffect } from '../types';
+import type { AppFeatures, Panel, PanelEffect, UserLink } from '../types';
 import {
   dateTimeWidgetHolidaysOriginKeys,
   dateTimeWidgetTimeKeys,
@@ -8,14 +8,13 @@ import {
 } from '../enums';
 import { getRandomId } from '../utils';
 
-type HomePanel = Omit<Panel, 'name'>;
 type PartialPanel = Partial<Panel> & Pick<Panel, 'id' | 'name'>;
 
 interface IAppStore {
   editMode: boolean;
   hash: string;
   panelEffect: PanelEffect;
-  homePanel: HomePanel;
+  homePanel: Panel;
   customPanels: Panel[];
   toggleEditMode: () => void;
   onChangeHash: (hash?: string) => void;
@@ -27,6 +26,9 @@ interface IAppStore {
   setFeatures: (features: Partial<AppFeatures>) => void;
   loadTimestamp: string;
   setLoadTimestamp: (timestamp: string) => void;
+  createPanelLink: (panelId: string, link: UserLink) => void;
+  updatePanelLink: (panelId: string, link: UserLink) => void;
+  removePanelLink: (panelId: string, linkId: string) => void;
 }
 
 const useAppStore = create<IAppStore>((set, get) => {
@@ -42,8 +44,9 @@ const useAppStore = create<IAppStore>((set, get) => {
   const loadTimestamp = '2026-04-05T07:25:37.597Z'; /* TODO: mock */
 
   /* TODO: mock */
-  const homePanel: HomePanel = {
+  const homePanel: Panel = {
     id: 'I73m0u2vt7yG',
+    name: 'home',
     label: 'Home',
     isMain: true,
     widgets: {
@@ -58,11 +61,24 @@ const useAppStore = create<IAppStore>((set, get) => {
         showSeconds: true,
         showHolidays: true,
         showTomorrowHolidays: true,
-        holidaysOrigin: dateTimeWidgetHolidaysOriginKeys.world,
+        holidaysOrigin: dateTimeWidgetHolidaysOriginKeys.cs,
       },
       links: {
         active: true,
-        links: [],
+        links: [
+          {
+            id: 'fdg5h46fd5g4h6d',
+            url: 'https://hdfghdfgh',
+            label: 'Link label',
+            order: 0,
+          },
+          {
+            id: 'fdh46fdjgfhjgj6d',
+            url: 'https://gfhfdghdfg',
+            label: 'Link label 1',
+            order: 1,
+          },
+        ],
       },
       weather: {
         active: true,
@@ -92,7 +108,14 @@ const useAppStore = create<IAppStore>((set, get) => {
         },
         links: {
           active: true,
-          links: [],
+          links: [
+            {
+              id: 'aspdofiapsfdapso',
+              url: 'https://hdfghdfgh',
+              label: 'Link label',
+              order: 0,
+            },
+          ],
         },
         weather: {
           active: false,
@@ -206,6 +229,138 @@ const useAppStore = create<IAppStore>((set, get) => {
   const setLoadTimestampHandler = (timestamp: string) =>
     set({ loadTimestamp: timestamp });
 
+  const createPanelLinkHandler = (panelId: string, link: UserLink) => {
+    set((state) => {
+      const isPanelHome = state.homePanel.id === panelId;
+
+      if (isPanelHome) {
+        const currentLinks = state.homePanel.widgets.links.links;
+
+        if (currentLinks.some((item) => item.id === link.id)) return state;
+
+        return {
+          homePanel: {
+            ...state.homePanel,
+            widgets: {
+              ...state.homePanel.widgets,
+              links: {
+                ...state.homePanel.widgets.links,
+                links: [...currentLinks, link],
+              },
+            },
+          },
+        };
+      }
+
+      const panelExists = state.customPanels.some((p) => p.id === panelId);
+
+      if (!panelExists) return state;
+
+      const updatedCustomPanels = state.customPanels.map((panel) => {
+        if (panel.id !== panelId) return panel;
+        if (panel.widgets.links.links.some((l) => l.id === link.id))
+          return panel;
+
+        return {
+          ...panel,
+          widgets: {
+            ...panel.widgets,
+            links: {
+              ...panel.widgets.links,
+              links: [...panel.widgets.links.links, link],
+            },
+          },
+        };
+      });
+
+      return {
+        customPanels: updatedCustomPanels,
+      };
+    });
+  };
+
+  const updatePanelLinkHandler = (panelId: string, link: UserLink) => {
+    const updateLinksInArray = (links: UserLink[]) =>
+      links.map((l) => (l.id === link.id ? { ...l, ...link } : l));
+
+    set((state) => {
+      const isPanelHome = state.homePanel.id === panelId;
+
+      if (isPanelHome) {
+        return {
+          homePanel: {
+            ...state.homePanel,
+            widgets: {
+              ...state.homePanel.widgets,
+              links: {
+                ...state.homePanel.widgets.links,
+                links: updateLinksInArray(state.homePanel.widgets.links.links),
+              },
+            },
+          },
+        };
+      }
+
+      return {
+        customPanels: state.customPanels.map((panel) => {
+          if (panel.id !== panelId) return panel;
+
+          return {
+            ...panel,
+            widgets: {
+              ...panel.widgets,
+              links: {
+                ...panel.widgets.links,
+                links: updateLinksInArray(panel.widgets.links.links),
+              },
+            },
+          };
+        }),
+      };
+    });
+  };
+
+  const removePanelLinkHandler = (panelId: string, linkId: string) => {
+    const filterLinks = (links: UserLink[]) =>
+      links.filter((l) => l.id !== linkId);
+
+    set((state) => {
+      const isPanelHome = state.homePanel.id === panelId;
+
+      if (isPanelHome) {
+        return {
+          homePanel: {
+            ...state.homePanel,
+            widgets: {
+              ...state.homePanel.widgets,
+              links: {
+                ...state.homePanel.widgets.links,
+                links: filterLinks(state.homePanel.widgets.links.links),
+              },
+            },
+          },
+        };
+      }
+
+      return {
+        customPanels: state.customPanels.map((panel) => {
+          if (panel.id !== panelId) return panel;
+
+          return {
+            ...panel,
+            widgets: {
+              ...panel.widgets,
+              links: {
+                ...panel.widgets.links,
+                links: filterLinks(panel.widgets.links.links),
+              },
+            },
+          };
+        }),
+      };
+    });
+  };
+
   return {
     editMode,
     hash,
@@ -213,15 +368,18 @@ const useAppStore = create<IAppStore>((set, get) => {
     homePanel,
     customPanels,
     toggleEditMode: toggleEditModeHandler,
-    onChangeHash: setHashHandler,
-    onChangePanelEffect: setPanelEffectHandler,
-    onCreatePanel: createPanelHandler,
-    onUpdatePanel: updatePanelHandler,
-    onDeletePanel: deletePanelHandler,
+    onChangeHash: setHashHandler /* TODO #rename */,
+    onChangePanelEffect: setPanelEffectHandler /* TODO #rename */,
+    onCreatePanel: createPanelHandler /* TODO #rename */,
+    onUpdatePanel: updatePanelHandler /* TODO #rename */,
+    onDeletePanel: deletePanelHandler /* TODO #rename */,
     features,
     setFeatures: setFeaturesHandler,
     loadTimestamp,
-    setLoadTimestamp: setLoadTimestampHandler,
+    setLoadTimestamp: setLoadTimestampHandler /* TODO #rename */,
+    createPanelLink: createPanelLinkHandler,
+    updatePanelLink: updatePanelLinkHandler,
+    removePanelLink: removePanelLinkHandler,
   };
 });
 

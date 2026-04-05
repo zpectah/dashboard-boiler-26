@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { DashboardView } from '../views';
 import { AppLayout } from '../components';
 import { ErrorBoundary, Toasts } from '../modules';
-import { PanelDetailForm, SettingsForm } from '../forms';
+import { LinkDetailForm, PanelDetailForm, SettingsForm } from '../forms';
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -11,6 +11,7 @@ const AppRouter = () => {
         <AppLayout
           slot={
             <>
+              <LinkDetailForm />
               <PanelDetailForm />
               <SettingsForm />
               <Toasts />

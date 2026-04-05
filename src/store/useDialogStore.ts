@@ -21,6 +21,9 @@ interface IDialogStore {
   toasts: Toasts;
   addToast: (toast: IToastsItem) => void;
   removeToast: (id: string) => void;
+  linkDetailDialog: string | null;
+  openLinkDetailDialog: (id: string | 'new') => void;
+  closeLinkDetailDialog: () => void;
 }
 
 const useDialogStore = create<IDialogStore>((set, get) => {
@@ -31,6 +34,7 @@ const useDialogStore = create<IDialogStore>((set, get) => {
   const microsoftLinks = false;
   const settingsForm = false;
   const toasts: Toasts = [];
+  const linkDetailDialog: string | null = null;
 
   const openPanelDialogHandler = (id: string | 'new') =>
     set({ panelDialog: id });
@@ -85,6 +89,11 @@ const useDialogStore = create<IDialogStore>((set, get) => {
     set({ toasts: tmpToasts });
   };
 
+  const openLinkDetailDialogHandler = (id: string | 'new') =>
+    set({ linkDetailDialog: id });
+
+  const closeLinkDetailDialogHandler = () => set({ linkDetailDialog: null });
+
   return {
     panelDialog,
     onOpenPanelDialog: openPanelDialogHandler,
@@ -103,6 +112,9 @@ const useDialogStore = create<IDialogStore>((set, get) => {
     toasts,
     addToast: addToastHandler,
     removeToast: removeToastHandler,
+    linkDetailDialog,
+    openLinkDetailDialog: openLinkDetailDialogHandler,
+    closeLinkDetailDialog: closeLinkDetailDialogHandler,
   };
 });
 

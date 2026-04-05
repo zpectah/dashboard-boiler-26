@@ -23,7 +23,7 @@ export interface DateTimeWidget {
 
 export interface LinksWidget {
   active: boolean;
-  links: UserLinks[];
+  links: UserLinks;
 }
 
 export interface CalendarWidget {
