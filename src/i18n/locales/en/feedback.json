@@ -9,6 +9,14 @@
       "content": "Are you sure you want to delete this link?"
     }
   },
+  "success": {
+    "panelCreated": "Panel was successfully created",
+    "panelUpdated": "Panel was successfully updated",
+    "panelDeleted": "Panel was successfully deleted",
+    "linkCreated": "Link was successfully created",
+    "linkUpdated": "Link was successfully updated",
+    "linkDeleted": "Link was successfully deleted"
+  },
   "error": {
     "error_data_loading": "Error while loading data",
     "unsupported_geolocation_service": "Unsupported geolocation service",

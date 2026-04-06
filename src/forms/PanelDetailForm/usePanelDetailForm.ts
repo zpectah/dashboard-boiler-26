@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore, useDialogStore } from '../../store';
@@ -14,6 +15,7 @@ import { getDefaultValues, getDataToForm, getFormToMaster } from './helpers';
 export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);
 
+  const { t } = useTranslation(['common', 'feedback']);
   const { onUpdatePanel, onCreatePanel } = useAppStore();
   const { panelDialog, onClosePanelDialog, addToast } = useDialogStore();
   const { getPanelById } = usePanels();
@@ -24,34 +26,33 @@ export const usePanelDetailForm = () => {
 
   const detail = getPanelById(panelDialog);
   const formId = `panelDetailForm_${panelDialog}`;
+  const isNew = panelDialog === 'new';
 
-  const submitHandler: SubmitHandler<IPanelDetailForm> = useCallback(
-    (data) => {
-      if (!panelDialog) return;
+  const submitHandler: SubmitHandler<IPanelDetailForm> = (data) => {
+    if (!panelDialog) return;
 
-      const master = getFormToMaster(data);
+    const master = getFormToMaster(data);
 
-      if (panelDialog === 'new') {
-        onCreatePanel(master);
-        addToast({
-          title: 'Panel was successfully created', // TODO #i18n
-          severity: 'success',
-          autoclose: true,
-        });
-      } else {
-        onUpdatePanel(master);
-        addToast({
-          title: 'Panel was successfully updated', // TODO #i18n
-          severity: 'success',
-          autoclose: true,
-        });
-      }
+    // TODO: custom validation
 
-      onClosePanelDialog();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [panelDialog],
-  );
+    if (isNew) {
+      onCreatePanel(master);
+      addToast({
+        title: t('feedback:success.panelCreated'),
+        severity: 'success',
+        autoclose: true,
+      });
+    } else {
+      onUpdatePanel(master);
+      addToast({
+        title: t('feedback:success.panelUpdated'),
+        severity: 'success',
+        autoclose: true,
+      });
+    }
+
+    onClosePanelDialog();
+  };
 
   const options = {
     dateTime: {
@@ -59,12 +60,12 @@ export const usePanelDetailForm = () => {
         {
           id: dateTimeWidgetTimeKeys.analog,
           value: dateTimeWidgetTimeKeys.analog,
-          label: 'Analog', // TODO #i18n
+          label: 'analog', // TODO #i18n
         },
         {
           id: dateTimeWidgetTimeKeys.numeric,
           value: dateTimeWidgetTimeKeys.numeric,
-          label: 'Numeric', // TODO #i18n
+          label: 'numeric', // TODO #i18n
         },
       ],
       holidaysOrigin: [
@@ -100,7 +101,7 @@ export const usePanelDetailForm = () => {
   useEffect(() => {
     if (!panelDialog) return;
 
-    if (panelDialog === 'new') {
+    if (isNew) {
       form.reset(getDefaultValues());
     } else if (detail) {
       setIsMain(!!detail?.isMain);
@@ -109,13 +110,13 @@ export const usePanelDetailForm = () => {
       form.reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form, panelDialog]);
+  }, [isNew, form, panelDialog]);
 
   return {
     form,
     formId,
     isMain,
-    isNew: panelDialog === 'new',
+    isNew,
     detail,
     options,
     onSubmit: form.handleSubmit(submitHandler),

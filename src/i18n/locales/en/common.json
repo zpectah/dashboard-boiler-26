@@ -6,7 +6,9 @@
     "delete": "Delete",
     "imageRefresh": "Refresh background",
     "modeToggle": "Mode toggle",
-    "editMode": "Edit mode"
+    "editMode": "Edit mode",
+    "newPanel": "New panel",
+    "newLink": "New link"
   },
   "label": {
     "unknown": "Unknown",

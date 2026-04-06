@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Stack, Tabs, Tab } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
 import { usePanels } from '../../hooks';
@@ -8,6 +9,7 @@ import { useDialogStore } from '../../store';
 import { IconButtonPlus } from '../button';
 
 const PanelsMenu = () => {
+  const { t } = useTranslation();
   const { panel } = useParams();
   const { panels } = usePanels();
   const { onOpenPanelDialog } = useDialogStore();
@@ -57,7 +59,7 @@ const PanelsMenu = () => {
       </Tabs>
 
       <IconButtonPlus
-        tooltip="New panel"
+        tooltip={t('button.newPanel')}
         onClick={() => onOpenPanelDialog('new')}
       >
         <IconPlus />

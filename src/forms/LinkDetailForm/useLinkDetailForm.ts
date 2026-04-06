@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDialogStore, useAppStore } from '../../store';
@@ -9,8 +10,10 @@ import { linkDetailFormSchema } from './schema';
 import { getDefaultValues, getFormToMaster, getDataToForm } from './helpers';
 
 export const useLinkDetailForm = () => {
+  const { t } = useTranslation(['common', 'feedback']);
   const { panel } = useParams();
-  const { linkDetailDialog, closeLinkDetailDialog } = useDialogStore();
+  const { linkDetailDialog, closeLinkDetailDialog, addToast } =
+    useDialogStore();
   const { createPanelLink, updatePanelLink } = useAppStore();
   const { getCurrentPanel } = usePanels();
   const form = useForm<ILinkDetailForm>({
@@ -26,19 +29,29 @@ export const useLinkDetailForm = () => {
   const isNew = linkDetailDialog === 'new';
 
   const submitHandler: SubmitHandler<ILinkDetailForm> = (data) => {
+    if (!currentPanel) return;
+
     const master = getFormToMaster(data);
 
-    if (!currentPanel) return;
+    // TODO: custom validation
 
     if (isNew) {
       createPanelLink(currentPanel.id, master);
+      addToast({
+        title: t('feedback:success.linkCreated'),
+        severity: 'success',
+        autoclose: true,
+      });
     } else {
       updatePanelLink(currentPanel.id, master);
+      addToast({
+        title: t('feedback:success.linkUpdated'),
+        severity: 'success',
+        autoclose: true,
+      });
     }
 
     closeLinkDetailDialog();
-
-    /* TODO: response */
   };
 
   useEffect(() => {
