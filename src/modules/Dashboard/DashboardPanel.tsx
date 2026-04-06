@@ -72,6 +72,13 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
       onConfirm: () => deletePanelHandler(panel.id),
     });
 
+  const isDateTimeWidgetActive = panel.widgets.dateTime.active;
+  const isWeatherWidgetActive = panel.widgets.weather.active;
+  const isCalendarWidgetActive = panel.widgets.calendar.active;
+  const isFirstRowVisible =
+    isDateTimeWidgetActive || isWeatherWidgetActive || isCalendarWidgetActive;
+  // const isLinksWidgetActive = panel.widgets.links.active;
+
   /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => onCurrentPanelChange(panel), []);
 
@@ -90,7 +97,7 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
             alignItems="center"
             justifyContent="center"
           >
-            {/* TODO */}
+            {/* TODO #heading */}
             <Typography variant="h5">{panelLabel}</Typography>
             {!isHomePanel && (
               <IconButtonPlus
@@ -112,22 +119,52 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
           <WidgetWrapper>
             <GridWrapper container spacing={2}>
               {/* TODO #layout */}
-              <Grid container size={6}>
-                <DateTimeWidget
-                  {...panel.widgets.dateTime}
-                  gridProps={{ size: 12 }}
-                />
-              </Grid>
-              <Grid container size={6}>
-                <WeatherWidget
-                  {...panel.widgets.weather}
-                  gridProps={{ size: 12 }}
-                />
-                <CalendarWidget
-                  {...panel.widgets.calendar}
-                  gridProps={{ size: 12 }}
-                />
-              </Grid>
+              {isFirstRowVisible && (
+                <Grid container size={12}>
+                  <DateTimeWidget
+                    {...panel.widgets.dateTime}
+                    gridProps={{
+                      size: {
+                        xs: 12,
+                        md:
+                          isWeatherWidgetActive && isCalendarWidgetActive
+                            ? 4
+                            : isWeatherWidgetActive || isCalendarWidgetActive
+                              ? 6
+                              : 12,
+                      },
+                    }}
+                  />
+                  <WeatherWidget
+                    {...panel.widgets.weather}
+                    gridProps={{
+                      size: {
+                        xs: 12,
+                        md:
+                          isDateTimeWidgetActive && isCalendarWidgetActive
+                            ? 4
+                            : isDateTimeWidgetActive || isCalendarWidgetActive
+                              ? 6
+                              : 12,
+                      },
+                    }}
+                  />
+                  <CalendarWidget
+                    {...panel.widgets.calendar}
+                    gridProps={{
+                      size: {
+                        xs: 12,
+                        md:
+                          isWeatherWidgetActive && isDateTimeWidgetActive
+                            ? 4
+                            : isWeatherWidgetActive || isDateTimeWidgetActive
+                              ? 6
+                              : 12,
+                      },
+                    }}
+                  />
+                </Grid>
+              )}
               <LinksWidget {...panel.widgets.links} gridProps={{ size: 12 }} />
             </GridWrapper>
           </WidgetWrapper>

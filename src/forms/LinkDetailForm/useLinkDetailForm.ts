@@ -23,13 +23,14 @@ export const useLinkDetailForm = () => {
     (item) => item.id === linkDetailDialog,
   );
   const formId = `linkDetailForm_${linkDetailDialog}`;
+  const isNew = linkDetailDialog === 'new';
 
   const submitHandler: SubmitHandler<ILinkDetailForm> = (data) => {
     const master = getFormToMaster(data);
 
     if (!currentPanel) return;
 
-    if (data.id === 'new') {
+    if (isNew) {
       createPanelLink(currentPanel.id, master);
     } else {
       updatePanelLink(currentPanel.id, master);
@@ -41,7 +42,7 @@ export const useLinkDetailForm = () => {
   };
 
   useEffect(() => {
-    if (linkDetailDialog === 'new') {
+    if (isNew) {
       form.reset(getDefaultValues());
     } else if (detail) {
       form.reset(getDataToForm(detail), { keepDirty: true });
@@ -49,13 +50,13 @@ export const useLinkDetailForm = () => {
       form.reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [form, linkDetailDialog]);
+  }, [isNew, form, linkDetailDialog]);
 
   return {
     form,
     formId,
     detail,
-    isNew: linkDetailDialog === 'new',
+    isNew,
     onSubmit: form.handleSubmit(submitHandler),
   };
 };
