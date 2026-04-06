@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { getRandomId } from '../../utils';
 import { useDialogStore, useAppStore } from '../../store';
 import { usePanels } from '../../hooks';
 import type { ILinkDetailForm } from './types';
@@ -31,7 +30,6 @@ export const useLinkDetailForm = () => {
     if (!currentPanel) return;
 
     if (data.id === 'new') {
-      master['id'] = getRandomId();
       createPanelLink(currentPanel.id, master);
     } else {
       updatePanelLink(currentPanel.id, master);

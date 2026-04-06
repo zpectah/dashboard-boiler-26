@@ -30,10 +30,6 @@ const WidgetWrapper = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'safe center',
-
-  // TODO
-  background: 'rgba(200,200,200,.5)',
-  borderRadius: '.5rem',
 }));
 const GridWrapper = styled(Grid)(() => ({
   width: '100%',
