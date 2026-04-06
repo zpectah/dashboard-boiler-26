@@ -7,6 +7,7 @@ import {
   panelEffectKeys,
 } from '../enums';
 import { getRandomId } from '../utils';
+import { mainPanelName } from '../constants';
 
 type PartialPanel = Partial<Panel> & Pick<Panel, 'id' | 'name'>;
 
@@ -16,6 +17,7 @@ interface IAppStore {
   panelEffect: PanelEffect;
   homePanel: Panel;
   customPanels: Panel[];
+  panels: Panel[];
   toggleEditMode: () => void;
   onChangeHash: (hash?: string) => void;
   onChangePanelEffect: (panelEffect: PanelEffect) => void;
@@ -31,7 +33,7 @@ interface IAppStore {
   removePanelLink: (panelId: string, linkId: string) => void;
 }
 
-const useAppStore = create<IAppStore>((set, get) => {
+const useAppStore = create<IAppStore>((set) => {
   const editMode = false;
   const hash = 'k2e9blGga0FL'; /* TODO: mock */
   const panelEffect: PanelEffect = panelEffectKeys.grow;
@@ -46,7 +48,7 @@ const useAppStore = create<IAppStore>((set, get) => {
   /* TODO: mock */
   const homePanel: Panel = {
     id: 'I73m0u2vt7yG',
-    name: 'home',
+    name: mainPanelName,
     label: 'Home',
     isMain: true,
     widgets: {
@@ -151,13 +153,19 @@ const useAppStore = create<IAppStore>((set, get) => {
     },
   ];
 
+  const panels = [homePanel, ...customPanels];
+
   const toggleEditModeHandler = () =>
     set((state) => ({ editMode: !state.editMode }));
 
   const setPanelEffectHandler = (panelEffect: PanelEffect) => {
-    set({ panelEffect });
+    set(() => {
+      const newState = panelEffect;
 
-    /* TODO: save to storage */
+      /* TODO: save to storage */
+
+      return { panelEffect: newState };
+    });
   };
 
   const setHashHandler = (hash?: string) => {
@@ -167,10 +175,8 @@ const useAppStore = create<IAppStore>((set, get) => {
   };
 
   const createPanelHandler = (panel: Panel) => {
-    const state = get().customPanels;
-
-    set(() => {
-      const newState = [...state, panel];
+    set((state) => {
+      const newState = [...state.customPanels, panel];
 
       /* TODO: save to storage */
 
@@ -181,15 +187,13 @@ const useAppStore = create<IAppStore>((set, get) => {
   const updatePanelHandler = (panel: PartialPanel) => {
     if (!panel.id || !panel.name) return;
 
-    if (panel.name === 'home') {
+    if (panel.name === mainPanelName) {
       set((state) => {
         const newState = merge(state.homePanel, panel);
 
         /* TODO: save to storage */
 
-        return {
-          homePanel: newState,
-        };
+        return { homePanel: newState };
       });
     } else {
       set((state) => {
@@ -199,9 +203,7 @@ const useAppStore = create<IAppStore>((set, get) => {
 
         /* TODO: save to storage */
 
-        return {
-          customPanels: newState,
-        };
+        return { customPanels: newState };
       });
     }
   };
@@ -238,25 +240,27 @@ const useAppStore = create<IAppStore>((set, get) => {
 
         if (currentLinks.some((item) => item.id === link.id)) return state;
 
-        return {
-          homePanel: {
-            ...state.homePanel,
-            widgets: {
-              ...state.homePanel.widgets,
-              links: {
-                ...state.homePanel.widgets.links,
-                links: [...currentLinks, link],
-              },
+        const newState = {
+          ...state.homePanel,
+          widgets: {
+            ...state.homePanel.widgets,
+            links: {
+              ...state.homePanel.widgets.links,
+              links: [...currentLinks, link],
             },
           },
         };
+
+        /* TODO: save to storage */
+
+        return { homePanel: newState };
       }
 
       const panelExists = state.customPanels.some((p) => p.id === panelId);
 
       if (!panelExists) return state;
 
-      const updatedCustomPanels = state.customPanels.map((panel) => {
+      const newState = state.customPanels.map((panel) => {
         if (panel.id !== panelId) return panel;
         if (panel.widgets.links.links.some((l) => l.id === link.id))
           return panel;
@@ -273,9 +277,9 @@ const useAppStore = create<IAppStore>((set, get) => {
         };
       });
 
-      return {
-        customPanels: updatedCustomPanels,
-      };
+      /* TODO: save to storage */
+
+      return { customPanels: newState };
     });
   };
 
@@ -287,36 +291,40 @@ const useAppStore = create<IAppStore>((set, get) => {
       const isPanelHome = state.homePanel.id === panelId;
 
       if (isPanelHome) {
-        return {
-          homePanel: {
-            ...state.homePanel,
-            widgets: {
-              ...state.homePanel.widgets,
-              links: {
-                ...state.homePanel.widgets.links,
-                links: updateLinksInArray(state.homePanel.widgets.links.links),
-              },
+        const newState = {
+          ...state.homePanel,
+          widgets: {
+            ...state.homePanel.widgets,
+            links: {
+              ...state.homePanel.widgets.links,
+              links: updateLinksInArray(state.homePanel.widgets.links.links),
             },
           },
         };
+
+        /* TODO: save to storage */
+
+        return { homePanel: newState };
       }
 
-      return {
-        customPanels: state.customPanels.map((panel) => {
-          if (panel.id !== panelId) return panel;
+      const newState = state.customPanels.map((panel) => {
+        if (panel.id !== panelId) return panel;
 
-          return {
-            ...panel,
-            widgets: {
-              ...panel.widgets,
-              links: {
-                ...panel.widgets.links,
-                links: updateLinksInArray(panel.widgets.links.links),
-              },
+        return {
+          ...panel,
+          widgets: {
+            ...panel.widgets,
+            links: {
+              ...panel.widgets.links,
+              links: updateLinksInArray(panel.widgets.links.links),
             },
-          };
-        }),
-      };
+          },
+        };
+      });
+
+      /* TODO: save to storage */
+
+      return { customPanels: newState };
     });
   };
 
@@ -328,36 +336,40 @@ const useAppStore = create<IAppStore>((set, get) => {
       const isPanelHome = state.homePanel.id === panelId;
 
       if (isPanelHome) {
-        return {
-          homePanel: {
-            ...state.homePanel,
-            widgets: {
-              ...state.homePanel.widgets,
-              links: {
-                ...state.homePanel.widgets.links,
-                links: filterLinks(state.homePanel.widgets.links.links),
-              },
+        const newState = {
+          ...state.homePanel,
+          widgets: {
+            ...state.homePanel.widgets,
+            links: {
+              ...state.homePanel.widgets.links,
+              links: filterLinks(state.homePanel.widgets.links.links),
             },
           },
         };
+
+        /* TODO: save to storage */
+
+        return { homePanel: newState };
       }
 
-      return {
-        customPanels: state.customPanels.map((panel) => {
-          if (panel.id !== panelId) return panel;
+      const newState = state.customPanels.map((panel) => {
+        if (panel.id !== panelId) return panel;
 
-          return {
-            ...panel,
-            widgets: {
-              ...panel.widgets,
-              links: {
-                ...panel.widgets.links,
-                links: filterLinks(panel.widgets.links.links),
-              },
+        return {
+          ...panel,
+          widgets: {
+            ...panel.widgets,
+            links: {
+              ...panel.widgets.links,
+              links: filterLinks(panel.widgets.links.links),
             },
-          };
-        }),
-      };
+          },
+        };
+      });
+
+      /* TODO: save to storage */
+
+      return { customPanels: newState };
     });
   };
 
@@ -367,6 +379,7 @@ const useAppStore = create<IAppStore>((set, get) => {
     panelEffect,
     homePanel,
     customPanels,
+    panels,
     toggleEditMode: toggleEditModeHandler,
     onChangeHash: setHashHandler /* TODO #rename */,
     onChangePanelEffect: setPanelEffectHandler /* TODO #rename */,

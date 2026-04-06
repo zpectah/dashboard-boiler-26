@@ -65,6 +65,7 @@ const PanelDetailForm = () => {
                 layout="vertical"
                 isFullWidth
                 isRequired
+                isDisabled={isMain}
                 size={{ xs: 12, md: 6 }}
               />
             </Grid>

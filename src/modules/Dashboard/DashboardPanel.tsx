@@ -77,7 +77,6 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
   const isCalendarWidgetActive = panel.widgets.calendar.active;
   const isFirstRowVisible =
     isDateTimeWidgetActive || isWeatherWidgetActive || isCalendarWidgetActive;
-  // const isLinksWidgetActive = panel.widgets.links.active;
 
   /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => onCurrentPanelChange(panel), []);

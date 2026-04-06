@@ -95,7 +95,8 @@ const PanelEffectWrapper = ({
 const Dashboard = () => {
   const { t } = useTranslation();
   const { panel } = useParams();
-  const { panels, isPanelValid } = usePanels();
+  const { panels } = useAppStore();
+  const { isPanelValid } = usePanels();
   const { currentIndex, direction } = useDashboardSlider(panel);
   const { ...dashboardContext } = useDashboardPanel();
 

@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
-import { usePanels } from '../../hooks';
+import { useAppStore } from '../../store';
 import { mainPanelName } from '../../constants';
 import type { Direction } from './types';
 import { DirectionKeys } from './enums';
 import { panelDirectionDefault } from './constants';
 
 export const useDashboardSlider = (panel: string | undefined) => {
-  const { panels } = usePanels();
+  const { panels } = useAppStore();
 
   const [prevIndex, setPrevIndex] = useState<number>(0);
   const [direction, setDirection] = useState<Direction>(panelDirectionDefault);

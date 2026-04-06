@@ -53,7 +53,7 @@ export const getDataToForm = (panel: Panel | undefined): IPanelDetailForm => {
 export const getFormToMaster = (data: IPanelDetailForm): Panel => {
   const master = Object.assign({
     ...data,
-    name: getFormattedString(getSafeString(data.name)),
+    name: getFormattedString(data.name),
     label: getSafeString(data.label),
   });
 

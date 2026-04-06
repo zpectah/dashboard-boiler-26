@@ -1,15 +1,7 @@
-import type { Panel } from '../types';
-import { mainPanelName } from '../constants';
 import { useAppStore } from '../store';
 
 export const usePanels = () => {
-  const { homePanel, customPanels } = useAppStore();
-
-  const homePanelBase: Panel = {
-    ...homePanel,
-    name: mainPanelName,
-  };
-  const panels = [homePanelBase, ...customPanels];
+  const { homePanel, customPanels, panels } = useAppStore();
 
   const isPanelValid = (name: string) =>
     customPanels.some((item) => item.name === name);
