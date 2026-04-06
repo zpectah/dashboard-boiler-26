@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useDialogStore, useAppStore } from '../../store';
+import { isStringValidUrl } from '../../utils';
 import { usePanels } from '../../hooks';
 import type { ILinkDetailForm } from './types';
 import { linkDetailFormSchema } from './schema';
@@ -22,7 +23,7 @@ export const useLinkDetailForm = () => {
   });
 
   const currentPanel = getCurrentPanel(panel);
-  const detail = currentPanel?.widgets.links.links.find(
+  const detail = currentPanel?.widgets?.links?.links?.find(
     (item) => item.id === linkDetailDialog,
   );
   const formId = `linkDetailForm_${linkDetailDialog}`;
@@ -34,6 +35,13 @@ export const useLinkDetailForm = () => {
     const master = getFormToMaster(data);
 
     // TODO: custom validation
+
+    // 1. check url validity
+    if (!isStringValidUrl(master.url)) {
+      form.setError('url', {
+        message: t('feedback:form.error.invalid_url_address'),
+      });
+    }
 
     if (isNew) {
       createPanelLink(currentPanel.id, master);

@@ -1,6 +1,6 @@
 import type { UserLink } from '../../types';
 import type { ILinkDetailForm } from './types';
-import { getRandomId } from '../../utils';
+import { getRandomId, getSafeString } from '../../utils';
 
 export const getDefaultValues = (): ILinkDetailForm => {
   return Object.assign({
@@ -18,7 +18,10 @@ export const getDataToForm = (data: UserLink): ILinkDetailForm => {
 };
 
 export const getFormToMaster = (data: ILinkDetailForm): UserLink => {
-  const master = Object.assign({ ...data });
+  const master = Object.assign({
+    ...data,
+    label: getSafeString(data.label),
+  });
 
   return master;
 };

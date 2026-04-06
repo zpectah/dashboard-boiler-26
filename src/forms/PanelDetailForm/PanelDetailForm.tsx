@@ -1,24 +1,28 @@
-// import { useWatch } from 'react-hook-form';
-import { Button, Grid, Divider, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Button, Grid, Alert } from '@mui/material';
 import { useDialogStore } from '../../store';
-import {
-  dateTimeWidgetHolidaysOriginDefault,
-  dateTimeWidgetTimeDefault,
-} from '../../constants';
-import {
-  ComposedDialog,
-  ControlledForm,
-  InputField,
-  CheckboxField,
-  SelectField,
-} from '../../components';
+import { ComposedDialog, ControlledForm, InputField } from '../../components';
 import { usePanelDetailForm } from './usePanelDetailForm';
+import {
+  CalendarFormPart,
+  DateTimeFormPart,
+  LinksFormPart,
+  WeatherFormPart,
+} from './parts';
 
 const PanelDetailForm = () => {
+  const { t } = useTranslation(['feedback']);
   const { panelDialog, onClosePanelDialog } = useDialogStore();
-  const { form, formId, isMain, isNew, detail, options, onSubmit } =
-    usePanelDetailForm();
-  // const { widgets } = useWatch({ control: form.control });
+  const {
+    form,
+    formId,
+    isMain,
+    isNew,
+    detail,
+    options,
+    onSubmit,
+    formWarning,
+  } = usePanelDetailForm();
 
   return (
     <ComposedDialog
@@ -45,128 +49,41 @@ const PanelDetailForm = () => {
           onSubmit={onSubmit}
         >
           <Grid container spacing={2}>
-            <InputField
-              name="label"
-              label="Label"
-              layout="vertical"
-              isFullWidth
-              size={{ xs: 12, md: 6 }}
-            />
-            <InputField
-              name="name"
-              label="Name"
-              layout="vertical"
-              isFullWidth
-              size={{ xs: 12, md: 6 }}
-            />
-
-            <Grid size={12}>
-              <Divider />
-            </Grid>
-
-            <Grid size={12} container spacing={1}>
-              <Typography variant="h6">Widget: Date time</Typography>
-
-              <CheckboxField
-                name="widgets.dateTime.active"
-                label=""
-                fieldLabel="Active"
+            <Grid size={12} container spacing={2}>
+              <InputField
+                name="label"
+                label="Label"
                 layout="vertical"
-              />
-              <SelectField
-                name="widgets.dateTime.timeType"
-                label="Time type"
-                layout="vertical"
-                options={options.dateTime.timeType}
-                defaultValue={dateTimeWidgetTimeDefault}
                 isFullWidth
+                isRequired
                 size={{ xs: 12, md: 6 }}
               />
-              <CheckboxField
-                name="widgets.dateTime.separatorBlink"
-                label=""
-                fieldLabel="Blinking Semi"
+              <InputField
+                name="name"
+                label="Name"
                 layout="vertical"
-              />
-              <CheckboxField
-                name="widgets.dateTime.showSeconds"
-                label=""
-                fieldLabel="Show seconds"
-                layout="vertical"
-              />
-              <CheckboxField
-                name="widgets.dateTime.showDate"
-                label=""
-                fieldLabel="Show date"
-                layout="vertical"
-              />
-              <CheckboxField
-                name="widgets.dateTime.showHolidays"
-                label=""
-                fieldLabel="Show holidays"
-                layout="vertical"
-              />
-              <CheckboxField
-                name="widgets.dateTime.showTomorrowHolidays"
-                label=""
-                fieldLabel="Show tomorrow holidays"
-                layout="vertical"
-              />
-              <SelectField
-                name="widgets.dateTime.holidaysOrigin"
-                label="Holidays Origin"
-                layout="vertical"
-                options={options.dateTime.holidaysOrigin}
-                defaultValue={dateTimeWidgetHolidaysOriginDefault}
                 isFullWidth
+                isRequired
                 size={{ xs: 12, md: 6 }}
               />
             </Grid>
-
-            <Grid size={12}>
-              <Divider />
-            </Grid>
-
-            <Grid size={12} container spacing={1}>
-              <Typography variant="h6">Widget: Weather</Typography>
-
-              <CheckboxField
-                name="widgets.weather.active"
-                label=""
-                fieldLabel="Active"
-                layout="vertical"
+            <Grid size={12} spacing={2}>
+              <DateTimeFormPart
+                options={{
+                  timeType: options.dateTime.timeType,
+                  holidaysOrigin: options.dateTime.holidaysOrigin,
+                }}
               />
+              <WeatherFormPart />
+              <CalendarFormPart />
+              <LinksFormPart />
             </Grid>
 
-            <Grid size={12}>
-              <Divider />
-            </Grid>
-
-            <Grid size={12} container spacing={1}>
-              <Typography variant="h6">Widget: Calendar</Typography>
-
-              <CheckboxField
-                name="widgets.calendar.active"
-                label=""
-                fieldLabel="Active"
-                layout="vertical"
-              />
-            </Grid>
-
-            <Grid size={12}>
-              <Divider />
-            </Grid>
-
-            <Grid size={12} container spacing={1}>
-              <Typography variant="h6">Widget: Links</Typography>
-
-              <CheckboxField
-                name="widgets.links.active"
-                label=""
-                fieldLabel="Active"
-                layout="vertical"
-              />
-            </Grid>
+            {formWarning && (
+              <Alert severity="warning" variant="filled" sx={{ width: '100%' }}>
+                {t('feedback:form.warning.at_least_one_widget')}
+              </Alert>
+            )}
           </Grid>
         </ControlledForm>
       }

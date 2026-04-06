@@ -14,9 +14,11 @@ import { getDefaultValues, getDataToForm, getFormToMaster } from './helpers';
 
 export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);
+  const [formWarning, setFormWarning] = useState<string | null>(null);
+  // const [formError, setFormError] = useState<string | null>(null);
 
   const { t } = useTranslation(['common', 'feedback']);
-  const { onUpdatePanel, onCreatePanel } = useAppStore();
+  const { customPanels, onUpdatePanel, onCreatePanel } = useAppStore();
   const { panelDialog, onClosePanelDialog, addToast } = useDialogStore();
   const { getPanelById } = usePanels();
   const form = useForm<IPanelDetailForm>({
@@ -31,9 +33,33 @@ export const usePanelDetailForm = () => {
   const submitHandler: SubmitHandler<IPanelDetailForm> = (data) => {
     if (!panelDialog) return;
 
-    const master = getFormToMaster(data);
+    setFormWarning(null);
 
-    // TODO: custom validation
+    const master = getFormToMaster(data);
+    const duplicity = customPanels.some(
+      (item) => item.name === master.name && item.id !== master.id,
+    );
+
+    console.log('on submit', data, master, duplicity);
+
+    if (duplicity) {
+      form.setError('name', {
+        message: t('feedback:form.error.duplicity_name'),
+      });
+
+      return;
+    }
+
+    if (
+      !master.widgets.dateTime.active &&
+      !master.widgets.calendar.active &&
+      !master.widgets.weather.active &&
+      !master.widgets.links.active
+    ) {
+      setFormWarning('at_least_one_widget');
+
+      return;
+    }
 
     if (isNew) {
       onCreatePanel(master);
@@ -120,5 +146,6 @@ export const usePanelDetailForm = () => {
     detail,
     options,
     onSubmit: form.handleSubmit(submitHandler),
+    formWarning,
   };
 };

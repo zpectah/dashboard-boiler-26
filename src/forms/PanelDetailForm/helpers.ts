@@ -1,5 +1,5 @@
 import type { Panel } from '../../types';
-import { getRandomId } from '../../utils';
+import { getFormattedString, getRandomId, getSafeString } from '../../utils';
 import {
   dateTimeWidgetHolidaysOriginDefault,
   dateTimeWidgetTimeDefault,
@@ -27,6 +27,7 @@ export const getDefaultValues = (): IPanelDetailForm => {
       },
       links: {
         active: true,
+        links: [],
       },
       weather: {
         active: true,
@@ -50,7 +51,15 @@ export const getDataToForm = (panel: Panel | undefined): IPanelDetailForm => {
 };
 
 export const getFormToMaster = (data: IPanelDetailForm): Panel => {
-  const master = Object.assign({ ...data });
+  const master = Object.assign({
+    ...data,
+    name: getFormattedString(getSafeString(data.name)),
+    label: getSafeString(data.label),
+  });
+
+  if (!master.widgets.links.links) {
+    master.widgets.links['links'] = [];
+  }
 
   return master;
 };

@@ -3,28 +3,29 @@ import {
   dateTimeWidgetHolidaysOriginKeysArray,
   dateTimeWidgetTimeKeysArray,
 } from '../../constants';
+import { commonFieldSchema } from '../../validation';
 
 const calendarWidgetSchema = z.object({
-  active: z.boolean(),
+  active: commonFieldSchema.boolean,
 });
 
 const dateTimeWidgetSchema = z.object({
-  active: z.boolean(),
-  showDate: z.boolean(),
+  active: commonFieldSchema.boolean,
+  showDate: commonFieldSchema.boolean,
   timeType: z.enum(dateTimeWidgetTimeKeysArray),
-  separatorBlink: z.boolean(),
-  showSeconds: z.boolean(),
-  showHolidays: z.boolean(),
-  showTomorrowHolidays: z.boolean(),
+  separatorBlink: commonFieldSchema.boolean,
+  showSeconds: commonFieldSchema.boolean,
+  showHolidays: commonFieldSchema.boolean,
+  showTomorrowHolidays: commonFieldSchema.boolean,
   holidaysOrigin: z.enum(dateTimeWidgetHolidaysOriginKeysArray),
 });
 
 const linksWidgetSchema = z.object({
-  active: z.boolean(),
+  active: commonFieldSchema.boolean,
 });
 
 const weatherWidgetSchema = z.object({
-  active: z.boolean(),
+  active: commonFieldSchema.boolean,
 });
 
 const panelDetailWidgetsSchema = z.object({
@@ -35,8 +36,8 @@ const panelDetailWidgetsSchema = z.object({
 });
 
 export const panelDetailFormSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  label: z.string(),
+  id: commonFieldSchema.string_required,
+  name: commonFieldSchema.string_minLength,
+  label: commonFieldSchema.string_minLength,
   widgets: panelDetailWidgetsSchema,
 });

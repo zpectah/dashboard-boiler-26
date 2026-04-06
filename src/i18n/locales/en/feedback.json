@@ -21,5 +21,19 @@
     "error_data_loading": "Error while loading data",
     "unsupported_geolocation_service": "Unsupported geolocation service",
     "geolocation_service_denied": "Geolocation service denied access"
+  },
+  "form": {
+    "warning": {
+      "at_least_one_widget": "Set at least one widget, otherwise there is no point in creating an empty panel"
+    },
+    "error": {
+      "invalid_number": "Invalid number",
+      "invalid_boolean": "Invalid boolean",
+      "invalid_string": "Invalid string",
+      "invalid_array": "Invalid array",
+      "invalid_url_address": "Invalid URL address",
+      "required": "Field is required",
+      "duplicity_name": "An item with this name already exists in the system"
+    }
   }
 }

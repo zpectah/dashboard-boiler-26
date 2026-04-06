@@ -162,3 +162,16 @@ export const getFormattedString = (...args: string[]): string => {
 /** Returns string in camelCase format */
 export const toCamelCase = (str: string): string =>
   str.replace(/-([a-z0-9])/g, (_, letter) => letter.toUpperCase());
+
+/** Returns if string is valid url address */
+export const isStringValidUrl = (string: string) => {
+  const url = new URL(string);
+
+  return url.protocol === 'http:' || url.protocol === 'https:';
+};
+
+export const getSafeString = (str: string) => {
+  const noHtml = str.replace(/<[^>]*>?/gm, '');
+
+  return noHtml.replace(/[^a-zA-Z0-9áéíóúýčďěňřšťůžÁÉÍÓÚÝČĎĚŇŘŠŤŮŽ\s.]/g, '');
+};
