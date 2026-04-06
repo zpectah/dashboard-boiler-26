@@ -34,9 +34,6 @@ export const useLinkDetailForm = () => {
 
     const master = getFormToMaster(data);
 
-    // TODO: custom validation
-
-    // 1. check url validity
     if (!isStringValidUrl(master.url)) {
       form.setError('url', {
         message: t('feedback:form.error.invalid_url_address'),

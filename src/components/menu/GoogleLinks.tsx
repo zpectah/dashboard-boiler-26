@@ -8,14 +8,14 @@ import { Drawer } from '../drawer';
 import MenuBase from './MenuBase';
 
 const GoogleLinks = () => {
-  const { t } = useTranslation('features');
+  const { t } = useTranslation('common');
   const { googleLinks, setGoogleLinks } = useDialogStore();
   const { google: links } = useBrandLinks();
 
   return (
     <>
       <IconButtonPlus
-        tooltip={t('google.title')}
+        tooltip={t('common:features.google.title')}
         onClick={() => setGoogleLinks(true)}
       >
         <IconBrandGoogleFilled />
@@ -24,7 +24,7 @@ const GoogleLinks = () => {
         anchor="left"
         open={googleLinks}
         onClose={() => setGoogleLinks(false)}
-        title={t('google.title')}
+        title={t('common:features.google.title')}
         titleIcon={<IconBrandGoogleFilled />}
         width={{
           xs: '100%',

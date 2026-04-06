@@ -15,7 +15,6 @@ import { getDefaultValues, getDataToForm, getFormToMaster } from './helpers';
 export const usePanelDetailForm = () => {
   const [isMain, setIsMain] = useState(false);
   const [formWarning, setFormWarning] = useState<string | null>(null);
-  // const [formError, setFormError] = useState<string | null>(null);
 
   const { t } = useTranslation(['common', 'feedback']);
   const { customPanels, onUpdatePanel, onCreatePanel } = useAppStore();
@@ -39,8 +38,6 @@ export const usePanelDetailForm = () => {
     const duplicity = customPanels.some(
       (item) => item.name === master.name && item.id !== master.id,
     );
-
-    console.log('on submit', data, master, duplicity);
 
     if (duplicity) {
       form.setError('name', {
@@ -86,39 +83,39 @@ export const usePanelDetailForm = () => {
         {
           id: dateTimeWidgetTimeKeys.analog,
           value: dateTimeWidgetTimeKeys.analog,
-          label: 'analog', // TODO #i18n
+          label: t('common:form.options.timeType.analog'),
         },
         {
           id: dateTimeWidgetTimeKeys.numeric,
           value: dateTimeWidgetTimeKeys.numeric,
-          label: 'numeric', // TODO #i18n
+          label: t('common:form.options.timeType.numeric'),
         },
       ],
       holidaysOrigin: [
         {
           id: dateTimeWidgetHolidaysOriginKeys.world,
           value: dateTimeWidgetHolidaysOriginKeys.world,
-          label: 'world', // TODO #i18n
+          label: t('common:form.options.holidaysOrigin.world'),
         },
         {
           id: dateTimeWidgetHolidaysOriginKeys.eu,
           value: dateTimeWidgetHolidaysOriginKeys.eu,
-          label: 'eu', // TODO #i18n
+          label: t('common:form.options.holidaysOrigin.eu'),
         },
         {
           id: dateTimeWidgetHolidaysOriginKeys.us,
           value: dateTimeWidgetHolidaysOriginKeys.us,
-          label: 'us', // TODO #i18n
+          label: t('common:form.options.holidaysOrigin.us'),
         },
         {
           id: dateTimeWidgetHolidaysOriginKeys.cs,
           value: dateTimeWidgetHolidaysOriginKeys.cs,
-          label: 'cs', // TODO #i18n
+          label: t('common:form.options.holidaysOrigin.cs'),
         },
         {
           id: dateTimeWidgetHolidaysOriginKeys.sk,
           value: dateTimeWidgetHolidaysOriginKeys.sk,
-          label: 'sk', // TODO #i18n
+          label: t('common:form.options.holidaysOrigin.sk'),
         },
       ],
     },

@@ -8,14 +8,14 @@ import { Drawer } from '../drawer';
 import MenuBase from './MenuBase';
 
 const MicrosoftLinks = () => {
-  const { t } = useTranslation('features');
+  const { t } = useTranslation('common');
   const { microsoftLinks, setMicrosoftLinks } = useDialogStore();
   const { microsoft: links } = useBrandLinks();
 
   return (
     <>
       <IconButtonPlus
-        tooltip={t('microsoft.title')}
+        tooltip={t('common:features.microsoft.title')}
         onClick={() => setMicrosoftLinks(true)}
       >
         <IconBrandWindowsFilled />
@@ -24,7 +24,7 @@ const MicrosoftLinks = () => {
         anchor="left"
         open={microsoftLinks}
         onClose={() => setMicrosoftLinks(false)}
-        title={t('microsoft.title')}
+        title={t('common:features.microsoft.title')}
         titleIcon={<IconBrandWindowsFilled />}
         width={{
           xs: '100%',

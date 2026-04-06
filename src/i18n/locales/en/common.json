@@ -4,6 +4,8 @@
     "confirm": "Confirm",
     "edit": "Edit",
     "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
     "imageRefresh": "Refresh background",
     "modeToggle": "Mode toggle",
     "editMode": "Edit mode",
@@ -13,11 +15,13 @@
   "label": {
     "unknown": "Unknown",
     "localeMenu": "Locales",
-    "loadedIn": "Loaded in {{date}}"
+    "loadedIn": "Loaded in {{date}}",
+    "homepageSettings": "Homepage settings"
   },
   "message": {
     "noPanelFound": "Sorry, but panel with this id was not found",
-    "loadingWeather": "Loading weather data"
+    "loadingWeather": "Loading weather data",
+    "changesSaved": "Changes was successfully saved"
   },
   "weatherCode": {
     "clear": "Clear",
@@ -33,5 +37,44 @@
     "snowfall": "Snowfall",
     "rainShowers": "Showers",
     "thunderstorm": "Thunderstorm"
+  },
+  "form": {
+    "label": {
+      "url": "URL address",
+      "label": "Label",
+      "name": "Name",
+      "order": "Order",
+      "panelEffect": "Panel effect"
+    },
+    "placeholder": {},
+    "options": {
+      "timeType": {
+        "analog": "Analog",
+        "numeric": "Numeric"
+      },
+      "holidaysOrigin": {
+        "world": "World",
+        "eu": "Europe",
+        "us": "United States",
+        "cs": "Czech",
+        "sk": "Slovakia"
+      },
+      "panelEffect": {
+        "fade": "Fade",
+        "grow": "Grow",
+        "slide": "Slide"
+      }
+    }
+  },
+  "features": {
+    "google": {
+      "title": "Google links"
+    },
+    "microsoft": {
+      "title": "Microsoft links"
+    },
+    "apple": {
+      "title": "Apple links"
+    }
   }
 }

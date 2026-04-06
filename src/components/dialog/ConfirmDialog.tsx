@@ -39,6 +39,7 @@ const ConfirmDialog = () => {
       fullWidth
       title={confirmDialog?.title}
       content={confirmDialog?.content}
+      disableCloseButton
       actions={
         <>
           <Button variant="outlined" onClick={cancelHandler}>

@@ -11,7 +11,7 @@ import {
 } from './parts';
 
 const PanelDetailForm = () => {
-  const { t } = useTranslation(['feedback']);
+  const { t } = useTranslation(['common', 'feedback']);
   const { panelDialog, onClosePanelDialog } = useDialogStore();
   const {
     form,
@@ -30,14 +30,14 @@ const PanelDetailForm = () => {
       onClose={onClosePanelDialog}
       maxWidth="md"
       fullWidth
-      title={isNew ? 'New panel' : detail?.label}
+      title={isNew ? t('common:button.newPanel') : detail?.label}
       actions={
         <>
           <Button onClick={onClosePanelDialog} variant="outlined">
-            Cancel
+            {t('common:button.cancel')}
           </Button>
           <Button type="submit" form={formId} variant="contained">
-            {isNew ? 'Create' : 'Update'}
+            {isNew ? t('common:button.create') : t('common:button.update')}
           </Button>
         </>
       }
@@ -48,11 +48,12 @@ const PanelDetailForm = () => {
           className={isMain ? 'is-main' : ''}
           onSubmit={onSubmit}
         >
+          <input type="hidden" {...form.register('id')} />
           <Grid container spacing={2}>
             <Grid size={12} container spacing={2}>
               <InputField
                 name="label"
-                label="Label"
+                label={t('common:form.label.label')}
                 layout="vertical"
                 isFullWidth
                 isRequired
@@ -60,7 +61,7 @@ const PanelDetailForm = () => {
               />
               <InputField
                 name="name"
-                label="Name"
+                label={t('common:form.label.name')}
                 layout="vertical"
                 isFullWidth
                 isRequired
@@ -81,7 +82,7 @@ const PanelDetailForm = () => {
 
             {formWarning && (
               <Alert severity="warning" variant="filled" sx={{ width: '100%' }}>
-                {t('feedback:form.warning.at_least_one_widget')}
+                {t(`feedback:form.warning.${formWarning}`)}
               </Alert>
             )}
           </Grid>

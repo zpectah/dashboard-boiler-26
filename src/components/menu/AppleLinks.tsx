@@ -8,14 +8,14 @@ import { Drawer } from '../drawer';
 import MenuBase from './MenuBase';
 
 const AppleLinks = () => {
-  const { t } = useTranslation('features');
+  const { t } = useTranslation('common');
   const { appleLinks, setAppleLinks } = useDialogStore();
   const { apple: links } = useBrandLinks();
 
   return (
     <>
       <IconButtonPlus
-        tooltip={t('apple.title')}
+        tooltip={t('common:features.apple.title')}
         onClick={() => setAppleLinks(true)}
       >
         <IconBrandAppleFilled />
@@ -24,7 +24,7 @@ const AppleLinks = () => {
         anchor="left"
         open={appleLinks}
         onClose={() => setAppleLinks(false)}
-        title={t('apple.title')}
+        title={t('common:features.apple.title')}
         titleIcon={<IconBrandAppleFilled />}
         width={{
           xs: '100%',

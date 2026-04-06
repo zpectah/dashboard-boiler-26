@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Button, Grid } from '@mui/material';
 import { useDialogStore } from '../../store';
 import {
@@ -9,6 +10,7 @@ import {
 import { useLinkDetailForm } from './useLinkDetailForm';
 
 const LinkDetailForm = () => {
+  const { t } = useTranslation('common');
   const { linkDetailDialog, closeLinkDetailDialog } = useDialogStore();
   const { form, formId, detail, isNew, onSubmit } = useLinkDetailForm();
 
@@ -18,14 +20,14 @@ const LinkDetailForm = () => {
       onClose={closeLinkDetailDialog}
       maxWidth="sm"
       fullWidth
-      title={isNew ? 'New link' : detail?.label}
+      title={isNew ? t('button.newLink') : detail?.label}
       actions={
         <>
           <Button onClick={closeLinkDetailDialog} variant="outlined">
-            Cancel
+            {t('button.cancel')}
           </Button>
           <Button type="submit" form={formId} variant="contained">
-            {isNew ? 'Create' : 'Update'}
+            {isNew ? t('button.create') : t('button.update')}
           </Button>
         </>
       }
@@ -33,18 +35,25 @@ const LinkDetailForm = () => {
         <ControlledForm id={formId} form={form} onSubmit={onSubmit}>
           <Grid container spacing={2}>
             <input type="hidden" {...form.register('id')} />
-            <InputField name="url" label="Url" layout="vertical" isFullWidth />
             <InputField
-              name="label"
-              label="Label"
+              name="url"
+              label={t('form.label.url')}
               layout="vertical"
               isFullWidth
+              isRequired
+            />
+            <InputField
+              name="label"
+              label={t('form.label.label')}
+              layout="vertical"
+              isFullWidth
+              isRequired
             />
             <NumberAltField
               name="order"
-              label="Order"
+              label={t('form.label.order')}
               layout="vertical"
-              isFullWidth
+              size={{ xs: 12, sm: 6 }}
             />
           </Grid>
         </ControlledForm>

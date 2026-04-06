@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Grid } from '@mui/material';
 import { useDialogStore } from '../../store';
 import {
@@ -9,13 +10,14 @@ import {
 import { useSettingsForm } from './useSettingsForm';
 
 const SettingsForm = () => {
+  const { t } = useTranslation('common');
   const { settingsForm, setSettingsForm } = useDialogStore();
   const { form, options } = useSettingsForm();
 
   return (
     <Drawer
       anchor="right"
-      title="Homepage settings"
+      title={t('common:label.homepageSettings')}
       open={settingsForm}
       onClose={() => setSettingsForm(false)}
       width={{
@@ -27,7 +29,7 @@ const SettingsForm = () => {
         <Grid container spacing={2}>
           <SelectField
             name="panelEffect"
-            label="Panel effect"
+            label={t('common:form.label.panelEffect')}
             options={options.panelEffect}
             isFullWidth
             layout="vertical"
@@ -36,19 +38,19 @@ const SettingsForm = () => {
             <CheckboxField
               name="googleLinks"
               label=""
-              fieldLabel="Google links"
+              fieldLabel={t('common:features.google.title')}
               layout="vertical"
             />
             <CheckboxField
               name="msLinks"
               label=""
-              fieldLabel="Microsoft links"
+              fieldLabel={t('common:features.microsoft.title')}
               layout="vertical"
             />
             <CheckboxField
               name="appleLinks"
               label=""
-              fieldLabel="Apple links"
+              fieldLabel={t('common:features.apple.title')}
               layout="vertical"
             />
           </Grid>

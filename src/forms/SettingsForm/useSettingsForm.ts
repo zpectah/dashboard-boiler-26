@@ -7,8 +7,10 @@ import { useAppStore, useDialogStore } from '../../store';
 import type { ISettingsForm } from './types';
 import { settingsFormSchema } from './schema';
 import { getDataToForm, getDefaultValues, getFormToMaster } from './helpers';
+import { useTranslation } from 'react-i18next';
 
 export const useSettingsForm = () => {
+  const { t } = useTranslation(['common', 'feedback']);
   const { addToast } = useDialogStore();
   const { panelEffect, features, onChangePanelEffect, setFeatures } =
     useAppStore();
@@ -28,7 +30,7 @@ export const useSettingsForm = () => {
         appleLinks: master.appleLinks,
       });
       addToast({
-        title: 'Changes was successfully saved', // TODO #i18n
+        title: t('common:message.changesSaved'),
         severity: 'success',
         autoclose: true,
       });
@@ -42,17 +44,17 @@ export const useSettingsForm = () => {
       {
         id: panelEffectKeys.fade,
         value: panelEffectKeys.fade,
-        label: 'Fade', // TODO #i18n
+        label: t('common:form.options.panelEffect.fade'),
       },
       {
         id: panelEffectKeys.grow,
         value: panelEffectKeys.grow,
-        label: 'Grow', // TODO #i18n
+        label: t('common:form.options.panelEffect.grow'),
       },
       {
         id: panelEffectKeys.slide,
         value: panelEffectKeys.slide,
-        label: 'Slide', // TODO #i18n
+        label: t('common:form.options.panelEffect.slide'),
       },
     ],
   };
