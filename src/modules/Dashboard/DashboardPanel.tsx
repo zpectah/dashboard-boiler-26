@@ -118,7 +118,6 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
           </Stack>
           <WidgetWrapper>
             <GridWrapper container spacing={2}>
-              {/* TODO #layout */}
               {isFirstRowVisible && (
                 <Grid container size={12}>
                   <DateTimeWidget
@@ -127,6 +126,10 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
                       size: {
                         xs: 12,
                         md:
+                          isWeatherWidgetActive && isCalendarWidgetActive
+                            ? 6
+                            : 12,
+                        lg:
                           isWeatherWidgetActive && isCalendarWidgetActive
                             ? 4
                             : isWeatherWidgetActive || isCalendarWidgetActive
@@ -142,6 +145,10 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
                         xs: 12,
                         md:
                           isDateTimeWidgetActive && isCalendarWidgetActive
+                            ? 6
+                            : 12,
+                        lg:
+                          isDateTimeWidgetActive && isCalendarWidgetActive
                             ? 4
                             : isDateTimeWidgetActive || isCalendarWidgetActive
                               ? 6
@@ -155,6 +162,12 @@ const DashboardPanel = ({ panel }: DashboardPanelProps) => {
                       size: {
                         xs: 12,
                         md:
+                          isWeatherWidgetActive && isDateTimeWidgetActive
+                            ? 12
+                            : isWeatherWidgetActive || isDateTimeWidgetActive
+                              ? 12
+                              : 12,
+                        lg:
                           isWeatherWidgetActive && isDateTimeWidgetActive
                             ? 4
                             : isWeatherWidgetActive || isDateTimeWidgetActive
