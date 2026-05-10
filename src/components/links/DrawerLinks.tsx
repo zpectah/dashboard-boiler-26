@@ -9,13 +9,15 @@ interface DrawerLinksProps {
 
 const DrawerLinks = ({ items = [], disableFavicon }: DrawerLinksProps) => (
   <MenuList>
-    {items.map((item) => (
-      <DrawerLinksItem
-        key={item.id}
-        disableFavicon={disableFavicon}
-        {...item}
-      />
-    ))}
+    {items
+      .sort((a, b) => a.order - b.order)
+      .map((item) => (
+        <DrawerLinksItem
+          key={item.id}
+          disableFavicon={disableFavicon}
+          {...item}
+        />
+      ))}
   </MenuList>
 );
 

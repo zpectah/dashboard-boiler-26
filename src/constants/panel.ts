@@ -16,7 +16,7 @@ export const panelWidgetDefaults = {
     weekDay: true,
     seconds: false,
     secondsBlink: true,
-    weather: true,
+    weather: false,
     holidays: true,
     tomorrowHolidays: true,
     holidaysOrigin: datetimeWidgetHolidaysOriginDefault,
@@ -27,5 +27,6 @@ export const panelWidgetDefaults = {
   links: {
     ...panelWidgetObjectBase,
     links: [],
+    icons: true,
   },
 };

@@ -23,8 +23,12 @@ const PanelDetailForm = () => {
   const submitLabel =
     panelDetailId === newPanelId ? t('button.create') : t('button.update');
 
-  const values = useWatch({
+  const datetime = useWatch({
     name: 'widgets.datetime',
+    control: form.control,
+  });
+  const links = useWatch({
+    name: 'widgets.links',
     control: form.control,
   });
 
@@ -92,58 +96,58 @@ const PanelDetailForm = () => {
                       options={options.timeType}
                       layout="vertical"
                       isFullWidth
-                      isDisabled={!values.active}
+                      isDisabled={!datetime.active}
                     />
                     <CheckboxField
                       name="widgets.datetime.seconds"
                       label=""
                       fieldLabel={t('form:label.datetime.seconds')}
                       layout="vertical"
-                      isDisabled={!values.active}
+                      isDisabled={!datetime.active}
                     />
                     <CheckboxField
                       name="widgets.datetime.secondsBlink"
                       label=""
                       fieldLabel={t('form:label.datetime.secondsBlink')}
                       layout="vertical"
-                      isDisabled={!values.active}
+                      isDisabled={!datetime.active}
                     />
                     <CheckboxField
                       name="widgets.datetime.date"
                       label=""
                       fieldLabel={t('form:label.datetime.date')}
                       layout="vertical"
-                      isDisabled={!values.active}
+                      isDisabled={!datetime.active}
                     />
                     <CheckboxField
                       name="widgets.datetime.fullDate"
                       label=""
                       fieldLabel={t('form:label.datetime.fullDate')}
                       layout="vertical"
-                      isDisabled={!values.active}
-                      isHidden={!values.date}
+                      isDisabled={!datetime.active}
+                      isHidden={!datetime.date}
                     />
                     <CheckboxField
                       name="widgets.datetime.weekDay"
                       label=""
                       fieldLabel={t('form:label.datetime.weekDay')}
                       layout="vertical"
-                      isDisabled={!values.active}
-                      isHidden={!values.date}
+                      isDisabled={!datetime.active}
+                      isHidden={!datetime.date}
                     />
                     <CheckboxField
                       name="widgets.datetime.weather"
                       label=""
                       fieldLabel={t('form:label.datetime.weather')}
                       layout="vertical"
-                      isDisabled={!values.active}
+                      isDisabled={!datetime.active}
                     />
                     <CheckboxField
                       name="widgets.datetime.holidays"
                       label=""
                       fieldLabel={t('form:label.datetime.holidays')}
                       layout="vertical"
-                      isDisabled={!values.active}
+                      isDisabled={!datetime.active}
                     />
                     <SelectField
                       name="widgets.datetime.holidaysOrigin"
@@ -154,16 +158,16 @@ const PanelDetailForm = () => {
                       options={options.holidaysOrigin}
                       layout="vertical"
                       isFullWidth
-                      isDisabled={!values.active}
-                      isHidden={!values.holidays}
+                      isDisabled={!datetime.active}
+                      isHidden={!datetime.holidays}
                     />
                     <CheckboxField
                       name="widgets.datetime.tomorrowHolidays"
                       label=""
                       fieldLabel={t('form:label.datetime.tomorrowHolidays')}
                       layout="vertical"
-                      isDisabled={!values.active}
-                      isHidden={!values.holidays}
+                      isDisabled={!datetime.active}
+                      isHidden={!datetime.holidays}
                     />
                   </Grid>
                 </Fieldset>
@@ -188,6 +192,13 @@ const PanelDetailForm = () => {
                       label=""
                       fieldLabel={t('form:label.links.active')}
                       layout="vertical"
+                    />
+                    <CheckboxField
+                      name="widgets.links.icons"
+                      label=""
+                      fieldLabel={t('form:label.links.icons')}
+                      layout="vertical"
+                      isDisabled={!links.active}
                     />
                   </Grid>
                 </Fieldset>

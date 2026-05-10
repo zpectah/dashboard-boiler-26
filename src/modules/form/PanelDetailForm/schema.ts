@@ -27,6 +27,7 @@ export const panelDetailFormSchema = z.object({
     }),
     links: z.object({
       active: commonFieldSchema.boolean,
+      icons: commonFieldSchema.boolean,
     }),
   }),
 });

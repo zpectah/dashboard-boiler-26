@@ -13,6 +13,8 @@ interface IPanelStore {
   onLinkCreate: (panelId: string, link: UserLink) => void;
   onLinkPatch: (panelId: string, link: UserLink) => void;
   onLinkDelete: (panelId: string, linkId: string) => void;
+  onResetMainPanel: () => void;
+  onResetCustomPanels: () => void;
 }
 
 const usePanelsStore = create<IPanelStore>()(
@@ -177,6 +179,22 @@ const usePanelsStore = create<IPanelStore>()(
         }
       };
 
+      const resetMainPanelHandler = () => {
+        set(() => ({
+          main: {
+            id: mainPanelId,
+            label: 'Main',
+            widgets: Object.assign(panelWidgetDefaults),
+          },
+        }));
+      };
+
+      const resetCustomPanelsHandler = () => {
+        set(() => ({
+          custom: [],
+        }));
+      };
+
       return {
         main,
         custom,
@@ -186,6 +204,8 @@ const usePanelsStore = create<IPanelStore>()(
         onLinkCreate: createLinkHandler,
         onLinkPatch: patchLinkHandler,
         onLinkDelete: deleteLinkHandler,
+        onResetMainPanel: resetMainPanelHandler,
+        onResetCustomPanels: resetCustomPanelsHandler,
       };
     },
     {

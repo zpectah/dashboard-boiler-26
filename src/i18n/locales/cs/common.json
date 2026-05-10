@@ -6,6 +6,7 @@
     "create": "Vytvořit",
     "update": "Upravit",
     "edit": "Editovat",
+    "save": "Uložit",
     "delete": "Smazat",
     "editMode": "Režim úprav",
     "imageRefresh": "Načíst obrázek na pozadí",
@@ -14,7 +15,8 @@
     "appleLinks": "Odkazy Apple",
     "msLinks": "Odkazy Microsoft",
     "new_panel": "Nový panel",
-    "new_link": "Nový odkaz"
+    "new_link": "Nový odkaz",
+    "savedDataReset": "Vymazat uložená data"
   },
   "label": {
     "unknown": "Neznámé",
@@ -37,6 +39,10 @@
       "delete_link": {
         "title": "Smazat odkaz",
         "content": "Opravdu chcete smazat tento odkaz?"
+      },
+      "reset_data": {
+        "title": "Vymazat uložená data",
+        "content": "Vymazat veškerá uložená data a tento krok je nevratný. Opravdu chcete pokračovat?"
       }
     },
     "info": {
@@ -49,7 +55,8 @@
       "panel_deleted": "Panel byl úspěšně smazán",
       "link_created": "Odkaz byl úspěšně vytvořen",
       "link_updated": "Odkaz byl úspěšně upraven",
-      "link_deleted": "Odkaz byl úspěšně smazán"
+      "link_deleted": "Odkaz byl úspěšně smazán",
+      "data_reset": "Veškerá uložená data byla vymazána"
     },
     "warning": {},
     "error": {

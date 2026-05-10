@@ -1,17 +1,16 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import type { AppPersistentStoreData } from '@/types';
 import { appPersistentStorageKey } from '@/constants';
 
-interface IAppLinks {
-  linksGoogle: boolean;
-  linksApple: boolean;
-  linksMicrosoft: boolean;
-}
-interface IAppPersistentStore extends IAppLinks {
+interface IAppPersistentStore extends AppPersistentStoreData {
   toggleGoogleLinks: () => void;
   toggleAppleLinks: () => void;
   toggleMicrosoftLinks: () => void;
-  onPatch: ({ linksGoogle, linksApple, linksMicrosoft }: IAppLinks) => void;
+  onPatch: (store: AppPersistentStoreData) => void;
+  onReset: () => void;
+  setTimestamp: () => void;
+  setIntroduction: () => void;
 }
 
 const useAppPersistentStore = create<IAppPersistentStore>()(
@@ -20,6 +19,8 @@ const useAppPersistentStore = create<IAppPersistentStore>()(
       const linksGoogle = true;
       const linksApple = true;
       const linksMicrosoft = true;
+      const timestamp = '';
+      const introduction = false;
 
       const toggleGoogleLinksHandler = () =>
         set((state) => ({
@@ -40,12 +41,30 @@ const useAppPersistentStore = create<IAppPersistentStore>()(
         linksGoogle,
         linksApple,
         linksMicrosoft,
-      }: IAppLinks) => {
+      }: AppPersistentStoreData) => {
         set(() => ({
           linksGoogle,
           linksApple,
           linksMicrosoft,
         }));
+      };
+
+      const resetStateHandler = () => {
+        set(() => ({
+          linksGoogle: true,
+          linksApple: true,
+          linksMicrosoft: true,
+          timestamp: new Date().toISOString(),
+          introduction: false,
+        }));
+      };
+
+      const setTimestampHandler = () => {
+        set(() => ({ timestamp: new Date().toISOString() }));
+      };
+
+      const setIntroductionHandler = () => {
+        set(() => ({ introduction: true }));
       };
 
       return {
@@ -56,6 +75,11 @@ const useAppPersistentStore = create<IAppPersistentStore>()(
         toggleAppleLinks: toggleAppleLinksHandler,
         toggleMicrosoftLinks: toggleMicrosoftLinksHandler,
         onPatch: patchLinksHandler,
+        onReset: resetStateHandler,
+        timestamp,
+        introduction,
+        setTimestamp: setTimestampHandler,
+        setIntroduction: setIntroductionHandler,
       };
     },
     {

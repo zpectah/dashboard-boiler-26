@@ -6,11 +6,15 @@ const IconButtonPlus = ({
   tooltipProps,
   ...rest
 }: IconButtonPlusProps) => {
-  return (
-    <Tooltip title={tooltip} {...tooltipProps}>
-      <IconButton {...rest} />
-    </Tooltip>
-  );
+  if (tooltip) {
+    return (
+      <Tooltip title={tooltip} {...tooltipProps}>
+        <IconButton {...rest} />
+      </Tooltip>
+    );
+  }
+
+  return <IconButton {...rest} />;
 };
 
 export default IconButtonPlus;

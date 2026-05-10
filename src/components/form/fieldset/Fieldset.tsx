@@ -21,7 +21,7 @@ interface FieldsetProps extends WithChildren {
 
 const Fieldset = ({ children, title }: FieldsetProps) => {
   return (
-    <Wrapper sx={{ paddingTop: title ? 0 : 2 }}>
+    <Wrapper sx={{ paddingTop: title ? 0 : 3 }}>
       {title && <Legend>{title}</Legend>}
       {children}
     </Wrapper>

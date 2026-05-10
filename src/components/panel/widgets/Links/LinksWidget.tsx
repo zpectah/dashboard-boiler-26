@@ -7,7 +7,7 @@ import type { LinksWidgetProps } from '../types';
 import LinksWidgetLink from './LinksWidgetLink';
 
 const LinksWidget = ({ panelId, gridProps, ...widget }: LinksWidgetProps) => {
-  const { active, links } = widget;
+  const { active, links, icons } = widget;
 
   const { t } = useTranslation();
   const { openLinkDetail } = useDialogStore();
@@ -56,9 +56,16 @@ const LinksWidget = ({ panelId, gridProps, ...widget }: LinksWidgetProps) => {
             justifyContent: 'center',
           })}
         >
-          {links.map((item) => (
-            <LinksWidgetLink key={item.id} panelId={panelId} link={item} />
-          ))}
+          {links
+            .sort((a, b) => a.order - b.order)
+            .map((item) => (
+              <LinksWidgetLink
+                key={item.id}
+                panelId={panelId}
+                link={item}
+                icons={icons}
+              />
+            ))}
         </Stack>
         <IconButtonPlus
           tooltip={t('button.new_link')}

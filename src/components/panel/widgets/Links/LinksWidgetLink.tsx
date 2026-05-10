@@ -46,9 +46,10 @@ const Favicon = styled('img')({
 interface LinksWidgetLinkProps {
   panelId: string;
   link: UserLink;
+  icons: boolean;
 }
 
-const LinksWidgetLink = ({ panelId, link }: LinksWidgetLinkProps) => {
+const LinksWidgetLink = ({ panelId, link, icons }: LinksWidgetLinkProps) => {
   const { id, label, url } = link;
 
   const { t } = useTranslation();
@@ -76,7 +77,9 @@ const LinksWidgetLink = ({ panelId, link }: LinksWidgetLinkProps) => {
   return (
     <Wrapper>
       <CustomLink href={url} target="_blank">
-        {faviconUrl && <Favicon src={faviconUrl} alt={label} loading="lazy" />}
+        {icons && faviconUrl && (
+          <Favicon src={faviconUrl} alt={label} loading="lazy" />
+        )}
         {label}
       </CustomLink>
       {editMode && (

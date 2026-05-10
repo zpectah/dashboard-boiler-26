@@ -46,6 +46,8 @@ export type PanelCalendarWidget = PanelWidgetBase & {
 export type PanelLinksWidget = PanelWidgetBase & {
   /** List of user-created links */
   links: UserLinks;
+  /** If links should have favicons */
+  icons: boolean;
 };
 
 export interface PanelWidgets {
