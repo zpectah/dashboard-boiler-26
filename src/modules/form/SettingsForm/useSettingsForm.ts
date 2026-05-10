@@ -10,8 +10,14 @@ import { parseMasterData, parseObjectValues } from './helpers';
 export const useSettingsForm = () => {
   const { t } = useTranslation();
   const { addToast, toggleSettingsForm } = useDialogStore();
-  const { linksGoogle, linksApple, linksMicrosoft, onPatch } =
-    useAppPersistentStore();
+  const {
+    linksGoogle,
+    linksApple,
+    linksMicrosoft,
+    timestamp,
+    introduction,
+    onPatch,
+  } = useAppPersistentStore();
   const form = useForm<ISettingsForm>({
     resolver: zodResolver(settingsFormSchema),
     defaultValues: {},
@@ -30,12 +36,18 @@ export const useSettingsForm = () => {
   };
 
   useEffect(() => {
-    const store = { linksGoogle, linksApple, linksMicrosoft };
+    const store = {
+      linksGoogle,
+      linksApple,
+      linksMicrosoft,
+      timestamp,
+      introduction,
+    };
 
     if (store) {
       form.reset(parseObjectValues(store));
     }
-  }, [form, linksGoogle, linksApple, linksMicrosoft]);
+  }, [form, linksGoogle, linksApple, linksMicrosoft, timestamp, introduction]);
 
   return {
     form,
