@@ -1,8 +1,22 @@
+import { lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { DashboardView } from '../views';
-import { AppLayout } from '../components';
-import { ErrorBoundary, Toasts } from '../modules';
-import { LinkDetailForm, PanelDetailForm, SettingsForm } from '../forms';
+import { DashboardView, ErrorBoundary } from '../views';
+import {
+  Toasts,
+  SettingsForm,
+  LinkDetailForm,
+  PanelDetailForm,
+  GoogleLinks,
+  AppleLinks,
+  MsLinks,
+} from '../modules';
+import { ConfirmDialog } from '../components';
+import AppLayout from './AppLayout';
+
+const MainPanel = lazy(() => import('../modules/MainPanel/MainPanel.tsx'));
+const CustomPanel = lazy(
+  () => import('../modules/CustomPanel/CustomPanel.tsx'),
+);
 
 const AppRouter = () => {
   const router = createBrowserRouter([
@@ -11,9 +25,13 @@ const AppRouter = () => {
         <AppLayout
           slot={
             <>
+              <SettingsForm />
               <LinkDetailForm />
               <PanelDetailForm />
-              <SettingsForm />
+              <GoogleLinks />
+              <AppleLinks />
+              <MsLinks />
+              <ConfirmDialog />
               <Toasts />
             </>
           }
@@ -22,12 +40,17 @@ const AppRouter = () => {
       errorElement: <ErrorBoundary />,
       children: [
         {
-          index: true,
           element: <DashboardView />,
-        },
-        {
-          path: '/:panel',
-          element: <DashboardView />,
+          children: [
+            {
+              index: true,
+              element: <MainPanel />,
+            },
+            {
+              path: 'panel/:panel',
+              element: <CustomPanel />,
+            },
+          ],
         },
       ],
     },

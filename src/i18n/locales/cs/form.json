@@ -1,0 +1,61 @@
+{
+  "label": {
+    "panel.label": "Popisek panelu",
+    "datetime.active": "Datum a čas aktivní",
+    "datetime.type": "Typ času",
+    "datetime.date": "Zobrazit datum",
+    "datetime.fullDate": "Zobrazit celé datum",
+    "datetime.weekDay": "Zobrazit den v týdnu",
+    "datetime.seconds": "Zobrazit sekundy",
+    "datetime.secondsBlink": "Blikající oddělovač času",
+    "datetime.weather": "Zobrazit počasí",
+    "datetime.holidays": "Zobrazit svátky",
+    "datetime.holidaysOrigin": "Původ svátků",
+    "datetime.tomorrowHolidays": "Svátky na zítra",
+    "calendar.active": "Kalendář aktivní",
+    "links.active": "Odkazy aktivní",
+    "link.label": "Popisek odkazu",
+    "link.url": "URL adresa",
+    "link.order": "Pořadí",
+    "linksGoogle": "Zobrazit odkazy Google",
+    "linksApple": "Zobrazit odkazy Apple",
+    "linksMicrosoft": "Zobrazit odkazy Microsoft",
+    "section.widgets.datetime": "Widget data a času",
+    "section.widgets.calendar": "Widget kalendáře",
+    "section.widgets.links": "Widget odkazů",
+    "section.links": "Odkazy"
+  },
+  "placeholder": {
+    "panel.label": "Zadejte popisek panelu",
+    "datetime.type": "Vyberte typ hodin",
+    "datetime.holidaysOrigin": "Vyberte původ svátků",
+    "link.label": "Zadejte popisek odkazu",
+    "link.url": "https://"
+  },
+  "options": {
+    "timeType": {
+      "analog": "Ručičkové",
+      "numeric": "Číselné"
+    },
+    "holidaysOrigin": {
+      "world": "Svět",
+      "eu": "Evropa",
+      "us": "Spojené státy",
+      "cs": "Česko",
+      "sk": "Slovensko"
+    }
+  },
+  "message": {
+    "warning": {
+      "one_widget_at_least": "Musí být aktivní alespoň jeden widget"
+    },
+    "error": {
+      "required": "Pole je povinné",
+      "invalid_string": "Neplatná textová hodnota",
+      "invalid_url": "Neplatná URL adresa",
+      "invalid_number": "Neplatná číselná hodnota",
+      "invalid_boolean": "Neplatná boolean hodnota",
+      "invalid_array": "Neplatná hodnota pole"
+    }
+  }
+}

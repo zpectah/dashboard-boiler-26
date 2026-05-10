@@ -9,7 +9,7 @@ export interface ToastsItem {
   description?: string;
 }
 
-export interface IToastsItem extends Omit<ToastsItem, 'id'> {
+export interface ToastItem extends Omit<ToastsItem, 'id'> {
   autoclose?: number | boolean;
 }
 

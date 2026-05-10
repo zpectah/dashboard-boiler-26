@@ -1,5 +1,7 @@
-export { default as EditModeToggle } from './EditModeToggle';
-export { default as ImageRefresh } from './ImageRefresh';
-export { default as LocalesMenu } from './LocalesMenu';
-export { default as SettingsFormToggle } from './SettingsFormToggle';
+export { default as AppleLinksTrigger } from './AppleLinksTrigger';
+export { default as EditModeTrigger } from './EditModeTrigger';
+export { default as GoogleLinksTrigger } from './GoogleLinksTrigger';
+export { default as ImageRefreshTrigger } from './ImageRefreshTrigger';
+export { default as MsLinksTrigger } from './MsLinksTrigger';
+export { default as SettingsTrigger } from './SettingsTrigger';
 export { default as ThemeModeToggle } from './ThemeModeToggle';

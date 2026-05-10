@@ -1,0 +1,99 @@
+{
+  "button": {
+    "confirm": "Potvrdiť",
+    "cancel": "Zrušiť",
+    "submit": "Odoslať",
+    "create": "Vytvoriť",
+    "update": "Upraviť",
+    "edit": "Editovať",
+    "delete": "Vymazať",
+    "editMode": "Režim úprav",
+    "imageRefresh": "Načítať obrázok na pozadí",
+    "themeMode": "Režim vzhľadu",
+    "googleLinks": "Odkazy Google",
+    "appleLinks": "Odkazy Apple",
+    "msLinks": "Odkazy Microsoft",
+    "new_panel": "Nový panel",
+    "new_link": "Nový odkaz"
+  },
+  "label": {
+    "unknown": "Neznáme",
+    "create_panel": "Vytvoriť panel",
+    "create_link": "Vytvoriť odkaz",
+    "edit": "Upraviť",
+    "loadedIn": "Načítané za {{date}}",
+    "googleLinks": "Google",
+    "appleLinks": "Apple",
+    "msLinks": "Microsoft",
+    "localeMenu": "Menu jazykov",
+    "settings": "Nastavenia"
+  },
+  "feedback": {
+    "confirm": {
+      "delete_panel": {
+        "title": "Vymazať panel",
+        "content": "Naozaj chcete vymazať tento panel?"
+      },
+      "delete_link": {
+        "title": "Vymazať odkaz",
+        "content": "Naozaj chcete vymazať tento odkaz?"
+      }
+    },
+    "info": {
+      "weather_loading": "Načítava sa počasie, prosím čakajte"
+    },
+    "success": {
+      "data_updated": "Dáta boli úspešne aktualizované",
+      "panel_created": "Panel bol úspešne vytvorený",
+      "panel_updated": "Panel bol úspešne upravený",
+      "panel_deleted": "Panel bol úspešne vymazaný",
+      "link_created": "Odkaz bol úspešne vytvorený",
+      "link_updated": "Odkaz bol úspešne upravený",
+      "link_deleted": "Odkaz bol úspešne vymazaný"
+    },
+    "warning": {},
+    "error": {
+      "unsupported_geolocation_service": "Nepodporovaná geolokačná služba",
+      "weather_forecast_request_failed": "Požiadavka na predpoveď počasia zlyhala",
+      "geolocation_service_denied": "Geolokačná služba bola zamietnutá"
+    }
+  },
+  "weather": {
+    "clear": "Jasno",
+    "mostlyClear": "Väčšinou jasno",
+    "partlyCloudy": "Polojasno",
+    "cloudy": "Zamračené",
+    "fog": "Hmla",
+    "depositingRimeFog": "Námraza",
+    "lightDrizzle": "Slabé mrholenie",
+    "slightRain": "Slabý dážď",
+    "rain": "Dážď",
+    "slightSnowfall": "Slabé sneženie",
+    "snowfall": "Sneženie",
+    "rainShowers": "Prehánky",
+    "thunderstorm": "Búrka"
+  },
+  "weekday": {
+    "0": "Nedeľa",
+    "1": "Pondelok",
+    "2": "Utorok",
+    "3": "Streda",
+    "4": "Štvrtok",
+    "5": "Piatok",
+    "6": "Sobota"
+  },
+  "month": {
+    "1": "Januára",
+    "2": "Februára",
+    "3": "Marca",
+    "4": "Apríla",
+    "5": "Mája",
+    "6": "Júna",
+    "7": "Júla",
+    "8": "Augusta",
+    "9": "Septembera",
+    "10": "Októbera",
+    "11": "Novembera",
+    "12": "Decembera"
+  }
+}

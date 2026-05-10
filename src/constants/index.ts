@@ -1,4 +1,4 @@
-export * from './panels';
-export * from './storage';
-export * from './ui';
+export * from './keys.selector';
+export * from './keys.storage';
+export * from './panel';
 export * from './widgets';

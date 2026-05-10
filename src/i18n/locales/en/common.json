@@ -1,29 +1,64 @@
 {
   "button": {
-    "cancel": "Cancel",
     "confirm": "Confirm",
-    "edit": "Edit",
-    "delete": "Delete",
+    "cancel": "Cancel",
+    "submit": "Submit",
     "create": "Create",
     "update": "Update",
-    "imageRefresh": "Refresh background",
-    "modeToggle": "Mode toggle",
+    "edit": "Edit",
+    "delete": "Delete",
     "editMode": "Edit mode",
-    "newPanel": "New panel",
-    "newLink": "New link"
+    "imageRefresh": "Background image reload",
+    "themeMode": "Theme mode",
+    "googleLinks": "Google links",
+    "appleLinks": "Apple links",
+    "msLinks": "Microsoft links",
+    "new_panel": "New panel",
+    "new_link": "New link"
   },
   "label": {
     "unknown": "Unknown",
-    "localeMenu": "Locales",
+    "create_panel": "Create panel",
+    "create_link": "Create link",
+    "edit": "Edit",
     "loadedIn": "Loaded in {{date}}",
-    "homepageSettings": "Homepage settings"
+    "googleLinks": "Google",
+    "appleLinks": "Apple",
+    "msLinks": "Microsoft",
+    "localeMenu": "Locales menu",
+    "settings": "Settings"
   },
-  "message": {
-    "noPanelFound": "Sorry, but panel with this id was not found",
-    "loadingWeather": "Loading weather data",
-    "changesSaved": "Changes was successfully saved"
+  "feedback": {
+    "confirm": {
+      "delete_panel": {
+        "title": "Delete panel",
+        "content": "Are you sure you want to delete this panel?"
+      },
+      "delete_link": {
+        "title": "Delete link",
+        "content": "Are you sure you want to delete this link?"
+      }
+    },
+    "info": {
+      "weather_loading": "Weather loading, please wait"
+    },
+    "success": {
+      "data_updated": "Data was successfully updated",
+      "panel_created": "Panel was successfully created",
+      "panel_updated": "Panel was successfully updated",
+      "panel_deleted": "Panel was successfully deleted",
+      "link_created": "Link was successfully created",
+      "link_updated": "Link was successfully updated",
+      "link_deleted": "Link was successfully deleted"
+    },
+    "warning": {},
+    "error": {
+      "unsupported_geolocation_service": "Unsupported geolocation service",
+      "weather_forecast_request_failed": "Weather forecast request failed",
+      "geolocation_service_denied": "Geolocation service denied"
+    }
   },
-  "weatherCode": {
+  "weather": {
     "clear": "Clear",
     "mostlyClear": "Mostly Clear",
     "partlyCloudy": "Partly Cloudy",
@@ -38,43 +73,27 @@
     "rainShowers": "Showers",
     "thunderstorm": "Thunderstorm"
   },
-  "form": {
-    "label": {
-      "url": "URL address",
-      "label": "Label",
-      "name": "Name",
-      "order": "Order",
-      "panelEffect": "Panel effect"
-    },
-    "placeholder": {},
-    "options": {
-      "timeType": {
-        "analog": "Analog",
-        "numeric": "Numeric"
-      },
-      "holidaysOrigin": {
-        "world": "World",
-        "eu": "Europe",
-        "us": "United States",
-        "cs": "Czech",
-        "sk": "Slovakia"
-      },
-      "panelEffect": {
-        "fade": "Fade",
-        "grow": "Grow",
-        "slide": "Slide"
-      }
-    }
+  "weekday": {
+    "0": "Sunday",
+    "1": "Monday",
+    "2": "Tuesday",
+    "3": "Wednesday",
+    "4": "Thursday",
+    "5": "Friday",
+    "6": "Saturday"
   },
-  "features": {
-    "google": {
-      "title": "Google links"
-    },
-    "microsoft": {
-      "title": "Microsoft links"
-    },
-    "apple": {
-      "title": "Apple links"
-    }
+  "month": {
+    "1": "January",
+    "2": "February",
+    "3": "March",
+    "4": "April",
+    "5": "May",
+    "6": "June",
+    "7": "July",
+    "8": "August",
+    "9": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December"
   }
 }

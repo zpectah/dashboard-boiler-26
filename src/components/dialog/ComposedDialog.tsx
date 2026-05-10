@@ -11,12 +11,14 @@ const ComposedDialog = ({
   children,
   title,
   content,
+  subcontent,
   actions,
   disableCloseButton,
   disableBackdropClose,
   labelId,
   titleProps,
   contentProps,
+  subcontentProps,
   actionsProps,
   onClose,
   ...rest
@@ -48,6 +50,19 @@ const ComposedDialog = ({
       {title && <DialogTitle {...titleProps}>{title}</DialogTitle>}
       {content && <DialogContent {...contentProps}>{content}</DialogContent>}
       {children}
+      {subcontent && (
+        <DialogContent
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}
+          {...subcontentProps}
+        >
+          {subcontent}
+        </DialogContent>
+      )}
       {actions && <DialogActions {...actionsProps}>{actions}</DialogActions>}
     </Dialog>
   );

@@ -1,59 +1,53 @@
 import { create } from 'zustand';
-import type { ConfirmDialog, IToastsItem, Toasts } from '../types';
-import { getRandomId } from '../utils';
-import { toastsItemSeverityKeys } from '../enums';
+import type { ConfirmDialog, Toasts, ToastItem } from '@/types';
+import { toastsItemSeverityKeys } from '@/enums';
+import { getRandomId } from '@/utils';
+
+const TOAST_CLOSE_TIMEOUT_DEFAULT = 3500;
 
 interface IDialogStore {
-  panelDialog: string | null;
-  onOpenPanelDialog: (id: string | 'new') => void;
-  onClosePanelDialog: () => void;
+  /* Confirm dialog */
   confirmDialog: ConfirmDialog | null;
-  onOpenConfirmDialog: (dialog: ConfirmDialog | null) => void;
-  onCloseConfirmDialog: () => void;
-  googleLinks: boolean;
-  setGoogleLinks: (open: boolean) => void;
-  appleLinks: boolean;
-  setAppleLinks: (open: boolean) => void;
-  microsoftLinks: boolean;
-  setMicrosoftLinks: (open: boolean) => void;
-  settingsForm: boolean;
-  setSettingsForm: (open: boolean) => void;
+  openConfirmDialog: (dialog: ConfirmDialog | null) => void;
+  closeConfirmDialog: () => void;
+  /* Toasts */
   toasts: Toasts;
-  addToast: (toast: IToastsItem) => void;
+  addToast: (toast: ToastItem) => void;
   removeToast: (id: string) => void;
-  linkDetailDialog: string | null;
-  openLinkDetailDialog: (id: string | 'new') => void;
-  closeLinkDetailDialog: () => void;
+  /* Panel detail */
+  panelDetailId: string | null;
+  openPanelDetail: (id: string | null) => void;
+  closePanelDetail: () => void;
+  /* Link detail */
+  linkDetailId: string | null;
+  openLinkDetail: (id: string | null) => void;
+  closeLinkDetail: () => void;
+  /* Settings dialog */
+  settingsFormOpen: boolean;
+  toggleSettingsForm: () => void;
+  /* Links dialogs */
+  googleLinksOpen: boolean;
+  toggleGoogleLinks: () => void;
+  appleLinksOpen: boolean;
+  toggleAppleLinks: () => void;
+  msLinksOpen: boolean;
+  toggleMsLinks: () => void;
 }
 
 const useDialogStore = create<IDialogStore>((set, get) => {
-  const panelDialog: string | null = null;
   const confirmDialog: ConfirmDialog | null = null;
-  const googleLinks = false;
-  const appleLinks = false;
-  const microsoftLinks = false;
-  const settingsForm = false;
   const toasts: Toasts = [];
-  const linkDetailDialog: string | null = null;
-
-  const openPanelDialogHandler = (id: string | 'new') =>
-    set({ panelDialog: id });
-
-  const closePanelDialogHandler = () => set({ panelDialog: null });
+  const panelDetailId: string | null = null;
+  const linkDetailId: string | null = null;
+  const settingsFormOpen: boolean = false;
+  const googleLinksOpen: boolean = false;
+  const appleLinksOpen: boolean = false;
+  const msLinksOpen: boolean = false;
 
   const openConfirmDialogHandler = (dialog: ConfirmDialog | null) =>
     set({ confirmDialog: dialog });
 
   const closeConfirmDialogHandler = () => set({ confirmDialog: null });
-
-  const setGoogleLinksHandler = (open: boolean) => set({ googleLinks: open });
-
-  const setAppleLinksHandler = (open: boolean) => set({ appleLinks: open });
-
-  const setMicrosoftLinksHandler = (open: boolean) =>
-    set({ microsoftLinks: open });
-
-  const setSettingsFormHandler = (open: boolean) => set({ settingsForm: open });
 
   const removeToastHandler = (id: string) => {
     const tmpToasts = [...get().toasts];
@@ -69,7 +63,7 @@ const useDialogStore = create<IDialogStore>((set, get) => {
     description,
     severity,
     autoclose,
-  }: IToastsItem) => {
+  }: ToastItem) => {
     const tmpToasts = [...get().toasts];
     const id = getRandomId();
 
@@ -81,7 +75,8 @@ const useDialogStore = create<IDialogStore>((set, get) => {
     });
 
     if (autoclose) {
-      const timeout = typeof autoclose === 'number' ? autoclose : 3500;
+      const timeout =
+        typeof autoclose === 'number' ? autoclose : TOAST_CLOSE_TIMEOUT_DEFAULT;
 
       setTimeout(() => removeToastHandler(id), timeout);
     }
@@ -89,32 +84,55 @@ const useDialogStore = create<IDialogStore>((set, get) => {
     set({ toasts: tmpToasts });
   };
 
-  const openLinkDetailDialogHandler = (id: string | 'new') =>
-    set({ linkDetailDialog: id });
+  const openPanelDetailHandler = (id: string | null) =>
+    set(() => ({ panelDetailId: id }));
 
-  const closeLinkDetailDialogHandler = () => set({ linkDetailDialog: null });
+  const closePanelDetailHandler = () => set(() => ({ panelDetailId: null }));
+
+  const openLinkDetailHandler = (id: string | null) =>
+    set(() => ({ linkDetailId: id }));
+
+  const closeLinkDetailHandler = () => set(() => ({ linkDetailId: null }));
+
+  const toggleSettingsFormHandler = () =>
+    set((state) => ({ settingsFormOpen: !state.settingsFormOpen }));
+
+  const toggleGoogleLinksHandler = () =>
+    set((state) => ({ googleLinksOpen: !state.googleLinksOpen }));
+
+  const toggleAppleLinksHandler = () =>
+    set((state) => ({ appleLinksOpen: !state.appleLinksOpen }));
+
+  const toggleMsLinksHandler = () =>
+    set((state) => ({ msLinksOpen: !state.msLinksOpen }));
 
   return {
-    panelDialog,
-    onOpenPanelDialog: openPanelDialogHandler,
-    onClosePanelDialog: closePanelDialogHandler,
+    /* Confirm dialog */
     confirmDialog,
-    onOpenConfirmDialog: openConfirmDialogHandler,
-    onCloseConfirmDialog: closeConfirmDialogHandler,
-    googleLinks,
-    setGoogleLinks: setGoogleLinksHandler,
-    appleLinks,
-    setAppleLinks: setAppleLinksHandler,
-    microsoftLinks,
-    setMicrosoftLinks: setMicrosoftLinksHandler,
-    settingsForm,
-    setSettingsForm: setSettingsFormHandler,
+    openConfirmDialog: openConfirmDialogHandler,
+    closeConfirmDialog: closeConfirmDialogHandler,
+    /* Toasts */
     toasts,
     addToast: addToastHandler,
     removeToast: removeToastHandler,
-    linkDetailDialog,
-    openLinkDetailDialog: openLinkDetailDialogHandler,
-    closeLinkDetailDialog: closeLinkDetailDialogHandler,
+    /* Panel detail */
+    panelDetailId,
+    openPanelDetail: openPanelDetailHandler,
+    closePanelDetail: closePanelDetailHandler,
+    /* Link detail */
+    linkDetailId,
+    openLinkDetail: openLinkDetailHandler,
+    closeLinkDetail: closeLinkDetailHandler,
+    /* Settings dialog */
+    settingsFormOpen,
+    toggleSettingsForm: toggleSettingsFormHandler,
+    /* Links dialogs */
+    googleLinksOpen,
+    toggleGoogleLinks: toggleGoogleLinksHandler,
+    appleLinksOpen,
+    toggleAppleLinks: toggleAppleLinksHandler,
+    msLinksOpen,
+    toggleMsLinks: toggleMsLinksHandler,
   };
 });
 

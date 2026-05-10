@@ -1,0 +1,61 @@
+{
+  "label": {
+    "panel.label": "Panel label",
+    "datetime.active": "Date & time active",
+    "datetime.type": "Time type",
+    "datetime.date": "Show date",
+    "datetime.fullDate": "Show full date",
+    "datetime.weekDay": "Show week day",
+    "datetime.seconds": "Show seconds",
+    "datetime.secondsBlink": "Flashing hour separator",
+    "datetime.weather": "Show weather",
+    "datetime.holidays": "Show holidays",
+    "datetime.holidaysOrigin": "Holidays origin",
+    "datetime.tomorrowHolidays": "Holidays for tomorrow",
+    "calendar.active": "Calendar active",
+    "links.active": "Links active",
+    "link.label": "Link label",
+    "link.url": "URL address",
+    "link.order": "Order",
+    "linksGoogle": "Show Google links",
+    "linksApple": "Show Apple links",
+    "linksMicrosoft": "Show Microsoft links",
+    "section.widgets.datetime": "Date time widget",
+    "section.widgets.calendar": "Calendar widget",
+    "section.widgets.links": "Links widget",
+    "section.links": "Links"
+  },
+  "placeholder": {
+    "panel.label": "Type panel label",
+    "datetime.type": "Select time type",
+    "datetime.holidaysOrigin": "Select holidays origin",
+    "link.label": "Type link label",
+    "link.url": "https://"
+  },
+  "options": {
+    "timeType": {
+      "analog": "Analog",
+      "numeric": "Numeric"
+    },
+    "holidaysOrigin": {
+      "world": "World",
+      "eu": "Europe",
+      "us": "United States",
+      "cs": "Czech",
+      "sk": "Slovakia"
+    }
+  },
+  "message": {
+    "warning": {
+      "one_widget_at_least": "At least one widget must be active"
+    },
+    "error": {
+      "required": "Field is required",
+      "invalid_string": "Invalid string value",
+      "invalid_url": "Invalid URL address",
+      "invalid_number": "Invalid number value",
+      "invalid_boolean": "Invalid boolean value",
+      "invalid_array": "Invalid array value"
+    }
+  }
+}

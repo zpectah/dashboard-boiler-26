@@ -1,18 +1,22 @@
 import dayjs from 'dayjs';
+import type {
+  PanelDatetimeWidgetHolidaysOriginType,
+  WidgetHolidaysData,
+} from '@/types';
+import { getSafeArrayFromString } from '@/utils';
 import { holidays } from '../data';
-import type { HolidaysData, WidgetDateTimeHolidaysOrigin } from '../types';
-import { getSafeArrayFromString } from '../utils';
 
 export const useHolidays = (
   now: dayjs.Dayjs,
-  holidaysOrigin: WidgetDateTimeHolidaysOrigin,
+  holidaysOrigin: PanelDatetimeWidgetHolidaysOriginType,
 ) => {
   const todayMonth = now.format('M');
   const todayDay = now.format('D');
   const tomorrowObject = now.add(1, 'day');
   const tomorrowMonth = tomorrowObject.format('M');
   const tomorrowDay = tomorrowObject.format('D');
-  const holidaysObject = holidays[holidaysOrigin].holidays as HolidaysData;
+  const holidaysObject = holidays[holidaysOrigin]
+    .holidays as WidgetHolidaysData;
   const todayHolidayMonth = holidaysObject[todayMonth];
   const todayHoliday = todayHolidayMonth[todayDay];
   const tomorrowHolidayMonth = holidaysObject[tomorrowMonth];

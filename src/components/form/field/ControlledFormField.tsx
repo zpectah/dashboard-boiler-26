@@ -1,5 +1,5 @@
 import { useController, useFormContext } from 'react-hook-form';
-import { getRandomId } from '../../../utils';
+import { getRandomId } from '@/utils';
 import type { ControlledFormFieldProps } from './types';
 import FormField from './FormField';
 

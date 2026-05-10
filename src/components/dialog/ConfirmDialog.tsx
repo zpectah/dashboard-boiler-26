@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@mui/material';
-import ComposedDialog from './ComposedDialog';
 import { useDialogStore } from '../../store';
+import ComposedDialog from './ComposedDialog';
 
 const ConfirmDialog = () => {
   const [open, setOpen] = useState(false);
 
   const { t } = useTranslation();
-  const { confirmDialog, onCloseConfirmDialog } = useDialogStore();
+  const { confirmDialog, closeConfirmDialog } = useDialogStore();
 
   const confirmLabel = confirmDialog?.buttonLabel?.confirm
     ? confirmDialog?.buttonLabel?.confirm
@@ -19,12 +19,12 @@ const ConfirmDialog = () => {
 
   const confirmHandler = () => {
     confirmDialog?.onConfirm?.();
-    onCloseConfirmDialog();
+    closeConfirmDialog();
   };
 
   const cancelHandler = () => {
     setOpen(false);
-    onCloseConfirmDialog();
+    closeConfirmDialog();
     confirmDialog?.onCancel?.();
   };
 

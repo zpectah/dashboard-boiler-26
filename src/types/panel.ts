@@ -1,24 +1,64 @@
-import { panelEffectKeys } from '../enums';
-import type {
-  CalendarWidget,
-  DateTimeWidget,
-  LinksWidget,
-  WeatherWidget,
-} from './widgets';
+import {
+  datetimeWidgetHolidaysOriginKeys,
+  datetimeWidgetTypeKeys,
+} from '@/enums';
+import type { UserLinks } from './links';
+import type { EnumKeyValues } from './common';
 
-export type PanelEffect = keyof typeof panelEffectKeys;
+interface PanelWidgetBase {
+  active: boolean;
+}
 
-interface PanelWidgets {
-  calendar: CalendarWidget;
-  dateTime: DateTimeWidget;
-  links: LinksWidget;
-  weather: WeatherWidget;
+export type PanelDatetimeWidgetType = EnumKeyValues<
+  typeof datetimeWidgetTypeKeys
+>;
+export type PanelDatetimeWidgetHolidaysOriginType = EnumKeyValues<
+  typeof datetimeWidgetHolidaysOriginKeys
+>;
+
+export type PanelDatetimeWidget = PanelWidgetBase & {
+  /** Widget type by clock: analog or numeric */
+  type: PanelDatetimeWidgetType;
+  /** Show date */
+  date: boolean;
+  /** Show date in full string */
+  fullDate: boolean;
+  /** Show name of day */
+  weekDay: boolean;
+  /** Show seconds */
+  seconds: boolean;
+  /** Blinking time separator */
+  secondsBlink: boolean;
+  /** Show weather */
+  weather: boolean;
+  /** Show holidays */
+  holidays: boolean;
+  /** Show holidays also for tomorrow */
+  tomorrowHolidays: boolean;
+  /** Holidays origin options */
+  holidaysOrigin: PanelDatetimeWidgetHolidaysOriginType;
+};
+
+export type PanelCalendarWidget = PanelWidgetBase & {
+  /* No further properties */
+};
+
+export type PanelLinksWidget = PanelWidgetBase & {
+  /** List of user-created links */
+  links: UserLinks;
+};
+
+export interface PanelWidgets {
+  datetime: PanelDatetimeWidget;
+  calendar: PanelCalendarWidget;
+  links: PanelLinksWidget;
 }
 
 export interface Panel {
+  /** Unique panel ID */
   id: string;
-  name: string;
-  label?: string;
-  isMain?: boolean;
+  /** Custom label */
+  label: string;
+  /** Featured panel widgets */
   widgets: PanelWidgets;
 }

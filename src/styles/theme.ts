@@ -11,6 +11,9 @@ const theme = createTheme({
     fontWeightRegular: 400,
     fontWeightMedium: 700,
     fontWeightBold: 900,
+    h1: {
+      fontWeight: 500,
+    },
     button: {
       fontSize: '.925rem',
     },
@@ -34,7 +37,8 @@ const theme = createTheme({
     },
     MuiPaper: {
       defaultProps: {
-        variant: 'outlined',
+        // variant: 'outlined',
+        elevation: 0,
       },
     },
   },

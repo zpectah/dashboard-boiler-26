@@ -72,11 +72,15 @@ const DrawerLayout = ({
       <DrawerHeading id={`${labelId}-title`}>
         {titleIcon && titleIcon}
         {title && (
-          <Typography variant="h6" component="h3" flex={1}>
+          <Typography variant="h6" component="h3" sx={{ flex: 1 }}>
             {title}
           </Typography>
         )}
-        <Stack direction="row" gap={1} alignItems="center" justifyContent="end">
+        <Stack
+          direction="row"
+          spacing={1}
+          sx={{ alignItems: 'center', justifyContent: 'end' }}
+        >
           {titleActions?.map((button, index) => (
             <IconButtonPlus key={index} {...button} />
           ))}

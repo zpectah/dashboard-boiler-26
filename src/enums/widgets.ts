@@ -1,9 +1,9 @@
-export const dateTimeWidgetTimeKeys = {
+export const datetimeWidgetTypeKeys = {
   analog: 'analog',
   numeric: 'numeric',
 } as const;
 
-export const dateTimeWidgetHolidaysOriginKeys = {
+export const datetimeWidgetHolidaysOriginKeys = {
   cs: 'cs',
   sk: 'sk',
   eu: 'eu',

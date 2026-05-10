@@ -1,16 +1,17 @@
 import {
-  dateTimeWidgetHolidaysOriginKeys,
-  dateTimeWidgetTimeKeys,
-} from '../enums';
+  datetimeWidgetHolidaysOriginKeys,
+  datetimeWidgetTypeKeys,
+} from '@/enums';
 
-export const dateTimeWidgetTimeKeysArray = [
-  ...Object.keys(dateTimeWidgetTimeKeys),
+export const datetimeWidgetTypeKeysArray = [
+  ...Object.keys(datetimeWidgetTypeKeys),
 ] as [string, ...string[]];
 
-export const dateTimeWidgetHolidaysOriginKeysArray = [
-  ...Object.keys(dateTimeWidgetHolidaysOriginKeys),
+export const datetimeWidgetHolidaysOriginKeysArray = [
+  ...Object.keys(datetimeWidgetHolidaysOriginKeys),
 ] as [string, ...string[]];
 
-export const dateTimeWidgetTimeDefault = dateTimeWidgetTimeKeys.numeric;
-export const dateTimeWidgetHolidaysOriginDefault =
-  dateTimeWidgetHolidaysOriginKeys.world;
+export const datetimeWidgetTypeDefault = datetimeWidgetTypeKeys.numeric;
+
+export const datetimeWidgetHolidaysOriginDefault =
+  datetimeWidgetHolidaysOriginKeys.world;

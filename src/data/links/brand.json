@@ -1,0 +1,200 @@
+{
+  "google": [
+    {
+      "id": "google.com",
+      "url": "https://google.com/",
+      "label": "Google",
+      "order": 0
+    },
+    {
+      "id": "youtube",
+      "url": "https://www.youtube.com/",
+      "label": "YouTube",
+      "order": 1
+    },
+    {
+      "id": "mail.google",
+      "url": "https://mail.google.com/",
+      "label": "GMail",
+      "order": 2
+    },
+    {
+      "id": "drive.google",
+      "url": "https://drive.google.com/",
+      "label": "Drive",
+      "order": 3
+    },
+    {
+      "id": "calendar.google",
+      "url": "https://calendar.google.com/",
+      "label": "Calendar",
+      "order": 4
+    },
+    {
+      "id": "translate.google",
+      "url": "https://translate.google.com/",
+      "label": "Translate",
+      "order": 5
+    },
+    {
+      "id": "maps.google",
+      "url": "https://maps.google.com/",
+      "label": "Maps",
+      "order": 6
+    },
+    {
+      "id": "photos.google",
+      "url": "https://photos.google.com/",
+      "label": "Photos",
+      "order": 7
+    },
+    {
+      "id": "keep.google",
+      "url": "https://keep.google.com/",
+      "label": "Keep",
+      "order": 8
+    },
+    {
+      "id": "gemini.google",
+      "url": "https://gemini.google.com/",
+      "label": "Gemini",
+      "order": 9
+    },
+    {
+      "id": "play.google",
+      "url": "https://play.google.com/",
+      "label": "Play",
+      "order": 10
+    },
+    {
+      "id": "marketingplatform.google",
+      "url": "https://marketingplatform.google.com/",
+      "label": "Analytics",
+      "order": 11
+    },
+    {
+      "id": "myaccount.google",
+      "url": "https://myaccount.google.com/",
+      "label": "Google Account",
+      "order": 12
+    },
+    {
+      "id": "search.google",
+      "url": "https://search.google.com/search-console",
+      "label": "Search Console",
+      "order": 13
+    }
+  ],
+  "apple": [
+    {
+      "id": "apple.com",
+      "url": "https://apple.com/",
+      "label": "Apple",
+      "order": 0
+    },
+    {
+      "id": "support.apple",
+      "url": "https://support.apple.com/",
+      "label": "Support",
+      "order": 1
+    },
+    {
+      "id": "apps.apple",
+      "url": "https://apps.apple.com/",
+      "label": "App Store",
+      "order": 2
+    },
+    {
+      "id": "icloud.com",
+      "url": "https://www.icloud.com/",
+      "label": "iCloud",
+      "order": 3
+    },
+    {
+      "id": "developer.apple",
+      "url": "https://developer.apple.com/",
+      "label": "Developer",
+      "order": 4
+    },
+    {
+      "id": "music.apple",
+      "url": "https://music.apple.com/",
+      "label": "Apple Music",
+      "order": 5
+    },
+    {
+      "id": "tv.apple",
+      "url": "https://tv.apple.com/",
+      "label": "Apple TV+",
+      "order": 6
+    },
+    {
+      "id": "appleid.apple",
+      "url": "https://appleid.apple.com/",
+      "label": "Apple ID",
+      "order": 7
+    }
+  ],
+  "microsoft": [
+    {
+      "id": "microsoft.com",
+      "url": "https://microsoft.com/",
+      "label": "Microsoft",
+      "order": 0
+    },
+    {
+      "id": "support.microsoft",
+      "url": "https://support.microsoft.com/",
+      "label": "Support",
+      "order": 1
+    },
+    {
+      "id": "apps.microsoft",
+      "url": "https://apps.microsoft.com/",
+      "label": "Microsoft Store",
+      "order": 2
+    },
+    {
+      "id": "account.microsoft",
+      "url": "https://account.microsoft.com/",
+      "label": "Account",
+      "order": 3
+    },
+    {
+      "id": "outlook.live",
+      "url": "https://outlook.live.com/",
+      "label": "Outlook",
+      "order": 4
+    },
+    {
+      "id": "onedrive.live",
+      "url": "https://onedrive.live.com/",
+      "label": "OneDrive",
+      "order": 5
+    },
+    {
+      "id": "office.com",
+      "url": "https://www.office.com/",
+      "label": "Microsoft 365",
+      "order": 6
+    },
+    {
+      "id": "azure.microsoft",
+      "url": "https://azure.microsoft.com/",
+      "label": "Azure",
+      "order": 7
+    },
+    {
+      "id": "github.com",
+      "url": "https://github.com/",
+      "label": "GitHub",
+      "order": 8
+    },
+    {
+      "id": "linkedin.com",
+      "url": "https://www.linkedin.com/",
+      "label": "LinkedIn",
+      "order": 9
+    }
+  ]
+}

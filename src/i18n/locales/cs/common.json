@@ -1,0 +1,99 @@
+{
+  "button": {
+    "confirm": "Potvrdit",
+    "cancel": "Zrušit",
+    "submit": "Odeslat",
+    "create": "Vytvořit",
+    "update": "Upravit",
+    "edit": "Editovat",
+    "delete": "Smazat",
+    "editMode": "Režim úprav",
+    "imageRefresh": "Načíst obrázek na pozadí",
+    "themeMode": "Režim vzhledu",
+    "googleLinks": "Odkazy Google",
+    "appleLinks": "Odkazy Apple",
+    "msLinks": "Odkazy Microsoft",
+    "new_panel": "Nový panel",
+    "new_link": "Nový odkaz"
+  },
+  "label": {
+    "unknown": "Neznámé",
+    "create_panel": "Vytvořit panel",
+    "create_link": "Vytvořit odkaz",
+    "edit": "Upravit",
+    "loadedIn": "Načteno za {{date}}",
+    "googleLinks": "Google",
+    "appleLinks": "Apple",
+    "msLinks": "Microsoft",
+    "localeMenu": "Menu jazyků",
+    "settings": "Nastavení"
+  },
+  "feedback": {
+    "confirm": {
+      "delete_panel": {
+        "title": "Smazat panel",
+        "content": "Opravdu chcete smazat tento panel?"
+      },
+      "delete_link": {
+        "title": "Smazat odkaz",
+        "content": "Opravdu chcete smazat tento odkaz?"
+      }
+    },
+    "info": {
+      "weather_loading": "Načítá se počasí, prosím čekejte"
+    },
+    "success": {
+      "data_updated": "Data byla úspěšně aktualizována",
+      "panel_created": "Panel byl úspěšně vytvořen",
+      "panel_updated": "Panel byl úspěšně upraven",
+      "panel_deleted": "Panel byl úspěšně smazán",
+      "link_created": "Odkaz byl úspěšně vytvořen",
+      "link_updated": "Odkaz byl úspěšně upraven",
+      "link_deleted": "Odkaz byl úspěšně smazán"
+    },
+    "warning": {},
+    "error": {
+      "unsupported_geolocation_service": "Nepodporovaná geolokační služba",
+      "weather_forecast_request_failed": "Požadavek na předpověď počasí selhal",
+      "geolocation_service_denied": "Geolokační služba byla zamítnuta"
+    }
+  },
+  "weather": {
+    "clear": "Jasno",
+    "mostlyClear": "Většinou jasno",
+    "partlyCloudy": "Polojasno",
+    "cloudy": "Zataženo",
+    "fog": "Mlha",
+    "depositingRimeFog": "Námraza",
+    "lightDrizzle": "Slabé mrholení",
+    "slightRain": "Slabý déšť",
+    "rain": "Déšť",
+    "slightSnowfall": "Slabé sněžení",
+    "snowfall": "Sněžení",
+    "rainShowers": "Přeháňky",
+    "thunderstorm": "Bouřka"
+  },
+  "weekday": {
+    "0": "Neděle",
+    "1": "Pondělí",
+    "2": "Úterý",
+    "3": "Středa",
+    "4": "Čtvrtek",
+    "5": "Pátek",
+    "6": "Sobota"
+  },
+  "month": {
+    "1": "Ledna",
+    "2": "Února",
+    "3": "Března",
+    "4": "Dubna",
+    "5": "Května",
+    "6": "Června",
+    "7": "Července",
+    "8": "Srpna",
+    "9": "Září",
+    "10": "Října",
+    "11": "Listopadu",
+    "12": "Prosince"
+  }
+}

@@ -4,8 +4,8 @@ import type {
   DrawerProps as MUiDrawerProps,
   AlertProps,
 } from '@mui/material';
-import type { IconButtonPlusProps } from '../button';
 import type { WidthCommonValue, WithChildren } from '../../types';
+import type { IconButtonPlusProps } from '../button';
 
 export interface DrawerLayoutProps extends WithChildren {
   labelId?: string;
@@ -27,7 +27,7 @@ export interface DrawerBaseProps extends Omit<MUiDrawerProps, 'title'> {
   disableBackdropClose?: boolean;
 }
 
-export interface DrawerProps extends DrawerBaseProps {
+export interface ComposedDrawerProps extends DrawerBaseProps {
   actions?: ReactNode;
   title?: ReactNode;
   titleIcon?: ReactNode;

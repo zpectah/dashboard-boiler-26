@@ -1,75 +1,63 @@
-# React + TypeScript + Vite
+# Zpecter homepage
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About
+I wanted to have my own dashboard somewhere, which would be set as the browser's homepage.
 
-Currently, two official plugins are available:
+When I load the browser, the dashboard loads, where my favorite links are saved and basic information about the time, date and weather is displayed.
+Everything is configurable and is only stored in the browser you are currently using, meaning that no one else will ever see your data.
+I can also customize my own panels, which I can arrange as I need.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Development
 
-## React Compiler
+### Basic Dependencies
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+* react ^19.2.5
+* @mui/material ^9.0.1
+* react-hook-form ^7.75.0
 
-Note: This will impact Vite dev & build performances.
+### Development server
 
-## Expanding the ESLint configuration
+Starts a local development server, which defaults to `http://localhost:5173/`
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+% yarn start
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prettier
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Checks and corrects the formatting of the entire project folder
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```sh
+% yarn prettier:check
+```
+```sh
+% yarn prettier:fix
+```
+
+### Linter
+
+Checks formatting according to lint rules
+
+```sh
+% yarn lint
+```
+
+### Fixes
+
+Fixes an issue with location service outages on macOS
+
+```sh
+% yarn dev:fix:geolocation
+```
+
+## Tests
+
+..TODO
+
+## Build
+
+Converts source files to a publishable version
+
+```sh
+% yarn build
 ```

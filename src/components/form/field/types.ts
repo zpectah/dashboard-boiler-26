@@ -7,7 +7,7 @@ import type {
   FieldPathValue,
 } from 'react-hook-form';
 import type { GridProps, BoxProps, StackProps } from '@mui/material';
-import type { WithChildren } from '../../../types';
+import type { WithChildren } from '@/types';
 import type { LabelProps } from '../label';
 import { fieldLayoutKeys } from './enums';
 

@@ -2,14 +2,15 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import type { WithChildren } from '../types';
+import type { WithChildren } from '@/types';
+import { themeModeStorageKey } from '@/constants';
 import theme from '../styles/theme.ts';
 
 type AppProviderProps = WithChildren;
 
 const AppProvider = ({ children }: AppProviderProps) => (
   <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme} modeStorageKey={themeModeStorageKey}>
       <CssBaseline />
       {children}
     </ThemeProvider>

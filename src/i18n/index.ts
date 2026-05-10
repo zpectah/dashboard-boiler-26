@@ -1,8 +1,8 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { getConfig } from '../config';
-import { storageLocalesKey } from '../constants';
+import { getConfig } from '@/config';
+import { i18nextStorageKey } from '@/constants';
 import locales from './locales';
 
 const cfg = () => {
@@ -10,7 +10,7 @@ const cfg = () => {
 
   return {
     resources: locales,
-    supportedLngs: config.locales.available,
+    supportedLngs: config.locales.supported,
     fallbackLng: config.locales.default,
     defaultNS: 'common',
     interpolation: {
@@ -18,7 +18,7 @@ const cfg = () => {
     },
     detection: {
       order: ['localStorage'],
-      lookupLocalStorage: storageLocalesKey,
+      lookupLocalStorage: i18nextStorageKey,
       caches: ['localStorage'],
     },
   };

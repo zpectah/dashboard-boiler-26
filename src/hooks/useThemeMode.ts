@@ -1,6 +1,6 @@
 import { useColorScheme } from '@mui/material';
-import { themeModeKeys } from '../enums';
-import type { ThemeMode } from '../types';
+import { themeModeKeys } from '@/enums';
+import type { ThemeMode } from '@/types';
 
 export const useThemeMode = () => {
   const { mode, setMode } = useColorScheme();

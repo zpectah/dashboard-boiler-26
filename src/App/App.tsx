@@ -7,11 +7,11 @@ import '../i18n';
 import '../helpers/localesInit';
 
 const App = () => {
-  const { onChangeHash, setLoadTimestamp } = useAppStore();
+  const { generateHash, generateTimestamp } = useAppStore();
 
   useEffect(() => {
-    onChangeHash();
-    setLoadTimestamp(new Date().toISOString());
+    generateHash();
+    generateTimestamp();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

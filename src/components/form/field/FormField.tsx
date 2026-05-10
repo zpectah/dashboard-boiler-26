@@ -65,12 +65,12 @@ const FormField = ({
         {label !== '' && (
           <Stack
             direction="column"
-            alignItems="flex-start"
-            justifyContent="center"
-            flexWrap="wrap"
             {...labelWrapperProps}
             sx={{
               height: '100%',
+              alignItems: 'flex-start',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
               ...labelWrapperProps?.sx,
             }}
           >

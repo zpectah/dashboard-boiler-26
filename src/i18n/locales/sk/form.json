@@ -1,0 +1,61 @@
+{
+  "label": {
+    "panel.label": "Popisok panela",
+    "datetime.active": "Dátum a čas aktívny",
+    "datetime.type": "Typ času",
+    "datetime.date": "Zobraziť dátum",
+    "datetime.fullDate": "Zobraziť celý dátum",
+    "datetime.weekDay": "Zobraziť deň v týždni",
+    "datetime.seconds": "Zobraziť sekundy",
+    "datetime.secondsBlink": "Blikajúci oddeľovač času",
+    "datetime.weather": "Zobraziť počasie",
+    "datetime.holidays": "Zobraziť sviatky",
+    "datetime.holidaysOrigin": "Pôvod sviatkov",
+    "datetime.tomorrowHolidays": "Sviatky na zajtra",
+    "calendar.active": "Kalendár aktívny",
+    "links.active": "Odkazy aktívne",
+    "link.label": "Popisok odkazu",
+    "link.url": "URL adresa",
+    "link.order": "Poradie",
+    "linksGoogle": "Zobraziť odkazy Google",
+    "linksApple": "Zobraziť odkazy Apple",
+    "linksMicrosoft": "Zobraziť odkazy Microsoft",
+    "section.widgets.datetime": "Widget dátumu a času",
+    "section.widgets.calendar": "Widget kalendára",
+    "section.widgets.links": "Widget odkazov",
+    "section.links": "Odkazy"
+  },
+  "placeholder": {
+    "panel.label": "Zadajte popisok panela",
+    "datetime.type": "Vyberte typ hodin",
+    "datetime.holidaysOrigin": "Vyberte pôvod sviatkov",
+    "link.label": "Zadajte popisok odkazu",
+    "link.url": "https://"
+  },
+  "options": {
+    "timeType": {
+      "analog": "Ručičkové",
+      "numeric": "Číselné"
+    },
+    "holidaysOrigin": {
+      "world": "Svet",
+      "eu": "Európa",
+      "us": "Spojené štáty",
+      "cs": "Česko",
+      "sk": "Slovensko"
+    }
+  },
+  "message": {
+    "warning": {
+      "one_widget_at_least": "Musí byť aktívny aspoň jeden widget"
+    },
+    "error": {
+      "required": "Pole je povinné",
+      "invalid_string": "Neplatná textová hodnota",
+      "invalid_url": "Neplatná URL adresa",
+      "invalid_number": "Neplatná číselná hodnota",
+      "invalid_boolean": "Neplatná boolean hodnota",
+      "invalid_array": "Neplatná hodnota poľa"
+    }
+  }
+}
