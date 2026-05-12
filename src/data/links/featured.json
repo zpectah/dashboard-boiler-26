@@ -1,1 +1,9 @@
-{}
+{
+  "main": [
+    {
+      "id": "facebook",
+      "label": "Facebook",
+      "order": 0
+    }
+  ]
+}

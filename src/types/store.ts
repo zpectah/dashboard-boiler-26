@@ -1,3 +1,5 @@
+import { introductionContextTypeKeys } from '@/enums';
+
 export interface AppPersistentStoreData {
   linksGoogle: boolean;
   linksApple: boolean;
@@ -6,3 +8,5 @@ export interface AppPersistentStoreData {
   timestamp: string;
   introduction: boolean;
 }
+
+export type IntroductionContextType = keyof typeof introductionContextTypeKeys;

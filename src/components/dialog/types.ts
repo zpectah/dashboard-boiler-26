@@ -18,6 +18,7 @@ export interface ComposedDialogProps extends Omit<
   actions?: ReactNode;
   disableCloseButton?: boolean;
   disableBackdropClose?: boolean;
+  disableEscapeClose?: boolean;
   labelId?: string;
   titleProps?: Partial<Omit<DialogTitleProps, 'children'>>;
   contentProps?: Partial<DialogContentProps>;

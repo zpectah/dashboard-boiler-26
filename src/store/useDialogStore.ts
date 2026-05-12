@@ -1,5 +1,10 @@
 import { create } from 'zustand';
-import type { ConfirmDialog, Toasts, ToastItem } from '@/types';
+import type {
+  ConfirmDialog,
+  Toasts,
+  ToastItem,
+  IntroductionContextType,
+} from '@/types';
 import { toastsItemSeverityKeys } from '@/enums';
 import { getRandomId } from '@/utils';
 
@@ -32,6 +37,10 @@ interface IDialogStore {
   toggleAppleLinks: () => void;
   msLinksOpen: boolean;
   toggleMsLinks: () => void;
+  /* Introduction dialog */
+  introductionDialog: IntroductionContextType | null;
+  openIntroductionDialog: (context: IntroductionContextType) => void;
+  closeIntroductionDialog: () => void;
 }
 
 const useDialogStore = create<IDialogStore>((set, get) => {
@@ -43,6 +52,7 @@ const useDialogStore = create<IDialogStore>((set, get) => {
   const googleLinksOpen: boolean = false;
   const appleLinksOpen: boolean = false;
   const msLinksOpen: boolean = false;
+  const introductionDialog: IntroductionContextType | null = null;
 
   const openConfirmDialogHandler = (dialog: ConfirmDialog | null) =>
     set({ confirmDialog: dialog });
@@ -106,6 +116,12 @@ const useDialogStore = create<IDialogStore>((set, get) => {
   const toggleMsLinksHandler = () =>
     set((state) => ({ msLinksOpen: !state.msLinksOpen }));
 
+  const openIntroductionDialogHandler = (context: IntroductionContextType) =>
+    set(() => ({ introductionDialog: context }));
+
+  const closeIntroductionDialogHandler = () =>
+    set(() => ({ introductionDialog: null }));
+
   return {
     /* Confirm dialog */
     confirmDialog,
@@ -133,6 +149,10 @@ const useDialogStore = create<IDialogStore>((set, get) => {
     toggleAppleLinks: toggleAppleLinksHandler,
     msLinksOpen,
     toggleMsLinks: toggleMsLinksHandler,
+    /* Introduction dialog */
+    introductionDialog,
+    openIntroductionDialog: openIntroductionDialogHandler,
+    closeIntroductionDialog: closeIntroductionDialogHandler,
   };
 });
 

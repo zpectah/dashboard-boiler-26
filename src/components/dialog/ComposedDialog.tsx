@@ -15,6 +15,7 @@ const ComposedDialog = ({
   actions,
   disableCloseButton,
   disableBackdropClose,
+  disableEscapeClose,
   labelId,
   titleProps,
   contentProps,
@@ -32,6 +33,7 @@ const ComposedDialog = ({
       aria-describedby={`${labelId}-description`}
       onClose={(event, reason) => {
         if (disableBackdropClose && reason === 'backdropClick') return;
+        if (disableEscapeClose && reason === 'escapeKeyDown') return;
 
         onClose?.(event, reason);
       }}

@@ -7,6 +7,7 @@ import type {
   NumberInputProps,
   NumberInputAltProps,
   NumberInputAlt2Props,
+  RadioGroupProps,
 } from '../input';
 
 export interface FieldBase extends Omit<
@@ -62,4 +63,12 @@ export interface NumberAltFieldProps extends FieldBase {
 
 export interface NumberAlt2FieldProps extends FieldBase {
   inputProps?: Partial<Omit<NumberInputAlt2Props, 'fullWidth' | 'placeholder'>>;
+}
+
+export interface RadioGroupFieldProps extends Omit<
+  FieldBase,
+  'isReadOnly' | 'isFullWidth' | 'placeholder'
+> {
+  radioGroupProps?: Partial<Omit<RadioGroupProps, 'items'>>;
+  items: RadioGroupProps['items'];
 }

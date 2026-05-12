@@ -5,6 +5,9 @@ import type {
   TextFieldProps,
   SelectProps as MuiSelectProps,
   MenuItemProps,
+  RadioProps as MuiRadioProps,
+  RadioGroupProps as MuiRadioGroupProps,
+  FormControlProps,
 } from '@mui/material';
 
 export interface CheckboxProps extends Omit<
@@ -77,4 +80,18 @@ export type NumberInputAlt2Props = Omit<
   min?: number;
   max?: number;
   step?: number;
+};
+
+export type RadioProps = Omit<FormControlLabelProps, 'control' | 'label'> & {
+  label?: ReactNode;
+  inputProps?: MuiRadioProps;
+};
+
+export type RadioGroupItem = Omit<RadioProps, 'ref'>;
+
+export type RadioGroupProps = MuiRadioGroupProps & {
+  items: RadioGroupItem[];
+  label?: ReactNode;
+  controlProps?: Partial<Omit<FormControlProps, 'disabled'>>;
+  disabled?: boolean;
 };

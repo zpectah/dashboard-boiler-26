@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { DashboardView, ErrorBoundary } from '../views';
+import { DashboardView, ErrorBoundary } from '@/views';
 import {
   Toasts,
   SettingsForm,
@@ -9,8 +9,9 @@ import {
   GoogleLinks,
   AppleLinks,
   MsLinks,
-} from '../modules';
-import { ConfirmDialog } from '../components';
+  IntroductionForm,
+} from '@/modules';
+import { ConfirmDialog } from '@/components';
 import AppLayout from './AppLayout';
 
 const MainPanel = lazy(() => import('../modules/MainPanel/MainPanel.tsx'));
@@ -25,6 +26,7 @@ const AppRouter = () => {
         <AppLayout
           slot={
             <>
+              <IntroductionForm />
               <SettingsForm />
               <LinkDetailForm />
               <PanelDetailForm />
