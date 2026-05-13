@@ -1,6 +1,11 @@
 import { Button, Grid } from '@mui/material';
 import { useDialogStore } from '@/store';
-import { ComposedDialog, ControlledForm, Checkbox } from '@/components';
+import {
+  ComposedDialog,
+  ControlledForm,
+  Checkbox,
+  Fieldset,
+} from '@/components';
 import { useIntroductionForm } from './useIntroductionForm';
 
 const IntroductionForm = () => {
@@ -35,14 +40,90 @@ const IntroductionForm = () => {
             form={form}
             onSubmit={onSubmit}
           >
-            <Grid container>
-              {options.favorites.map((item) => (
-                <Checkbox
-                  key={item.id}
-                  label={item.label}
-                  onChange={() => onLinkToggle('favoritesId', item.id)}
-                />
-              ))}
+            <Grid container spacing={2}>
+              <Grid size={12}>
+                <Fieldset title="Favorites">
+                  {options.favorites.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('favoritesId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
+
+              <Grid size={12}>
+                <Fieldset title="Main">
+                  {options.main.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('featuredId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
+
+              <Grid size={12}>
+                <Fieldset title="Social">
+                  {options.social.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('featuredId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
+
+              <Grid size={12}>
+                <Fieldset title="Media">
+                  {options.media.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('featuredId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
+
+              <Grid size={12}>
+                <Fieldset title="AI">
+                  {options.ai.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('featuredId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
+
+              <Grid size={12}>
+                <Fieldset title="Coding">
+                  {options.coding.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('featuredId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
+
+              <Grid size={12}>
+                <Fieldset title="Development">
+                  {options.development.map((item) => (
+                    <Checkbox
+                      key={item.id}
+                      label={item.label}
+                      onChange={() => onLinkToggle('featuredId', item.id)}
+                    />
+                  ))}
+                </Fieldset>
+              </Grid>
             </Grid>
             ...intro form...{introductionDialog}...
           </ControlledForm>

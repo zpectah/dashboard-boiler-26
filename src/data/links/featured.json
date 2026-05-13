@@ -1,9 +1,284 @@
 {
   "main": [
     {
+      "id": "wikipedia",
+      "label": "Wikipedia",
+      "url": "https://www.wikipedia.org",
+      "order": 1
+    },
+    {
+      "id": "amazon",
+      "label": "Amazon",
+      "url": "https://www.amazon.com",
+      "order": 2
+    },
+    {
+      "id": "yahoo",
+      "label": "Yahoo",
+      "url": "https://www.yahoo.com",
+      "order": 3
+    },
+    {
+      "id": "bing",
+      "label": "Bing",
+      "url": "https://www.bing.com",
+      "order": 4
+    },
+    {
+      "id": "duckduckgo",
+      "label": "DuckDuckGo",
+      "url": "https://duckduckgo.com",
+      "order": 5
+    },
+    {
+      "id": "weather",
+      "label": "Weather",
+      "url": "https://weather.com",
+      "order": 6
+    }
+  ],
+  "social": [
+    {
       "id": "facebook",
       "label": "Facebook",
+      "url": "https://www.facebook.com",
       "order": 0
+    },
+    {
+      "id": "twitter",
+      "label": "Twitter",
+      "url": "https://www.twitter.com",
+      "order": 1
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com",
+      "order": 2
+    },
+    {
+      "id": "reddit",
+      "label": "Reddit",
+      "url": "https://www.reddit.com",
+      "order": 3
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok",
+      "url": "https://www.tiktok.com",
+      "order": 4
+    },
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com",
+      "order": 5
+    },
+    {
+      "id": "pinterest",
+      "label": "Pinterest",
+      "url": "https://www.pinterest.com",
+      "order": 6
+    },
+    {
+      "id": "9gag",
+      "label": "9GAG",
+      "url": "https://9gag.com/",
+      "order": 7
+    },
+    {
+      "id": "imgur",
+      "label": "Imgur",
+      "url": "https://imgur.com/",
+      "order": 8
+    }
+  ],
+  "media": [
+    {
+      "id": "youtube",
+      "label": "YouTube",
+      "url": "https://www.youtube.com",
+      "order": 0
+    },
+    {
+      "id": "netflix",
+      "label": "Netflix",
+      "url": "https://www.netflix.com",
+      "order": 1
+    },
+    {
+      "id": "spotify",
+      "label": "Spotify",
+      "url": "https://open.spotify.com",
+      "order": 2
+    },
+    {
+      "id": "twitch",
+      "label": "Twitch",
+      "url": "https://www.twitch.tv",
+      "order": 3
+    },
+    {
+      "id": "disney-plus",
+      "label": "Disney+",
+      "url": "https://www.disneyplus.com",
+      "order": 4
+    },
+    {
+      "id": "prime-video",
+      "label": "Prime Video",
+      "url": "https://www.primevideo.com",
+      "order": 5
+    },
+    {
+      "id": "vimeo",
+      "label": "Vimeo",
+      "url": "https://vimeo.com",
+      "order": 6
+    }
+  ],
+  "ai": [
+    {
+      "id": "chatgpt",
+      "label": "ChatGPT",
+      "url": "https://chatgpt.com",
+      "order": 0
+    },
+    {
+      "id": "openai",
+      "label": "OpenAI",
+      "url": "https://openai.com",
+      "order": 1
+    },
+    {
+      "id": "claude",
+      "label": "Claude",
+      "url": "https://claude.ai",
+      "order": 2
+    },
+    {
+      "id": "gemini",
+      "label": "Gemini",
+      "url": "https://gemini.google.com",
+      "order": 3
+    },
+    {
+      "id": "perplexity",
+      "label": "Perplexity",
+      "url": "https://www.perplexity.ai",
+      "order": 4
+    },
+    {
+      "id": "groq",
+      "label": "Groq",
+      "url": "https://groq.com",
+      "order": 5
+    }
+  ],
+  "coding": [
+    {
+      "id": "mdn",
+      "label": "MDN Web Docs",
+      "url": "https://developer.mozilla.org",
+      "order": 0
+    },
+    {
+      "id": "stackoverflow",
+      "label": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "order": 1
+    },
+    {
+      "id": "smashingmag",
+      "label": "Smashing Magazine",
+      "url": "https://www.smashingmagazine.com",
+      "order": 2
+    },
+    {
+      "id": "css-tricks",
+      "label": "CSS-Tricks",
+      "url": "https://css-tricks.com",
+      "order": 3
+    },
+    {
+      "id": "web.dev",
+      "label": "web.dev",
+      "url": "https://web.dev",
+      "order": 4
+    },
+    {
+      "id": "caniuse",
+      "label": "Can I use",
+      "url": "https://caniuse.com",
+      "order": 5
+    },
+    {
+      "id": "web-dev-weekly",
+      "label": "Web Dev Weekly",
+      "url": "https://webdevweekly.com",
+      "order": 6
+    },
+    {
+      "id": "behance",
+      "label": "Behance",
+      "url": "https://www.behance.net",
+      "order": 7
+    }
+  ],
+  "development": [
+    {
+      "id": "github",
+      "label": "GitHub",
+      "url": "https://github.com",
+      "order": 0
+    },
+    {
+      "id": "gitlab",
+      "label": "GitLab",
+      "url": "https://gitlab.com",
+      "order": 1
+    },
+    {
+      "id": "bitbucket",
+      "label": "Bitbucket",
+      "url": "https://bitbucket.org",
+      "order": 2
+    },
+    {
+      "id": "gitea",
+      "label": "Gitea",
+      "url": "https://gitea.io",
+      "order": 3
+    },
+    {
+      "id": "npm",
+      "label": "npm",
+      "url": "https://www.npmjs.com",
+      "order": 4
+    },
+    {
+      "id": "docker-hub",
+      "label": "Docker Hub",
+      "url": "https://hub.docker.com",
+      "order": 5
+    },
+    {
+      "id": "vercel",
+      "label": "Vercel",
+      "url": "https://vercel.com",
+      "order": 6
+    },
+    {
+      "id": "netlify",
+      "label": "Netlify",
+      "url": "https://www.netlify.com",
+      "order": 7
+    },
+    {
+      "id": "itch-io",
+      "label": "itch.io",
+      "url": "https://itch.io/",
+      "order": 8
     }
   ]
 }
