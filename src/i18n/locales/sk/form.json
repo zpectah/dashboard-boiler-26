@@ -24,7 +24,17 @@
     "section.widgets.datetime": "Widget dátumu a času",
     "section.widgets.calendar": "Widget kalendára",
     "section.widgets.links": "Widget odkazov",
-    "section.links": "Odkazy"
+    "section.links": "Odkazy",
+    "introduction.title": "Vitajte",
+    "introduction.welcome": "Vitajte na homepage, kde si môžete pridávať/upravovať/mazať vaše obľúbené odkazy a iné užitočné widgety. Môžete si spravovať celé panely a pridávať či upravovať podľa potrieb.\n\nStránku si uložte ako svoju úvodnú stránku prehliadača aby ste mali svoje odkazy vždy po ruke.\n\nTu nižšie si môžete vybrať z ponuky odkazov alebo si odkazy môžete pridať neskôr.",
+    "introduction.favorites": "Našli sme uložené obľúbené odkazy z predchádzajúcej verzie, teraz si ju môžete pridať aj do novej verzie.",
+    "section.favorites": "Favorites",
+    "section.main": "Main",
+    "section.social": "Social",
+    "section.media": "Media",
+    "section.ai": "AI",
+    "section.coding": "Coding",
+    "section.development": "Development"
   },
   "placeholder": {
     "panel.label": "Zadajte popisok panela",

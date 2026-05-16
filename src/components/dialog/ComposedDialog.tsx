@@ -1,8 +1,9 @@
 import {
   Dialog,
-  DialogTitle,
   DialogContent,
   DialogActions,
+  Stack,
+  Typography,
 } from '@mui/material';
 import { CloseButton } from '../button';
 import type { ComposedDialogProps } from './types';
@@ -10,6 +11,7 @@ import type { ComposedDialogProps } from './types';
 const ComposedDialog = ({
   children,
   title,
+  titleSlot,
   content,
   subcontent,
   actions,
@@ -17,7 +19,6 @@ const ComposedDialog = ({
   disableBackdropClose,
   disableEscapeClose,
   labelId,
-  titleProps,
   contentProps,
   subcontentProps,
   actionsProps,
@@ -49,7 +50,26 @@ const ComposedDialog = ({
           onClick={closeHandler}
         />
       )}
-      {title && <DialogTitle {...titleProps}>{title}</DialogTitle>}
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={({ spacing }) => ({
+          padding: spacing(2.25),
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        })}
+      >
+        {title && <Typography variant="h3">{title}</Typography>}
+        {titleSlot && (
+          <Stack
+            direction="row"
+            spacing={2}
+            sx={{ alignItems: 'center', justifyContent: 'center' }}
+          >
+            {titleSlot}
+          </Stack>
+        )}
+      </Stack>
       {content && <DialogContent {...contentProps}>{content}</DialogContent>}
       {children}
       {subcontent && (

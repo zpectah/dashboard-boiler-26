@@ -24,7 +24,17 @@
     "section.widgets.datetime": "Date time widget",
     "section.widgets.calendar": "Calendar widget",
     "section.widgets.links": "Links widget",
-    "section.links": "Links"
+    "section.links": "Links",
+    "introduction.title": "Welcome",
+    "introduction.welcome": "Welcome to the homepage, where you can add/edit/delete your favorite links and other useful widgets. You can manage entire panels and add or edit as needed.\n\nSave this page as your browser homepage to always have your links at hand.\n\nYou can choose from a list of links below, or you can add links later.",
+    "introduction.favorites": "We found saved favorite links from the previous version, now you can add it to the new version.",
+    "section.favorites": "Favorites",
+    "section.main": "Main",
+    "section.social": "Social",
+    "section.media": "Media",
+    "section.ai": "AI",
+    "section.coding": "Coding",
+    "section.development": "Development"
   },
   "placeholder": {
     "panel.label": "Type panel label",

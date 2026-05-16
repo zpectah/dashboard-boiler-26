@@ -16,7 +16,9 @@
     "msLinks": "Microsoft links",
     "new_panel": "New panel",
     "new_link": "New link",
-    "savedDataReset": "Reset saved data"
+    "savedDataReset": "Reset saved data",
+    "saveAndContinue": "Save and continue",
+    "skipIntroduction": "Continue without settings"
   },
   "label": {
     "unknown": "Unknown",

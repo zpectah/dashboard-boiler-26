@@ -16,7 +16,9 @@
     "msLinks": "Odkazy Microsoft",
     "new_panel": "Nový panel",
     "new_link": "Nový odkaz",
-    "savedDataReset": "Vymazať uložené dáta"
+    "savedDataReset": "Vymazať uložené dáta",
+    "saveAndContinue": "Uložiť a pokračovať",
+    "skipIntroduction": "Pokračovať bez nastavenia"
   },
   "label": {
     "unknown": "Neznáme",

@@ -6,7 +6,11 @@ import { getConfig } from '@/config';
 import { useLocales } from '@/hooks';
 import { IconButtonPlus } from '../components';
 
-const LocalesMenu = () => {
+interface LocalesMenuProps {
+  prefix?: string;
+}
+
+const LocalesMenu = ({ prefix }: LocalesMenuProps) => {
   const { locales } = getConfig();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -15,6 +19,7 @@ const LocalesMenu = () => {
   const { locale, onChange } = useLocales();
 
   const open = Boolean(anchorEl);
+  const selectorPrefix = prefix ? prefix : 'header';
 
   const openHandler = (event: MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(event.currentTarget);
@@ -30,8 +35,8 @@ const LocalesMenu = () => {
   return (
     <>
       <IconButtonPlus
-        id="locale-menu-button"
-        aria-controls={open ? 'locale-menu' : undefined}
+        id={`${selectorPrefix}_locale-menu-button`}
+        aria-controls={open ? `${selectorPrefix}_locale-menu` : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={openHandler}
@@ -40,13 +45,13 @@ const LocalesMenu = () => {
         {open ? <IconX /> : <IconLanguage />}
       </IconButtonPlus>
       <Menu
-        id="locale-menu"
+        id={`${selectorPrefix}_locale-menu`}
         anchorEl={anchorEl}
         open={open}
         onClose={closeHandler}
         slotProps={{
           list: {
-            'aria-labelledby': 'locale-menu-button',
+            'aria-labelledby': `${selectorPrefix}_locale-menu-button`,
           },
         }}
       >

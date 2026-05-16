@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useAppPersistentStore, useDialogStore } from '@/store';
+import { useAppPersistentStore, useDialogStore, usePanelsStore } from '@/store';
 import type { UserLinks, V25MigrationData } from '@/types';
 import { introductionContextTypeKeys } from '@/enums';
 import { links } from '../../../data';
 import type { IIntroductionForm } from './types';
 import { introductionFormSchema } from './schema';
+import { mainPanelId } from '@/constants';
 
 export const useIntroductionForm = () => {
+  const { t } = useTranslation();
   const { introduction } = useAppPersistentStore();
-  const { openIntroductionDialog, closeIntroductionDialog } = useDialogStore();
+  const { openIntroductionDialog, closeIntroductionDialog, addToast } =
+    useDialogStore();
+  const { onLinkCreate } = usePanelsStore();
   const form = useForm<IIntroductionForm>({
     resolver: zodResolver(introductionFormSchema),
     defaultValues: {
@@ -106,38 +111,37 @@ export const useIntroductionForm = () => {
       ),
     ];
 
-    const linksToImportRaw = [...pickedFavorites, ...pickedFeatured];
-    const linksToImport = linksToImportRaw.map((item, index) => ({
-      id: item.id,
-      label: item.label,
-      order: index,
-    }));
+    const linksToImport = [...pickedFavorites, ...pickedFeatured];
 
-    console.log(
-      'on submit',
-      data,
-      pickedFavorites,
-      pickedFeatured,
-      linksToImport,
-    );
+    linksToImport.forEach((item, index) => {
+      return onLinkCreate(mainPanelId, {
+        id: item.id,
+        label: item.label,
+        order: index,
+        url: item.url,
+      });
+    });
 
-    // TODO: delete oldData storage
+    addToast({
+      severity: 'info',
+      title: t('feedback.success.panel_updated'),
+      autoclose: true,
+    });
+
+    localStorage.removeItem('CONTENT');
+    closeIntroductionDialog();
   };
 
   const cancelHandler = () => {
-    console.log('cancel handler ');
-    // TODO: continue without setting links or migartion data
-
+    localStorage.removeItem('CONTENT');
     closeIntroductionDialog();
   };
 
   useEffect(() => {
     if (!introduction) {
       if (oldDataJson) {
-        console.log('OLD data found!!!');
         openIntroductionDialog(introductionContextTypeKeys.migration);
       } else {
-        console.log('OLD data not found');
         openIntroductionDialog(introductionContextTypeKeys.new);
       }
     }
