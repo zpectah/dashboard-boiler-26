@@ -57,7 +57,13 @@ const WeatherSnippet = () => {
               <Stack direction="row" spacing={0.5}>
                 <Typography
                   variant="h5"
-                  sx={{ fontWeight: 500, margin: 0, padding: 0, lineHeight: 1 }}
+                  sx={{
+                    fontSize: '2rem',
+                    fontWeight: 500,
+                    margin: 0,
+                    padding: 0,
+                    lineHeight: 1,
+                  }}
                 >
                   {weather.current_weather.temperature}
                 </Typography>
@@ -68,7 +74,7 @@ const WeatherSnippet = () => {
                   {weather.current_weather_units.temperature}
                 </Typography>
               </Stack>
-              <Typography variant="subtitle1">
+              <Typography color="textSecondary" sx={{ fontSize: '1.25rem' }}>
                 {locationName ?? '...'}
               </Typography>
             </Stack>

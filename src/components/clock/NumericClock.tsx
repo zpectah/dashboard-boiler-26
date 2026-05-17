@@ -16,7 +16,15 @@ const NumericClock = ({ time, seconds, secondVisible }: NumericClockProps) => {
       direction="row"
       sx={{ alignItems: 'center', justifyContent: 'center' }}
     >
-      <Typography variant="h1">
+      <Typography
+        variant="h1"
+        sx={{
+          fontSize: '5rem',
+          fontWeight: 500,
+          lineHeight: 1,
+          letterSpacing: '.125rem',
+        }}
+      >
         {time.hours}
         <span style={{ opacity: secondVisible ? 1 : 0 }}>:</span>
         {time.minutes}

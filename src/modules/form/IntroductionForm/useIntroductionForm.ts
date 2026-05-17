@@ -5,14 +5,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppPersistentStore, useDialogStore, usePanelsStore } from '@/store';
 import type { UserLinks, V25MigrationData } from '@/types';
 import { introductionContextTypeKeys } from '@/enums';
+import { contentStorageMigrationKey, mainPanelId } from '@/constants';
 import { links } from '../../../data';
 import type { IIntroductionForm } from './types';
 import { introductionFormSchema } from './schema';
-import { mainPanelId } from '@/constants';
 
 export const useIntroductionForm = () => {
   const { t } = useTranslation();
-  const { introduction } = useAppPersistentStore();
+  const { introduction, setIntroduction, setTimestamp } =
+    useAppPersistentStore();
   const { openIntroductionDialog, closeIntroductionDialog, addToast } =
     useDialogStore();
   const { onLinkCreate } = usePanelsStore();
@@ -24,8 +25,7 @@ export const useIntroductionForm = () => {
     },
   });
 
-  /* 1. check data for migration */
-  const oldData = localStorage.getItem('CONTENT');
+  const oldData = localStorage.getItem(contentStorageMigrationKey);
   const oldDataJson = oldData
     ? (JSON.parse(oldData) as V25MigrationData)
     : null;
@@ -33,8 +33,6 @@ export const useIntroductionForm = () => {
   const [favorites] = useState<UserLinks>(() => [
     ...(oldDataJson?.favorites?.items ?? []),
   ]);
-
-  /* 2. open introduction */
 
   const options = {
     favorites: favorites.map((item) => ({
@@ -88,6 +86,13 @@ export const useIntroductionForm = () => {
     }
   };
 
+  const completeIntroductionHandler = () => {
+    setIntroduction();
+    setTimestamp();
+    localStorage.removeItem(contentStorageMigrationKey);
+    closeIntroductionDialog();
+  };
+
   const submitHandler: SubmitHandler<IIntroductionForm> = (data) => {
     const pickedFavorites = favorites.filter((item) =>
       data.favoritesId.includes(item.id),
@@ -128,14 +133,10 @@ export const useIntroductionForm = () => {
       autoclose: true,
     });
 
-    localStorage.removeItem('CONTENT');
-    closeIntroductionDialog();
+    completeIntroductionHandler();
   };
 
-  const cancelHandler = () => {
-    localStorage.removeItem('CONTENT');
-    closeIntroductionDialog();
-  };
+  const cancelHandler = () => completeIntroductionHandler();
 
   useEffect(() => {
     if (!introduction) {

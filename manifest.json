@@ -1,0 +1,16 @@
+{
+  "name": "zpecter homepage",
+  "short_name": "homepage",
+  "description": "Personalized browser homepage with customization options",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/homepage.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}

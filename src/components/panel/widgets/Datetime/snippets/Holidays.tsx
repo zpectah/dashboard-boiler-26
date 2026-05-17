@@ -18,9 +18,11 @@ const HolidaysSnippet = ({
     <Stack
       direction="column"
       spacing={0.25}
-      sx={{ pt: 1, alignItems: 'center', justifyContent: 'center' }}
+      sx={{ alignItems: 'center', justifyContent: 'center' }}
     >
-      <Typography variant="body1">{holidays.today}</Typography>
+      <Typography sx={{ fontSize: '1.25rem', fontWeight: 400 }}>
+        {holidays.today}
+      </Typography>
       {showTomorrow && (
         <Typography variant="body2" color="textDisabled">
           {holidays.tomorrow}

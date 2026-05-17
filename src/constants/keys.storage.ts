@@ -4,3 +4,5 @@ export const panelStorageKey = 'hp-panel-data';
 export const appPersistentStorageKey = 'hp-app-persist';
 export const forecastStorageKey = 'hp-weather-forecast';
 export const reverseGeocodingLocationStorageKey = 'hp-reverse-geocoding';
+
+export const contentStorageMigrationKey = 'CONTENT';

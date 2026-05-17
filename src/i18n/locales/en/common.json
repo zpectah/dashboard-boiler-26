@@ -25,7 +25,7 @@
     "create_panel": "Create panel",
     "create_link": "Create link",
     "edit": "Edit",
-    "loadedIn": "Loaded in {{date}}",
+    "loadedIn": "Loaded {{date}}",
     "googleLinks": "Google",
     "appleLinks": "Apple",
     "msLinks": "Microsoft",

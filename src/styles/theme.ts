@@ -74,7 +74,6 @@ const theme = createTheme({
     },
     MuiPaper: {
       defaultProps: {
-        // variant: 'outlined',
         elevation: 0,
       },
     },

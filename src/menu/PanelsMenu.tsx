@@ -1,10 +1,10 @@
+import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Stack, Tabs, Tab } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
 import { useDialogStore, usePanelsStore } from '@/store';
 import { IconButtonPlus } from '@/components';
-import { useMemo } from 'react';
 import { mainPanelId } from '@/constants';
 
 const PanelsMenu = () => {
@@ -24,14 +24,13 @@ const PanelsMenu = () => {
 
   const panels = useMemo(() => [main, ...custom], [main, custom]);
 
-  const panelIndex = useMemo(
-    () =>
-      panels.findIndex(
-        (item) =>
-          item.id === panel || (panel === undefined && item.id === mainPanelId),
-      ) ?? 0,
-    [panel, panels],
-  );
+  const panelIndex = useMemo(() => {
+    const targetId = panel ?? mainPanelId;
+    return Math.max(
+      0,
+      panels.findIndex((item) => item.id === targetId),
+    );
+  }, [panel, panels]);
 
   return (
     <Stack
@@ -44,12 +43,7 @@ const PanelsMenu = () => {
         overflow: 'hidden',
       }}
     >
-      <Tabs
-        key={panel}
-        value={panelIndex}
-        variant="scrollable"
-        scrollButtons="auto"
-      >
+      <Tabs value={panelIndex} variant="scrollable" scrollButtons="auto">
         {panels.map((item, index) => {
           const path = item.id === mainPanelId ? '/' : `panel/${item.id}`;
 

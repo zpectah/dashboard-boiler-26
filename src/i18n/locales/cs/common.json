@@ -25,7 +25,7 @@
     "create_panel": "Vytvořit panel",
     "create_link": "Vytvořit odkaz",
     "edit": "Upravit",
-    "loadedIn": "Načteno za {{date}}",
+    "loadedIn": "Načteno {{date}}",
     "googleLinks": "Google",
     "appleLinks": "Apple",
     "msLinks": "Microsoft",

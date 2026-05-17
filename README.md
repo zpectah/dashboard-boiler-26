@@ -1,6 +1,8 @@
-# Zpecter homepage
+# Zpecter Homepage
 
 ## About
+Zpecter Homepage is an open-source project designed to be a customizable browser homepage. It allows users to manage and arrange various panels, each containing different widgets such as a search bar, clock, date, holidays, calendar, weather, and favorite links. All configurations and data are stored locally in the user's browser, ensuring privacy and that no personal data is shared or seen by others. This project aims to provide a personalized and efficient starting point for every browsing session.
+
 I wanted to have my own dashboard somewhere, which would be set as the browser's homepage.
 
 When I load the browser, the dashboard loads, where my favorite links are saved and basic information about the time, date and weather is displayed.

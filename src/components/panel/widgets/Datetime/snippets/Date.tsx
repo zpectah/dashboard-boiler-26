@@ -18,20 +18,22 @@ const DateSnippet = ({ fullDate, weekDay }: DateSnippetProps) => {
       sx={{
         alignItems: 'center',
         justifyContent: 'center',
+        fontSize: '1.5rem',
+        fontWeight: 500,
       }}
     >
       {weekDay && (
-        <Typography variant="h5">
+        <Typography sx={{ fontSize: 'inherit', fontWeight: 'inherit' }}>
           {t(`weekday.${parsed.date.weekDay}`)}
         </Typography>
       )}
       {fullDate ? (
-        <Typography variant="h5">
+        <Typography sx={{ fontSize: 'inherit', fontWeight: 'inherit' }}>
           {parsed.date.day}. {t(`month.${parsed.date.month}`)}{' '}
           {parsed.date.year}
         </Typography>
       ) : (
-        <Typography variant="h5">
+        <Typography sx={{ fontSize: 'inherit', fontWeight: 'inherit' }}>
           {parsed.date.day}.{parsed.date.month}. {parsed.date.year}
         </Typography>
       )}

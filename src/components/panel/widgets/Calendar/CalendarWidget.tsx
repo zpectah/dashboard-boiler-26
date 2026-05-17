@@ -45,16 +45,25 @@ const CalendarWidget = ({ gridProps, ...widget }: CalendarWidgetProps) => {
               '& .MuiPickersCalendarHeader-labelContainer': {
                 display: 'none',
               },
+              '& .MuiButtonBase-root': {
+                pointerEvents: 'none',
+
+                '&.MuiPickerDay-root': {
+                  fontSize: '.85rem',
+
+                  '&.MuiPickerDay-dayOutsideMonth': {
+                    opacity: 0.35,
+                  },
+                },
+              },
               '& .MuiPickersArrowSwitcher-root': {
                 display: 'none',
               },
-              '& .MuiPickersDay-root': {
-                pointerEvents: 'none',
+              '& .MuiPickersDay-root': {},
+
+              '& .MuiDayCalendar-weekDayLabel': {
+                fontWeight: 700,
               },
-              '& .MuiPickersDay-dayOutsideMonth': {
-                opacity: 0.35,
-              },
-              '& .MuiDayCalendar-weekDayLabel': {},
               '& .MuiPickersDay-root.Mui-selected': {},
             })}
             slotProps={{
