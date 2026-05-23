@@ -6,8 +6,10 @@ interface UseTickTokProps {
   intervalMs?: number;
 }
 
+const INTERVAL_DEFAULT = 1000;
+
 export const useTickTock = (props?: UseTickTokProps) => {
-  const { callback, intervalMs = 1000 } = props ?? {};
+  const { callback, intervalMs = INTERVAL_DEFAULT } = props ?? {};
   const callbackRef = useRef(callback);
 
   const [now, setNow] = useState(() => dayjs());

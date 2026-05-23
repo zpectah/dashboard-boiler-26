@@ -2,13 +2,14 @@ import { Box, Grid, Paper } from '@mui/material';
 import { DateCalendar } from '@mui/x-date-pickers';
 import { useTickTock } from '@/hooks';
 import { useAppStore } from '@/store';
+import { widgetCalendarRefreshTimeout } from '@/constants';
 import type { CalendarWidgetProps } from '../types';
 
 const CalendarWidget = ({ gridProps, ...widget }: CalendarWidgetProps) => {
   const { active } = widget;
 
   const { editMode } = useAppStore();
-  const { now } = useTickTock({ intervalMs: 60_000 });
+  const { now } = useTickTock({ intervalMs: widgetCalendarRefreshTimeout });
 
   if (!active) return;
 
@@ -47,6 +48,7 @@ const CalendarWidget = ({ gridProps, ...widget }: CalendarWidgetProps) => {
               },
               '& .MuiButtonBase-root': {
                 pointerEvents: 'none',
+                outline: 'none',
 
                 '&.MuiPickerDay-root': {
                   fontSize: '.85rem',

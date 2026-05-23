@@ -1,6 +1,7 @@
 import { Stack, Typography } from '@mui/material';
 import { useHolidays, useTickTock } from '@/hooks';
 import type { PanelDatetimeWidgetHolidaysOriginType } from '@/types';
+import { snippetHolidaysRefreshTimeout } from '@/constants';
 
 interface HolidaysSnippetProps {
   holidaysOrigin: PanelDatetimeWidgetHolidaysOriginType;
@@ -11,7 +12,7 @@ const HolidaysSnippet = ({
   holidaysOrigin,
   showTomorrow,
 }: HolidaysSnippetProps) => {
-  const { now } = useTickTock({ intervalMs: 60_000 });
+  const { now } = useTickTock({ intervalMs: snippetHolidaysRefreshTimeout });
   const holidays = useHolidays(now, holidaysOrigin);
 
   return (

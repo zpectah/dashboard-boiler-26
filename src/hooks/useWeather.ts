@@ -10,6 +10,7 @@ import type {
 import {
   forecastStorageKey,
   reverseGeocodingLocationStorageKey,
+  snippetWeatherRefreshTimeout,
 } from '@/constants';
 
 type WeatherState = {
@@ -39,7 +40,7 @@ export const useWeather = () => {
           cachedData,
         ) as ReverseGeocodingStorage;
 
-        const isFresh = now - timestamp < 24 * 60 * 60 * 1000;
+        const isFresh = now - timestamp < snippetWeatherRefreshTimeout;
         const isSameLocation =
           Math.abs(coords.lat - lat) < 0.01 &&
           Math.abs(coords.lng - lng) < 0.01;
