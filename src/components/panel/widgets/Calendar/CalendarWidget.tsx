@@ -38,13 +38,23 @@ const CalendarWidget = ({ gridProps, ...widget }: CalendarWidgetProps) => {
             showDaysOutsideCurrentMonth
             fixedWeekNumber={6}
             readOnly
-            sx={() => ({
+            sx={(theme) => ({
               '& .MuiPickersCalendarHeader-root': {
                 minHeight: 'initial',
                 maxHeight: 'initial',
               },
               '& .MuiPickersCalendarHeader-labelContainer': {
                 display: 'none',
+              },
+              '& .MuiDayCalendar-weekContainer': {
+                '&:has(.MuiButtonBase-root.MuiPickerDay-root.Mui-selected )': {
+                  paddingTop: '.25rem',
+                  paddingBottom: '.25rem',
+                  backgroundColor: theme.alpha(
+                    theme.palette.text.secondary,
+                    0.025,
+                  ),
+                },
               },
               '& .MuiButtonBase-root': {
                 pointerEvents: 'none',
