@@ -9,6 +9,8 @@ import {
   dialogRedirectDelayDefault,
   mainPanelId,
   newPanelId,
+  panelViewPathPrefix,
+  searchWidgetEnginesKeysArray,
 } from '@/constants';
 import { useDialogStore, usePanelsStore } from '../../../store';
 import { panelDetailFormSchema } from './schema';
@@ -42,6 +44,11 @@ export const usePanelDetailForm = () => {
       value: item,
       label: t(`form:options.holidaysOrigin.${item}`),
     })),
+    engines: searchWidgetEnginesKeysArray.map((item) => ({
+      id: item,
+      value: item,
+      label: t(`form:options.searchEngine.${item}`),
+    })),
   };
 
   const submitHandler: SubmitHandler<IPanelDetailForm> = (data) => {
@@ -54,7 +61,8 @@ export const usePanelDetailForm = () => {
     if (
       !master.widgets.datetime.active &&
       !master.widgets.calendar.active &&
-      !master.widgets.links.active
+      !master.widgets.links.active &&
+      !master.widgets.search?.active
     ) {
       setFormWarning('one_widget_at_least');
 
@@ -69,7 +77,7 @@ export const usePanelDetailForm = () => {
         autoclose: true,
       });
       setTimeout(
-        () => navigate(`panel/${master.id}`),
+        () => navigate(`${panelViewPathPrefix}${master.id}`),
         dialogRedirectDelayDefault,
       );
     } else {

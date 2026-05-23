@@ -1,6 +1,7 @@
 import {
   datetimeWidgetHolidaysOriginDefault,
   datetimeWidgetTypeDefault,
+  searchWidgetEngineDefault,
 } from './widgets';
 
 export const panelWidgetObjectBase = {
@@ -28,5 +29,9 @@ export const panelWidgetDefaults = {
     ...panelWidgetObjectBase,
     links: [],
     icons: true,
+  },
+  search: {
+    ...panelWidgetObjectBase,
+    engine: searchWidgetEngineDefault,
   },
 };

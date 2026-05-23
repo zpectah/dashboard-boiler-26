@@ -28,10 +28,25 @@ export const getConfig = () => {
     openMeteo: 'https://api.open-meteo.com/v1/forecast',
     openStreetMap: 'https://nominatim.openstreetmap.org/reverse',
   };
+  const engines = {
+    google: 'https://www.google.com/search',
+    bing: 'www.bing.com/search',
+    duckDuck: 'https://duckduckgo.com',
+  };
+  const features = {
+    panels: {
+      max: 5,
+    },
+    links: {
+      max: 100,
+    },
+  };
 
   return {
     meta,
     locales,
     api,
+    engines,
+    features,
   };
 };

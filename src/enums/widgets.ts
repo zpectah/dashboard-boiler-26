@@ -10,3 +10,9 @@ export const datetimeWidgetHolidaysOriginKeys = {
   us: 'us',
   world: 'world',
 } as const;
+
+export const searchWidgetEnginesKeys = {
+  google: 'google',
+  bing: 'bing',
+  duckDuck: 'duckDuck',
+} as const;

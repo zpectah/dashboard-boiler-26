@@ -31,6 +31,10 @@ const PanelDetailForm = () => {
     name: 'widgets.links',
     control: form.control,
   });
+  const search = useWatch({
+    name: 'widgets.search',
+    control: form.control,
+  });
 
   return (
     <>
@@ -79,6 +83,27 @@ const PanelDetailForm = () => {
                   layout="vertical"
                   isFullWidth
                 />
+              </Grid>
+              <Grid size={12}>
+                <Fieldset title={t('form:label.section.widgets.search')}>
+                  <Grid container spacing={1}>
+                    <CheckboxField
+                      name="widgets.search.active"
+                      label=""
+                      fieldLabel={t('form:label.search.active')}
+                      layout="vertical"
+                    />
+                    <SelectField
+                      name="widgets.search.engine"
+                      label={t('form:label.search.engine')}
+                      placeholder={t('form:placeholder.search.engine')}
+                      options={options.engines}
+                      layout="vertical"
+                      isFullWidth
+                      isDisabled={!search?.active}
+                    />
+                  </Grid>
+                </Fieldset>
               </Grid>
               <Grid size={12}>
                 <Fieldset title={t('form:label.section.widgets.datetime')}>

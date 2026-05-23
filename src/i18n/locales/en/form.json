@@ -15,6 +15,8 @@
     "calendar.active": "Calendar active",
     "links.active": "Links active",
     "links.icons": "Favicons",
+    "search.active": "Search active",
+    "search.engine": "Engine",
     "link.label": "Link label",
     "link.url": "URL address",
     "link.order": "Order",
@@ -24,6 +26,7 @@
     "section.widgets.datetime": "Date time widget",
     "section.widgets.calendar": "Calendar widget",
     "section.widgets.links": "Links widget",
+    "section.widgets.search": "Search widget",
     "section.links": "Links",
     "introduction.title": "Welcome",
     "introduction.welcome": "Welcome to the homepage, where you can add/edit/delete your favorite links and other useful widgets. You can manage entire panels and add or edit as needed.\n\nSave this page as your browser homepage to always have your links at hand.\n\nYou can choose from a list of links below, or you can add links later.",
@@ -41,7 +44,13 @@
     "datetime.type": "Select time type",
     "datetime.holidaysOrigin": "Select holidays origin",
     "link.label": "Type link label",
-    "link.url": "https://"
+    "link.url": "https://",
+    "search.engine": "Select engine",
+    "search": {
+      "google": "Google search",
+      "bing": "Bing search",
+      "duckDuck": "Search with Duck Duck Go ..."
+    }
   },
   "options": {
     "timeType": {
@@ -54,6 +63,11 @@
       "us": "United States",
       "cs": "Czech",
       "sk": "Slovakia"
+    },
+    "searchEngine": {
+      "google": "Google",
+      "bing": "Bing",
+      "duckDuck": "DuckDuckGo"
     }
   },
   "message": {
@@ -66,7 +80,8 @@
       "invalid_url": "Invalid URL address",
       "invalid_number": "Invalid number value",
       "invalid_boolean": "Invalid boolean value",
-      "invalid_array": "Invalid array value"
+      "invalid_array": "Invalid array value",
+      "max_length": "Character limit exceeded"
     }
   }
 }

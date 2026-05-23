@@ -4,6 +4,7 @@ import {
 } from '@/enums';
 import type { UserLinks } from './links';
 import type { EnumKeyValues } from './common';
+import type { WidgetSearchEngines } from './widgets';
 
 interface PanelWidgetBase {
   active: boolean;
@@ -50,10 +51,15 @@ export type PanelLinksWidget = PanelWidgetBase & {
   icons: boolean;
 };
 
+export type PanelSearchWidget = PanelWidgetBase & {
+  engine: WidgetSearchEngines;
+};
+
 export interface PanelWidgets {
   datetime: PanelDatetimeWidget;
   calendar: PanelCalendarWidget;
   links: PanelLinksWidget;
+  search: PanelSearchWidget;
 }
 
 export interface Panel {

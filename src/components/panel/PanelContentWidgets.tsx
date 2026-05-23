@@ -1,6 +1,11 @@
 import { styled, Grid } from '@mui/material';
 import type { Panel } from '@/types';
-import { CalendarWidget, LinksWidget, DatetimeWidget } from './widgets';
+import {
+  CalendarWidget,
+  LinksWidget,
+  DatetimeWidget,
+  SearchWidget,
+} from './widgets';
 
 const WidgetWrapper = styled('div')(() => ({
   width: '100%',
@@ -26,6 +31,13 @@ const PanelContentWidgets = ({ panel }: PanelContentWidgetsProps) => {
   return (
     <WidgetWrapper id="panel-content-widgets">
       <GridWrapper container spacing={2}>
+        <SearchWidget
+          panelId={panelId}
+          gridProps={{
+            size: 12,
+          }}
+          {...panel.widgets?.search}
+        />
         <DatetimeWidget
           panelId={panelId}
           gridProps={{

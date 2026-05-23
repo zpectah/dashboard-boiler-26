@@ -3,11 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Stack, Tabs, Tab } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
+import { getConfig } from '@/config';
 import { useDialogStore, usePanelsStore } from '@/store';
 import { IconButtonPlus } from '@/components';
-import { mainPanelId } from '@/constants';
+import { mainPanelId, newPanelId, panelViewPathPrefix } from '@/constants';
 
 const PanelsMenu = () => {
+  const { features } = getConfig();
+
   const { t } = useTranslation();
   const { panel } = useParams();
   const { main, custom } = usePanelsStore();
@@ -32,6 +35,20 @@ const PanelsMenu = () => {
     );
   }, [panel, panels]);
 
+  const renderAddButton = useMemo(() => {
+    if (custom.length >= features.panels.max) return null;
+
+    return (
+      <IconButtonPlus
+        tooltip={t('button.new_panel')}
+        onClick={() => openPanelDetail(newPanelId)}
+      >
+        <IconPlus />
+      </IconButtonPlus>
+    );
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [custom, t]);
+
   return (
     <Stack
       direction="row"
@@ -45,7 +62,8 @@ const PanelsMenu = () => {
     >
       <Tabs value={panelIndex} variant="scrollable" scrollButtons="auto">
         {panels.map((item, index) => {
-          const path = item.id === mainPanelId ? '/' : `panel/${item.id}`;
+          const path =
+            item.id === mainPanelId ? '/' : `${panelViewPathPrefix}${item.id}`;
 
           return (
             <Tab
@@ -58,13 +76,7 @@ const PanelsMenu = () => {
           );
         })}
       </Tabs>
-
-      <IconButtonPlus
-        tooltip={t('button.new_panel')}
-        onClick={() => openPanelDetail('new')}
-      >
-        <IconPlus />
-      </IconButtonPlus>
+      {renderAddButton}
     </Stack>
   );
 };

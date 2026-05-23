@@ -1,6 +1,9 @@
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Grid, Stack, Paper } from '@mui/material';
 import { IconPlus } from '@tabler/icons-react';
+import { getConfig } from '@/config';
+import { newLinkId } from '@/constants';
 import { useDialogStore, useAppStore } from '@/store';
 import { IconButtonPlus } from '../../../button';
 import type { LinksWidgetProps } from '../types';
@@ -9,9 +12,25 @@ import LinksWidgetLink from './LinksWidgetLink';
 const LinksWidget = ({ panelId, gridProps, ...widget }: LinksWidgetProps) => {
   const { active, links, icons } = widget;
 
+  const { features } = getConfig();
+
   const { t } = useTranslation();
   const { openLinkDetail } = useDialogStore();
   const { editMode } = useAppStore();
+
+  const renderAddButton = useMemo(() => {
+    if (links.length >= features.links.max) return null;
+
+    return (
+      <IconButtonPlus
+        tooltip={t('button.new_link')}
+        onClick={() => openLinkDetail(newLinkId)}
+      >
+        <IconPlus />
+      </IconButtonPlus>
+    );
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
+  }, [links, t]);
 
   if (!active) return;
 
@@ -67,12 +86,7 @@ const LinksWidget = ({ panelId, gridProps, ...widget }: LinksWidgetProps) => {
               />
             ))}
         </Stack>
-        <IconButtonPlus
-          tooltip={t('button.new_link')}
-          onClick={() => openLinkDetail('new')}
-        >
-          <IconPlus />
-        </IconButtonPlus>
+        {renderAddButton}
       </Paper>
     </Grid>
   );

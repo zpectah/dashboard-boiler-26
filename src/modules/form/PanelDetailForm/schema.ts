@@ -1,13 +1,17 @@
 import z from 'zod';
+import i18next from 'i18next';
 import {
   datetimeWidgetHolidaysOriginKeysArray,
   datetimeWidgetTypeKeysArray,
+  searchWidgetEnginesKeysArray,
 } from '@/constants';
 import { commonFieldSchema } from '@/validation';
 
 export const panelDetailFormSchema = z.object({
   id: commonFieldSchema.string,
-  label: commonFieldSchema.string_minLength,
+  label: commonFieldSchema.string_minLength.refine((val) => val.length <= 50, {
+    error: () => i18next.t('form:message.error.max_length'),
+  }),
   widgets: z.object({
     datetime: z.object({
       active: commonFieldSchema.boolean,
@@ -28,6 +32,10 @@ export const panelDetailFormSchema = z.object({
     links: z.object({
       active: commonFieldSchema.boolean,
       icons: commonFieldSchema.boolean,
+    }),
+    search: z.object({
+      active: commonFieldSchema.boolean,
+      engine: z.enum(searchWidgetEnginesKeysArray),
     }),
   }),
 });

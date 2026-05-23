@@ -3,6 +3,7 @@ import type {
   PanelLinksWidget,
   PanelCalendarWidget,
   PanelDatetimeWidget,
+  PanelSearchWidget,
 } from '@/types';
 
 type WidgetCommon = {
@@ -15,3 +16,5 @@ export type CalendarWidgetProps = WidgetCommon & PanelCalendarWidget;
 export type DatetimeWidgetProps = WidgetCommon & PanelDatetimeWidget;
 
 export type LinksWidgetProps = WidgetCommon & PanelLinksWidget;
+
+export type SearchWidgetProps = WidgetCommon & PanelSearchWidget;

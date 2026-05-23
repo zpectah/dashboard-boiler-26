@@ -15,6 +15,8 @@
     "calendar.active": "Kalendár aktívny",
     "links.active": "Odkazy aktívne",
     "links.icons": "Favicons",
+    "search.active": "Hľadanie aktívne",
+    "search.engine": "Engine",
     "link.label": "Popisok odkazu",
     "link.url": "URL adresa",
     "link.order": "Poradie",
@@ -24,6 +26,7 @@
     "section.widgets.datetime": "Widget dátumu a času",
     "section.widgets.calendar": "Widget kalendára",
     "section.widgets.links": "Widget odkazov",
+    "section.widgets.search": "Widget hľadanie",
     "section.links": "Odkazy",
     "introduction.title": "Vitajte",
     "introduction.welcome": "Vitajte na homepage, kde si môžete pridávať/upravovať/mazať vaše obľúbené odkazy a iné užitočné widgety. Môžete si spravovať celé panely a pridávať či upravovať podľa potrieb.\n\nStránku si uložte ako svoju úvodnú stránku prehliadača aby ste mali svoje odkazy vždy po ruke.\n\nTu nižšie si môžete vybrať z ponuky odkazov alebo si odkazy môžete pridať neskôr.",
@@ -41,7 +44,13 @@
     "datetime.type": "Vyberte typ hodin",
     "datetime.holidaysOrigin": "Vyberte pôvod sviatkov",
     "link.label": "Zadajte popisok odkazu",
-    "link.url": "https://"
+    "link.url": "https://",
+    "search.engine": "Vyberte engine",
+    "search": {
+      "google": "Hľadať s Google",
+      "bing": "Hľadať s Bing",
+      "duckDuck": "Hľadať s Duck Duck Go"
+    }
   },
   "options": {
     "timeType": {
@@ -54,6 +63,11 @@
       "us": "Spojené štáty",
       "cs": "Česko",
       "sk": "Slovensko"
+    },
+    "searchEngine": {
+      "google": "Google",
+      "bing": "Bing",
+      "duckDuck": "DuckDuckGo"
     }
   },
   "message": {
@@ -66,7 +80,8 @@
       "invalid_url": "Neplatná URL adresa",
       "invalid_number": "Neplatná číselná hodnota",
       "invalid_boolean": "Neplatná boolean hodnota",
-      "invalid_array": "Neplatná hodnota poľa"
+      "invalid_array": "Neplatná hodnota poľa",
+      "max_length": "Prekročený povolený počet znakov"
     }
   }
 }

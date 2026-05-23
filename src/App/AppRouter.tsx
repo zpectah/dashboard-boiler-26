@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { panelViewPath } from '@/constants';
 import { DashboardView, ErrorBoundary } from '@/views';
 import {
   Toasts,
@@ -49,7 +50,7 @@ const AppRouter = () => {
               element: <MainPanel />,
             },
             {
-              path: 'panel/:panel',
+              path: `${panelViewPath}/:panel`,
               element: <CustomPanel />,
             },
           ],

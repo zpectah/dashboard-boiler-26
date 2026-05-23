@@ -48,12 +48,12 @@ const CalendarWidget = ({ gridProps, ...widget }: CalendarWidgetProps) => {
               },
               '& .MuiDayCalendar-weekContainer': {
                 '&:has(.MuiButtonBase-root.MuiPickerDay-root.Mui-selected )': {
-                  paddingTop: '.25rem',
-                  paddingBottom: '.25rem',
+                  padding: '.25rem',
                   backgroundColor: theme.alpha(
                     theme.palette.text.secondary,
                     0.025,
                   ),
+                  borderRadius: theme.shape.borderRadius,
                 },
               },
               '& .MuiButtonBase-root': {

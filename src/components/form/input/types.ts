@@ -95,3 +95,8 @@ export type RadioGroupProps = MuiRadioGroupProps & {
   controlProps?: Partial<Omit<FormControlProps, 'disabled'>>;
   disabled?: boolean;
 };
+
+export type SearchInputProps = Omit<TextFieldProps, 'label' | 'helperText'> & {
+  isReadOnly?: boolean;
+  adornment?: ReactNode;
+};
