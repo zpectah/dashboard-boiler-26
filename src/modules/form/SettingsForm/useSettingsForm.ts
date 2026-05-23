@@ -24,7 +24,7 @@ export const useSettingsForm = () => {
   });
 
   const submitHandler: SubmitHandler<ISettingsForm> = (data) => {
-    const master = parseMasterData(data);
+    const master = parseMasterData(data, timestamp, introduction);
 
     onPatch(master);
     toggleSettingsForm();

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Stack, Typography, Collapse } from '@mui/material';
 import { IconPencil, IconTrash } from '@tabler/icons-react';
 import type { Panel } from '@/types';
-import { mainPanelId } from '@/constants';
+import { dialogCloseDelayDefault, mainPanelId } from '@/constants';
 import { useDialogStore, usePanelsStore, useAppStore } from '@/store';
 import { IconButtonPlus } from '../button';
 import { Container } from '../layout';
@@ -35,7 +35,7 @@ const PanelContentHeading = ({ panel }: PanelContentHeadingProps) => {
           autoclose: true,
         });
         navigate('/');
-        setTimeout(() => onPanelDelete(panelId), 125);
+        setTimeout(() => onPanelDelete(panelId), dialogCloseDelayDefault);
       },
     });
   };

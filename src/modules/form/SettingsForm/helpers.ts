@@ -5,16 +5,22 @@ export const parseObjectValues = (
   data: AppPersistentStoreData,
 ): ISettingsForm => {
   return Object.assign({
-    ...data,
+    linksGoogle: data.linksGoogle,
+    linksApple: data.linksApple,
+    linksMicrosoft: data.linksMicrosoft,
   });
 };
 
 export const parseMasterData = (
   data: ISettingsForm,
+  timestamp: string,
+  introduction: boolean,
 ): AppPersistentStoreData => {
-  const master = Object.assign({
+  const master = {
     ...data,
-  });
+    timestamp,
+    introduction,
+  };
 
-  return master;
+  return Object.assign(master);
 };

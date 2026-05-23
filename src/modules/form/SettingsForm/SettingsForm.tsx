@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Grid, Button, Stack } from '@mui/material';
 import { useAppPersistentStore, useDialogStore, usePanelsStore } from '@/store';
+import { dialogCloseDelayDefault } from '@/constants';
 import {
   ComposedDrawer,
   ControlledForm,
@@ -35,7 +36,7 @@ const SettingsForm = () => {
             title: t('feedback.success.data_reset'),
             autoclose: true,
           });
-        }, 125);
+        }, dialogCloseDelayDefault);
       },
     });
   };

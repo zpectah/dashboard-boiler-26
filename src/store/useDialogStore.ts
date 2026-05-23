@@ -7,8 +7,7 @@ import type {
 } from '@/types';
 import { toastsItemSeverityKeys } from '@/enums';
 import { getRandomId } from '@/utils';
-
-const TOAST_CLOSE_TIMEOUT_DEFAULT = 3500;
+import { toastsCloseTimeoutDefault } from '@/constants';
 
 interface IDialogStore {
   /* Confirm dialog */
@@ -86,7 +85,7 @@ const useDialogStore = create<IDialogStore>((set, get) => {
 
     if (autoclose) {
       const timeout =
-        typeof autoclose === 'number' ? autoclose : TOAST_CLOSE_TIMEOUT_DEFAULT;
+        typeof autoclose === 'number' ? autoclose : toastsCloseTimeoutDefault;
 
       setTimeout(() => removeToastHandler(id), timeout);
     }

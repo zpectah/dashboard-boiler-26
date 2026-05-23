@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import {
   datetimeWidgetHolidaysOriginKeysArray,
   datetimeWidgetTypeKeysArray,
+  dialogRedirectDelayDefault,
   mainPanelId,
   newPanelId,
 } from '@/constants';
@@ -67,7 +68,10 @@ export const usePanelDetailForm = () => {
         title: t('feedback.success.panel_created'),
         autoclose: true,
       });
-      setTimeout(() => navigate(`panel/${master.id}`), 250);
+      setTimeout(
+        () => navigate(`panel/${master.id}`),
+        dialogRedirectDelayDefault,
+      );
     } else {
       onPanelPatch(panelDetailId, master);
       addToast({

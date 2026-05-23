@@ -1,6 +1,6 @@
 import { styled, Alert } from '@mui/material';
+import type { ToastsItem } from '@/types';
 import { useDialogStore } from '../../store';
-import type { ToastsItem } from '../../types';
 
 interface ToastsItemProps extends ToastsItem {
   onClose: (id: string) => void;
