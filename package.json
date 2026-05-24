@@ -10,7 +10,8 @@
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "preview": "vite preview",
-    "dev:fix:geolocation": "sudo killall -9 locationd"
+    "dev:fix:geolocation": "sudo killall -9 locationd",
+    "test:browser": "vitest --config=vitest.browser.config.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -25,6 +26,7 @@
     "i18next": "^26.0.10",
     "i18next-browser-languagedetector": "^8.2.1",
     "lodash": "^4.18.1",
+    "playwright": "^1.60.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-hook-form": "^7.75.0",
@@ -44,6 +46,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/browser-playwright": "^4.1.7",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.2.1",
     "eslint-plugin-react-hooks": "^7.1.1",
@@ -53,6 +56,9 @@
     "sass-embedded": "^1.99.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.7",
+    "vitest-browser-react": "^2.2.0"
   }
 }
