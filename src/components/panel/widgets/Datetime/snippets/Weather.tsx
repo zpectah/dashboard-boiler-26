@@ -6,8 +6,7 @@ import {
   CircularProgress,
   Tooltip,
 } from '@mui/material';
-import { useWeather, useWeatherIcon, useTickTock } from '@/hooks';
-import { snippetWeatherRefreshTimeout } from '@/constants';
+import { useWeather, useWeatherIcon } from '@/hooks';
 
 const WeatherSnippet = () => {
   const { t } = useTranslation();
@@ -19,9 +18,6 @@ const WeatherSnippet = () => {
   });
 
   const currentWeather = getWeatherByCode(weather?.current_weather.weathercode);
-
-  /* We need to refresh snippet same as weather service */
-  useTickTock({ intervalMs: snippetWeatherRefreshTimeout });
 
   return (
     <Stack

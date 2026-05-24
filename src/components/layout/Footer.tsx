@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import { styled, Stack, Grid, Typography, Link, Divider } from '@mui/material';

@@ -105,7 +105,7 @@ export const useWeather = () => {
           cachedData,
         ) as WeatherStorage;
 
-        const isFresh = now - timestamp < 60 * 60 * 1000;
+        const isFresh = now - timestamp < snippetWeatherRefreshTimeout;
         const isSameLocation =
           Math.abs(coords.lat - lat) < 0.01 &&
           Math.abs(coords.lng - lng) < 0.01;
@@ -159,7 +159,7 @@ export const useWeather = () => {
           getWeatherForecast(latitude, longitude),
           getLocationName(latitude, longitude),
         ]);
-
+        console.log('weather loaded', position);
         return {
           weather: forecast,
           locationName,
@@ -198,14 +198,24 @@ export const useWeather = () => {
   useEffect(() => {
     let cancelled = false;
 
-    loadWeather().then((state) => {
-      if (!cancelled) {
-        setWeather(state);
-      }
-    });
+    const fetchAndSetWeather = () => {
+      loadWeather().then((state) => {
+        if (!cancelled) {
+          setWeather(state);
+        }
+      });
+    };
+
+    fetchAndSetWeather();
+
+    const intervalId = setInterval(
+      fetchAndSetWeather,
+      snippetWeatherRefreshTimeout,
+    );
 
     return () => {
       cancelled = true;
+      clearInterval(intervalId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
